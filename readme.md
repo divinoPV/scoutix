@@ -14,15 +14,10 @@ Run these commands in your favorite terminal :
 
 ## Support
 
-You can email [divino][email] if you have any questions.
+You can email [divino](mailto:hmonteiro.dev@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) if you have any questions.
 
 ## Authors
 
-  - [Laura][laura] - Web Developer FullStack
-  - [Lucas][lucas] - Web Developer FullStack
-  - [Divino][divino] - DevSecOps
-
-[email]: (mailto:hmonteiro.dev@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
-[laura]: (https://github.com/lauraagss/)
-[lucas]: (https://github.com/Spacelocust/)
-[divino]: (https://github.com/divinoPV/)
+  - [Laura](https://github.com/lauraagss/) - Web Developer FullStack
+  - [Lucas](https://github.com/Spacelocust/) - Web Developer FullStack
+  - [Divino](https://github.com/divinoPV/) - DevSecOps
