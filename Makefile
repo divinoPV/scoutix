@@ -228,6 +228,11 @@ filemode:
 diff:
 	${GIT} diff
 
+.PHONY: aliases
+# Show aliases
+aliases:
+	${GIT} config --list | grep alias
+
 ##
 ## Symfony
 ##
