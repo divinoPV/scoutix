@@ -280,3 +280,14 @@ php-assets:
 # Run yarn assets
 yarn-assets:
 	${YARN} run encore dev
+
+.PHONY: yarn-lint
+# Run yarn lint
+yarn-lint:
+	${YARN} lint
+
+
+.PHONY: yarn-lint-fix
+# Run yarn lint
+yarn-lint-fix:
+	${YARN} lint-and-fix
