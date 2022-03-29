@@ -1,0 +1,11 @@
+*.md
+.git/
+.github/
+.gitignore
+.idea/
+node_modules/
+docs/
+scripts/
+var/
+vendor/
+config/jwt/

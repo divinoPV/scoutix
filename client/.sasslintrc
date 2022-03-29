@@ -1,0 +1,9 @@
+files:
+  include:
+    - 'assets/sass/*.scss'
+    - 'assets/sass/**/*.scss'
+rules:
+  indentation:
+    - 2
+    -
+      size: 2
