@@ -1,0 +1,55 @@
+@startuml
+package "BusinessRules" <<Node>> #FFF {
+    package "Entity" <<Database>> #EEE {
+        ' Locality
+        entity Locality /'Generic'/
+        entity National
+        entity Territory
+        entity Cluster
+        entity Unit
+
+        ' User
+        entity User {
+            <Trait>: Uuidable
+            <Trait>: Blameable
+            <Trait>: Uploadable
+            <Trait>: Namable
+            <Trait>: Addressable
+            <Trait>: Birthdable
+            <Trait>: Communicable
+            <Trait>: Genderable
+            -{field} username: string (31)
+        }
+
+        entity Role {
+            enum: Délégué territorial
+            enum: Responsable de pôle
+            enum: Secrétaire territorial
+            enum: Trésorier territorial
+            enum: Aumônier territorial
+            enum: Accompagnateur pédagogique
+            enum: Chargé de mission intendance
+            enum: Chargé de mission logistique
+            enum: Chargé de mission communication
+            enum: Chargé de mission santé
+            enum: Responsable de Groupe
+            enum: Responsable de Groupe Adjoint
+            enum: Secrétaire de Groupe
+            enum: Trésorier de Groupe
+            enum: Cleophas
+            enum: Aumônier de Groupe
+            enum: Accompagnateur Compagnons
+            enum: Chef d'unité
+            enum: Responsable Farfadets
+            enum: Chargé de mission
+            enum: Impeesa
+        }
+
+        entity Feature {}
+
+        entity Scope {
+
+        }
+    }
+}
+@enduml

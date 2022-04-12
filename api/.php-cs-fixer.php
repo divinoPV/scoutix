@@ -76,7 +76,8 @@ return (new PhpCsFixer\Config())->setRiskyAllowed(true)->setRules([
             'try',
             'while',
             'yield',
-            'yield_from',]
+            'yield_from',
+        ]
     ],
     'concat_space' => ['spacing' => 'none'],
 ])->setFinder(PhpCsFixer\Finder::create()->in(__DIR__.'/src'));

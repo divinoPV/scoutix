@@ -31,11 +31,12 @@ RUN apt update -q && \
     docker-php-ext-enable xdebug && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Compose
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Symfony
 RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 # xDebug
 RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini && \
