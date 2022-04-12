@@ -15,7 +15,7 @@ services:
       - ./docker/dev/nginx/default.conf:/etc/nginx/conf.d/default.conf
     environment:
       VIRTUAL_HOST: modulo.co
-      VIRTUAL_PORT: 3000
+      VIRTUAL_PORT: 7800
     depends_on:
       - php-modulo-service
       - mariadb-modulo-service
@@ -26,10 +26,14 @@ services:
     build:
       context: ./docker/dev/node
     container_name: node-modulo-container
+    entrypoint: [ "/bin/sh", "-c", "yarn install && yarn start" ]
     ports:
       - "3000:3000"
     volumes:
       - ./client/:/app
+    environment:
+      VIRTUAL_HOST: modulo.co
+      VIRTUAL_PORT: 3000
     working_dir: /app
     networks:
       - modulo-network

@@ -1,7 +1,14 @@
 {
-  "parser": "babel-eslint",
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "no-loops"
+  ],
   "extends": [
-    "airbnb"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -19,6 +26,8 @@
     "no-var": ["error"],
     "no-param-reassign": ["error", { "props": false }],
     "no-underscore-dangle": ["error"],
+    "no-console": 2,
+    "no-loops/no-loops": 2,
     "max-len": ["error", {
       "code": 80,
       "ignoreTemplateLiterals": true

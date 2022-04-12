@@ -40,6 +40,11 @@ kill:
 sh:
 	${DOCKER_EXEC_PHP} /bin/sh
 
+.PHONY: node-sh
+# Run shell inside php-container
+node-sh:
+	${DOCKER_EXEC_NODE} /bin/sh
+
 .PHONY: clean
 # Clean all, warning all volumes and networks will be delete
 clean:
@@ -228,6 +233,11 @@ filemode:
 diff:
 	${GIT} diff
 
+.PHONY: aliases
+# Show aliases
+aliases:
+	${GIT} config --list | grep alias
+
 ##
 ## Symfony
 ##
@@ -280,3 +290,14 @@ php-assets:
 # Run yarn assets
 yarn-assets:
 	${YARN} run encore dev
+
+.PHONY: yarn-lint
+# Run yarn lint
+yarn-lint:
+	${YARN} lint
+
+
+.PHONY: yarn-lint-fix
+# Run yarn lint
+yarn-lint-fix:
+	${YARN} lint-and-fix
