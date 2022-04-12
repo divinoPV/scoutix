@@ -1,0 +1,7 @@
+php_version: 8.1
+commit_failure_conditions:
+  - "pr.severity.critical > 0"
+  - "pr.severity.major > 0"
+rules:
+  symfony.controller.non_action_public_method_in_controller_class:
+    enabled: true
