@@ -65,7 +65,7 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Sluggable
             <Trait>: Periodable
             <Trait>: Contentable
-            <Trait>: Mediasable
+            <Trait>: Mediable
             <Trait>: Timestampable
             <Trait>: Blameable
 
@@ -122,7 +122,7 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Titleable
             <Trait>: Sluggable
             <Trait>: Contentable
-            <Trait>: Mediasable
+            <Trait>: Mediable
             <Trait>: Tagable
             <Trait>: Releasable
             <Trait>: Timestampable
@@ -176,8 +176,8 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Timestampable
             <Trait>: Blameable
 
-            -{field} scope: Scope
-            -{field} user: User
+            -{field} scope: Scope - FPK
+            -{field} user: User - FPK
         }
 
         entity User {
