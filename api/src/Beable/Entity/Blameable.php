@@ -2,6 +2,7 @@
 
 namespace App\Beable\Entity;
 
+use App\Entity\User;
 use App\Enum\Onum;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
