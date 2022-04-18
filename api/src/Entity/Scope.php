@@ -7,13 +7,14 @@ use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Uuidable;
+use App\Contract\Entity\Scopeact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Scopetory;
 
 #[ORM\Entity(repositoryClass: Scopetory::class)]
-class Scope
+class Scope implements Scopeact
 {
     use Idable, Uuidable, LifeCycleable, Timestampable, Blameable;
 

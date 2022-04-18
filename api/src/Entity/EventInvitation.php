@@ -8,11 +8,12 @@ use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
+use App\Contract\Entity\EventInvitationact;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EventInvitationtory;
 
 #[ORM\Entity(repositoryClass: EventInvitationtory::class)]
-class EventInvitation
+class EventInvitation implements EventInvitationact
 {
     use Blameable, Contentable, Idable, LifeCycleable, Timestampable, Titleable;
 

@@ -9,13 +9,14 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
+use App\Contract\Entity\EventCategoryact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EventCategorytory;
 
 #[ORM\Entity(repositoryClass: EventCategorytory::class)]
-class EventCategory
+class EventCategory implements EventCategoryact
 {
     use Blameable, Contentable, Idable, LifeCycleable, Sluggable, Timestampable, Titleable;
 

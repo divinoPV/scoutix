@@ -8,13 +8,14 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Uuidable;
+use App\Contract\Entity\Localityact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Localitytory;
 
 #[ORM\Entity(repositoryClass: Localitytory::class)]
-class Locality
+class Locality implements Localityact
 {
     use Blameable, Idable, LifeCycleable, Nameable, Timestampable, Uuidable;
 

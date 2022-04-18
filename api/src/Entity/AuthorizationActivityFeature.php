@@ -5,11 +5,12 @@ namespace App\Entity;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
+use App\Contract\Entity\AuthorizationActivityFeatureact;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AuthorizationActivityFeaturetory;
 
 #[ORM\Entity(repositoryClass: AuthorizationActivityFeaturetory::class)]
-class AuthorizationActivityFeature
+class AuthorizationActivityFeature implements AuthorizationActivityFeatureact
 {
     use Blameable, LifeCycleable, Timestampable;
 

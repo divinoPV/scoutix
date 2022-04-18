@@ -5,13 +5,14 @@ namespace App\Entity;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Sluggable;
+use App\Contract\Entity\PublicationStateact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PublicationStatetory;
 
 #[ORM\Entity(repositoryClass: PublicationStatetory::class)]
-class PublicationState
+class PublicationState implements PublicationStateact
 {
     use Idable, Nameable, Sluggable;
 

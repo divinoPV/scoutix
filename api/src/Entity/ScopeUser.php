@@ -5,11 +5,12 @@ namespace App\Entity;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
+use App\Contract\Entity\ScopeUseract;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ScopeUsertory;
 
 #[ORM\Entity(repositoryClass: ScopeUsertory::class)]
-class ScopeUser
+class ScopeUser implements ScopeUseract
 {
     use Blameable, LifeCycleable, Timestampable;
 

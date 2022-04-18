@@ -12,13 +12,14 @@ use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
+use App\Contract\Entity\Eventact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Eventory;
 
 #[ORM\Entity(repositoryClass: Eventory::class)]
-class Event
+class Event implements Eventact
 {
     use Blameable, Contentable, Idable, LifeCycleable, Mediable, Periodable, Sluggable, Timestampable, Titleable, Uuidable;
 

@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\Nameable;
+use App\Contract\Entity\LocalityTypeact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LocalityTypetory;
 
 #[ORM\Entity(repositoryClass: LocalityTypetory::class)]
-class LocalityType
+class LocalityType implements LocalityTypeact
 {
     use Idable, Nameable;
 

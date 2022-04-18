@@ -5,13 +5,14 @@ namespace App\Entity;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Sluggable;
+use App\Contract\Entity\Roleact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Roletory;
 
 #[ORM\Entity(repositoryClass: Roletory::class)]
-class Role
+class Role implements Roleact
 {
     use Idable, Nameable, Sluggable;
 

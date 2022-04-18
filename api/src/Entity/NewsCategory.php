@@ -8,13 +8,14 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
+use App\Contract\Entity\NewsCategoryact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\NewsCategorytory;
 
 #[ORM\Entity(repositoryClass: NewsCategorytory::class)]
-class NewsCategory
+class NewsCategory implements NewsCategoryact
 {
     use Blameable, Idable, LifeCycleable, Nameable, Sluggable, Timestampable;
 

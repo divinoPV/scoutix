@@ -13,11 +13,12 @@ use App\Beable\Entity\Tagable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
+use App\Contract\Entity\Newsact;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Newstory;
 
 #[ORM\Entity(repositoryClass: Newstory::class)]
-class News
+class News implements Newsact
 {
     use Blameable, Contentable, Idable, LifeCycleable, Mediable, Releasable, Sluggable, Tagable, Timestampable, Titleable, Uuidable;
 

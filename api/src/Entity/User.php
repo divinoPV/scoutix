@@ -14,13 +14,15 @@ use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Uploadable;
 use App\Beable\Entity\Usernameable;
 use App\Beable\Entity\Uuidable;
+use App\Contract\Entity\Activityact;
+use App\Contract\Entity\Useract;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Usertory;
 
 #[ORM\Entity(repositoryClass: Usertory::class)]
-class User
+class User implements Useract
 {
     use Addressable, Birthdable, Blameable, Communicable, Genderable, Idable, LifeCycleable, Nameable, Timestampable, Uploadable, Usernameable, Uuidable;
 
