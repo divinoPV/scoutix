@@ -1,27 +1,40 @@
 @startuml
 package "BusinessRules" <<Node>> #FFF {
-    package "Entity" <<Database>> #EEE {
-        ' Locality
-        entity Locality /'Generic'/
-        entity National
-        entity Territory
-        entity Cluster
-        entity Unit
-
-        ' User
-        entity User {
-            <Trait>: Uuidable
+    package "Entities" <<Database>> #EEE {
+        entity AuthorizationFunctionFeature {
+            <Trait>: Timestampable
             <Trait>: Blameable
-            <Trait>: Uploadable
-            <Trait>: Namable
-            <Trait>: Addressable
-            <Trait>: Birthdable
-            <Trait>: Communicable
-            <Trait>: Genderable
-            -{field} username: string (31)
+
+            -{field} function: Function - FPK
+            -{field} feature: Feature - FPK
         }
 
-        entity Role {
+        entity AuthorizationEventCategory {
+            <Trait>: Defaultable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} function: Function - FPK
+            -{field} category: EventCategory - FPK
+        }
+
+        entity Feature {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Nameable
+            <Trait>: Sluggable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+        }
+
+        entity Function {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Nameable
+            <Trait>: Sluggable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
             enum: Délégué territorial
             enum: Responsable de pôle
             enum: Secrétaire territorial
@@ -45,11 +58,184 @@ package "BusinessRules" <<Node>> #FFF {
             enum: Impeesa
         }
 
-        entity Feature {}
+        entity Event {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Titleable
+            <Trait>: Sluggable
+            <Trait>: Periodable
+            <Trait>: Contentable
+            <Trait>: Mediasable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} category: EventCategory
+            -{field} locality: Locality
+            -{field} author: User
+        }
+
+        entity EventCategory {
+            <Trait>: Idable
+            <Trait>: Titleable
+            <Trait>: Sluggable
+            <Trait>: Contentable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+        }
+
+        entity EventInvitation {
+            <Trait>: Idable
+            <Trait>: Titleable
+            <Trait>: Contentable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} event: Event
+            -{field} recipient: User|Scope|Function
+            -{field} state: PublicationState
+        }
+
+        entity Locality {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Nameable
+            <Trait>: Geolocatable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} type: LocalityType
+        }
+
+        entity LocalityType {
+            <Trait>: Idable
+            <Trait>: Nameable
+
+            enum: Cluster
+            enum: National
+            enum: Territory
+            enum: Unit
+        }
+
+        entity News {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Titleable
+            <Trait>: Sluggable
+            <Trait>: Contentable
+            <Trait>: Mediasable
+            <Trait>: Tagable
+            <Trait>: Releasable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} author: User
+            -{field} state: PublicationState
+            -{field} category: NewsCategory
+        }
+
+        entity NewsCategory {
+            <Trait>: Idable
+            <Trait>: Nameable
+            <Trait>: Sluggable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+        }
+
+        entity PublicationState {
+            <Trait>: Idable
+            <Trait>: Nameable
+            <Trait>: Sluggable
+
+            enum: Archivé
+            enum: Brouillon
+            enum: Publié
+        }
+
+        entity Role {
+            <Trait>: Idable
+            <Trait>: Nameable
+            <Trait>: Sluggable
+
+            enum: ADMIN
+            enum: MODERATOR
+            enum: USER
+            enum: GUEST // optional
+        }
 
         entity Scope {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Timestampable
+            <Trait>: Blameable
 
+            -{field} function: Function
+            -{field} locality: Locality
         }
+
+        entity ScopeUser {
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} scope: Scope
+            -{field} user: User
+        }
+
+        entity User {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: Nameable
+            <Trait>: Usernameable
+            <Trait>: Addressable
+            <Trait>: Birthdable
+            <Trait>: Communicable
+            <Trait>: Genderable
+            <Trait>: Uploadable
+            <Trait>: Timestampable
+            <Trait>: Blameable
+
+            -{field} role: Role
+        }
+
+        AuthorizationFunctionFeature "Many" o--* "One" Function: need
+        AuthorizationFunctionFeature "Many" o--* "One" Feature: have
+
+        AuthorizationEventCategory "Many" o--* "One" Function: need
+        AuthorizationEventCategory "Many" o--* "One" EventCategory: have
+
+        Event "Many" o--* "One" EventCategory: own
+        Event "Many" o--* "One" Locality: own
+        Event "Many" o--* "One" User: written
+        Event "Many" o--* "One" PublicationState: have
+
+        EventInvitation "Many" o--* "One" Event: own
+        EventInvitation "Many" o--* "One" User: send
+        EventInvitation "Many" o--* "One" Scope: send
+        EventInvitation "Many" o--* "One" Function: send
+
+        Locality "Many" o--* "One" LocalityType: own
+
+        News "Many" o--* "One" User: written
+        News "Many" o--* "One" NewsCategory: own
+        News "Many" o--* "One" PublicationState: have
+
+        Scope "Many" o--* "One" Function: have
+        Scope "Many" o--* "One" Locality: have
+
+        ScopeUser "Many" o--* "One" Scope: have
+        ScopeUser "Many" o--* "One" User: have
+
+        User "Many" o--* "One" Role: have
+        User "Many" o--* "One" AuthorizationFunctionFeature: blamed
+        User "Many" o--* "One" AuthorizationEventCategory: blamed
+        User "Many" o--* "One" Feature: blamed
+        User "Many" o--* "One" Function: blamed
+        User "Many" o--* "One" Event: blamed
+        User "Many" o--* "One" EventCategory: blamed
+        User "Many" o--* "One" EventInvitation: blamed
+        User "Many" o--* "One" Locality: blamed
+        User "Many" o--* "One" News: blamed
+        User "Many" o--* "One" NewsCategory: blamed
+        User "Many" o--* "One" Scope: blamed
     }
 }
 @enduml
