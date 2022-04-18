@@ -10,6 +10,7 @@ use App\Contract\Beable\Sluggablact;
 use App\Contract\Beable\Timestampablact;
 use App\Contract\Beable\Uuidablact;
 
-interface Activityact extends Blameablact, Idablact, LifeCycleablact, Nameablact, Sluggablact, Timestampablact, Uuidablact
+interface Activityact extends Blameablact, Idablact, LifeCycleablact, Nameablact, Sluggablact, Timestampablact,
+                              Uuidablact
 {
 }

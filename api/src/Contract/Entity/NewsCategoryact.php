@@ -11,5 +11,4 @@ use App\Contract\Beable\Timestampablact;
 
 interface NewsCategoryact extends Blameablact, Idablact, LifeCycleablact, Nameablact, Sluggablact, Timestampablact
 {
-
 }

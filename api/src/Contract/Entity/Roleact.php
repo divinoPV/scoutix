@@ -8,5 +8,4 @@ use App\Contract\Beable\Sluggablact;
 
 interface Roleact extends Idablact, Nameablact, Sluggablact
 {
-
 }

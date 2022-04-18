@@ -7,5 +7,4 @@ use App\Contract\Beable\Nameablact;
 
 interface LocalityTypeact extends Idablact, Nameablact
 {
-
 }

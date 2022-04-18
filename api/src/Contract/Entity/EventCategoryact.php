@@ -10,7 +10,7 @@ use App\Contract\Beable\Sluggablact;
 use App\Contract\Beable\Timestampablact;
 use App\Contract\Beable\Titleablact;
 
-interface EventCategoryact extends Blameablact, Contentablact, Idablact, LifeCycleablact, Sluggablact, Timestampablact, Titleablact
+interface EventCategoryact extends Blameablact, Contentablact, Idablact, LifeCycleablact, Sluggablact, Timestampablact,
+                                   Titleablact
 {
-
 }

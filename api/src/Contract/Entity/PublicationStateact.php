@@ -8,5 +8,4 @@ use App\Contract\Beable\Sluggablact;
 
 interface PublicationStateact extends Idablact, Nameablact, Sluggablact
 {
-
 }

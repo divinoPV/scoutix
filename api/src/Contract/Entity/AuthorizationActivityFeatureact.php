@@ -5,8 +5,16 @@ namespace App\Contract\Entity;
 use App\Contract\Beable\Blameablact;
 use App\Contract\Beable\LifeCycleablact;
 use App\Contract\Beable\Timestampablact;
+use App\Entity\Activity;
+use App\Entity\Feature;
 
 interface AuthorizationActivityFeatureact extends Blameablact, LifeCycleablact, Timestampablact
 {
+    public function getActivity(): ?Activity;
 
+    public function setActivity(?Activity $activity): AuthorizationActivityFeatureact;
+
+    public function getFeature(): ?Feature;
+
+    public function setFeature(?Feature $feature): AuthorizationActivityFeatureact;
 }

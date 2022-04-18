@@ -13,8 +13,12 @@ use App\Contract\Beable\Timestampablact;
 use App\Contract\Beable\Uploadablact;
 use App\Contract\Beable\Usernameablact;
 use App\Contract\Beable\Uuidablact;
+use App\Entity\Role;
 
-interface Useract extends Addressablact, Birthdablact, Communicablact, Genderablact, Idablact, LifeCycleablact, Nameablact, Timestampablact, Uploadablact, Usernameablact, Uuidablact
+interface Useract extends Addressablact, Birthdablact, Communicablact, Genderablact, Idablact, LifeCycleablact,
+                          Nameablact, Timestampablact, Uploadablact, Usernameablact, Uuidablact
 {
+    public function getRole(): ?Role;
 
+    public function setRole(?Role $role): Useract;
 }
