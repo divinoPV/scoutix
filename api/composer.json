@@ -12,6 +12,7 @@
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
+        "gedmo/doctrine-extensions": "^3.6",
         "knplabs/doctrine-behaviors": "^2.6",
         "monolog/monolog": "^2.5",
         "nelmio/cors-bundle": "^2.2",
@@ -84,8 +85,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "6.0.*",
-            "docker": true
+            "require": "6.0.*"
         }
     },
     "require-dev": {
