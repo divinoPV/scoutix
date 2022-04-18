@@ -1,8 +1,73 @@
 <?php
 
-namespace App\Entity\Beable;
+namespace App\Beable\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait Blameable
 {
+    #[Gedmo\Blameable(on: 'change', field: 'archived')]
+    #[ORM\Column(nullable: true)]
+    protected ?User $archivedBy = null;
 
+    #[Gedmo\Blameable(on: 'create')]
+    #[ORM\Column(nullable: true)]
+    protected ?User $createdBy = null;
+
+    #[Gedmo\Blameable(on: 'change', field: 'deleted')]
+    #[ORM\Column(nullable: true)]
+    protected ?User $deletedBy = null;
+
+    #[Gedmo\Blameable(on: 'update')]
+    #[ORM\Column(nullable: true)]
+    protected ?User $updatedBy = null;
+
+    public function getArchivedBy(): ?User
+    {
+        return $this->archivedBy;
+    }
+
+    public function setArchivedBy(?User $archivedBy): static
+    {
+        $this->archivedBy = $archivedBy;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): static
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function getDeletedBy(): ?User
+    {
+        return $this->deletedBy;
+    }
+
+    public function setDeletedBy(?User $deletedBy): static
+    {
+        $this->deletedBy = $deletedBy;
+
+        return $this;
+    }
+
+    public function getUpdatedBy(): ?User
+    {
+        return $this->updatedBy;
+    }
+
+    public function setUpdatedBy(?User $updatedBy): static
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
 }
