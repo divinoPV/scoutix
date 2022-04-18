@@ -2,21 +2,22 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 trait Communicable
 {
     #[Assert\Length(exactly: 10)]
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ORM\Column(Types::STRING, length: 10, nullable: true)]
     protected ?string $fax = null;
 
     #[Assert\Length(exactly: 10)]
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ORM\Column(Types::STRING, length: 10, nullable: true)]
     protected ?string $landline = null;
 
     #[Assert\Length(exactly: 10)]
-    #[ORM\Column(type: 'string', length: 10, nullable: false)]
+    #[ORM\Column(Types::STRING, length: 10, nullable: false)]
     protected ?string $mobile;
 
     public function getFax(): ?string

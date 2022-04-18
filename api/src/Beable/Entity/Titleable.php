@@ -2,11 +2,12 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Titleable
 {
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
     protected ?string $title;
 
     public function getTitle(): ?string

@@ -2,23 +2,24 @@
 
 namespace App\Beable\Entity;
 
+use App\Enum\Onum;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Timestampable
 {
-    #[Gedmo\Blameable(on: 'change', field: 'archived')]
+    #[Gedmo\Blameable(on: Onum::CHANGE, field: 'archived')]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $archivedAt = null;
 
-    #[Gedmo\Blameable(on: 'create')]
+    #[Gedmo\Blameable(on: Onum::CREATE)]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $createdAt = null;
 
-    #[Gedmo\Blameable(on: 'change', field: 'deleted')]
+    #[Gedmo\Blameable(on: Onum::CHANGE, field: 'deleted')]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $deletedAt = null;
 
-    #[Gedmo\Blameable(on: 'update')]
+    #[Gedmo\Blameable(on: Onum::UPDATE)]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $updatedAt = null;
 

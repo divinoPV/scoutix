@@ -2,11 +2,12 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Defaultable
 {
-    #[ORM\Column(type: 'text', length: 8191, nullable: false)]
+    #[ORM\Column(Types::BOOLEAN, nullable: false)]
     protected ?bool $default = false;
 
     public function isDefault(): ?bool

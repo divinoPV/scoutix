@@ -2,24 +2,25 @@
 
 namespace App\Beable\Entity;
 
+use App\Enum\Onum;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 trait Blameable
 {
-    #[Gedmo\Blameable(on: 'change', field: 'archived')]
+    #[Gedmo\Blameable(on: Onum::CHANGE, field: 'archived')]
     #[ORM\Column(nullable: true)]
     protected ?User $archivedBy = null;
 
-    #[Gedmo\Blameable(on: 'create')]
+    #[Gedmo\Blameable(on: Onum::CREATE)]
     #[ORM\Column(nullable: true)]
     protected ?User $createdBy = null;
 
-    #[Gedmo\Blameable(on: 'change', field: 'deleted')]
+    #[Gedmo\Blameable(on: Onum::CHANGE, field: 'deleted')]
     #[ORM\Column(nullable: true)]
     protected ?User $deletedBy = null;
 
-    #[Gedmo\Blameable(on: 'update')]
+    #[Gedmo\Blameable(on: Onum::UPDATE)]
     #[ORM\Column(nullable: true)]
     protected ?User $updatedBy = null;
 

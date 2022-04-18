@@ -2,14 +2,15 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Periodable
 {
-    #[ORM\Column(type: 'datetime_immutable', nullable: false)]
+    #[ORM\Column(Types::DATETIME_IMMUTABLE, nullable: false)]
     protected ?\DateTimeImmutable $startDate;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: false)]
+    #[ORM\Column(Types::DATETIME_IMMUTABLE, nullable: false)]
     protected ?\DateTimeImmutable $endDate;
 
     public function getStartDate(): ?\DateTimeImmutable

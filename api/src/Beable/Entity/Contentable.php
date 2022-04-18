@@ -2,11 +2,12 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Contentable
 {
-    #[ORM\Column(type: 'text', length: 8191, nullable: false)]
+    #[ORM\Column(Types::TEXT, length: 8191, nullable: false)]
     protected ?string $content;
 
     public function getContent(): ?string

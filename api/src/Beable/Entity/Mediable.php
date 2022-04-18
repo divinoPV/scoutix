@@ -2,11 +2,12 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Mediable
 {
-    #[ORM\Column(type: 'array', nullable: true)]
+    #[ORM\Column(Types::ARRAY, nullable: true)]
     protected ?array $medias = [];
 
     public function getMedias(): ?array

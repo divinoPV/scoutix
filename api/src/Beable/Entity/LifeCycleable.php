@@ -2,14 +2,15 @@
 
 namespace App\Beable\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait LifeCycleable
 {
-    #[ORM\Column(type: 'boolean', nullable: false)]
+    #[ORM\Column(Types::BOOLEAN, nullable: false)]
     protected ?bool $archived = false;
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
+    #[ORM\Column(Types::BOOLEAN, nullable: false)]
     protected ?bool $deleted = false;
 
     public function isArchived(): ?bool
