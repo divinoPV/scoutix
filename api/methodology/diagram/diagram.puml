@@ -10,9 +10,9 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Timestampable
             <Trait>: Uuidable
 
-            enum: Accompagnateur Compagnons
+            enum: Accompagnateur compagnons
             enum: Accompagnateur pédagogique
-            enum: Aumônier de Groupe
+            enum: Aumônier de groupe
             enum: Aumônier territorial
             enum: Chargé de mission
             enum: Chargé de mission communication
@@ -23,11 +23,11 @@ package "BusinessRules" <<Node>> #FFF {
             enum: Cleophas
             enum: Délégué territorial
             enum: Impeesa
-            enum: Responsable de Groupe
-            enum: Responsable de Groupe Adjoint
+            enum: Responsable de groupe
+            enum: Responsable de groupe adjoint
             enum: Responsable de pôle
-            enum: Responsable Farfadets
-            enum: Secrétaire de Groupe
+            enum: Responsable farfadets
+            enum: Secrétaire de groupe
             enum: Secrétaire territorial
             enum: Trésorier de Groupe
             enum: Trésorier territorial
