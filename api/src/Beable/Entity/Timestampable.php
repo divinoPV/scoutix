@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Beable;
+namespace App\Entity\Beable;
 
 trait Timestampable
 {
