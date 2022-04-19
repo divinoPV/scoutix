@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait LifeCycleable
 {
-    #[ORM\Column(Types::BOOLEAN, nullable: false)]
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
     protected ?bool $archived = false;
 
-    #[ORM\Column(Types::BOOLEAN, nullable: false)]
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
     protected ?bool $deleted = false;
 
     public function isArchived(): ?bool

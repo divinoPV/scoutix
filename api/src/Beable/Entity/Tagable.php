@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Tagable
 {
-    #[ORM\Column(Types::ARRAY, nullable: true)]
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
     protected ?array $tags = [];
 
     public function getTags(): ?array

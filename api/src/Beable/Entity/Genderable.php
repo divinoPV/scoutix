@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Genderable
 {
-    #[ORM\Column(Types::STRING, length: 255, nullable: false, enumType: Genderum::class)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false, enumType: Genderum::class)]
     protected ?Genderum $gender;
 
     public function getGender(): ?Genderum

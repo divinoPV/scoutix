@@ -9,7 +9,7 @@ use Ramsey\Uuid\UuidInterface;
 
 trait Uuidable
 {
-    #[ORM\Column(Types::STRING, unique: true)]
+    #[ORM\Column(type: Types::STRING, unique: true)]
     #[ORM\CustomIdGenerator(class: UuidOrderedTimeGenerator::class)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     protected UuidInterface|string|null $uuid = null;

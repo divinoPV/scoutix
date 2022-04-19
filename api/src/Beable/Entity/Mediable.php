@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Mediable
 {
-    #[ORM\Column(Types::ARRAY, nullable: true)]
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
     protected ?array $medias = [];
 
     public function getMedias(): ?array

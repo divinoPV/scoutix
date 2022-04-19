@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Contentable
 {
-    #[ORM\Column(Types::TEXT, length: 8191, nullable: false)]
+    #[ORM\Column(type: Types::TEXT, length: 8191, nullable: false)]
     protected ?string $content;
 
     public function getContent(): ?string

@@ -7,22 +7,22 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Nameable
 {
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $firstName;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $maidenName = null;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $matronym = null;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $middleName = null;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $patronym;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $thirdName = null;
 
     public function getFirstName(): ?string

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Usernameable
 {
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $username;
 
     public function getUsername(): ?string

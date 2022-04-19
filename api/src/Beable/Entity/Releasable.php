@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Releasable
 {
-    #[ORM\Column(Types::DATETIME_IMMUTABLE, nullable: false)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: false)]
     protected ?\DateTimeImmutable $releasedAt;
 
     public function getReleasedAt(): ?\DateTimeImmutable

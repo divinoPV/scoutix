@@ -7,13 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Birthdable
 {
-    #[ORM\Column(Types::DATETIME_IMMUTABLE, nullable: false)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: false)]
     protected ?\DateTimeImmutable $birth;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $birthCity;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $birthZipCode;
 
     public function getBirth(): ?\DateTimeImmutable

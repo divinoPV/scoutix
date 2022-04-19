@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Periodable
 {
-    #[ORM\Column(Types::DATETIME_IMMUTABLE, nullable: false)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: false)]
     protected ?\DateTimeImmutable $startDate;
 
-    #[ORM\Column(Types::DATETIME_IMMUTABLE, nullable: false)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: false)]
     protected ?\DateTimeImmutable $endDate;
 
     public function getStartDate(): ?\DateTimeImmutable

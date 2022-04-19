@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Defaultable
 {
-    #[ORM\Column(Types::BOOLEAN, nullable: false)]
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
     protected ?bool $default = false;
 
     public function isDefault(): ?bool

@@ -7,28 +7,28 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Addressable
 {
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressCity;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $addressComplement = null;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressCountry;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressDepartment;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressNumber;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressState;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressStreet;
 
-    #[ORM\Column(Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressZipCode;
 
     public function getAddressCity(): ?string
