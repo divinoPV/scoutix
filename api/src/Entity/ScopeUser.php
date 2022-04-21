@@ -7,8 +7,10 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Contract\Entity\ScopeUseract;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ScopeUsertory;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: ScopeUsertory::class)]
 class ScopeUser implements ScopeUseract
 {

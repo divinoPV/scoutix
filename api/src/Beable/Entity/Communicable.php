@@ -4,18 +4,22 @@ namespace App\Beable\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 trait Communicable
 {
+    #[Groups(["read", "write"])]
     #[Assert\Length(exactly: 10)]
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     protected ?string $fax = null;
 
+    #[Groups(["read", "write"])]
     #[Assert\Length(exactly: 10)]
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     protected ?string $landline = null;
 
+    #[Groups(["read", "write"])]
     #[Assert\Length(exactly: 10)]
     #[ORM\Column(type: Types::STRING, length: 10, nullable: false)]
     protected ?string $mobile;

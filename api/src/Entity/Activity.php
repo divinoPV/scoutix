@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
@@ -12,9 +13,11 @@ use App\Contract\Entity\Activityact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Activitytory;
 use Ramsey\Uuid\Uuid;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: Activitytory::class)]
 class Activity implements Activityact
 {
