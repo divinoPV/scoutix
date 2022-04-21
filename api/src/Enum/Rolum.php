@@ -10,8 +10,8 @@ enum Rolum: string
 
     const NAME = 'role';
 
-   case Admin = 'admin';
-   case Guest = 'guest';
-   case Moderator = 'moderator';
-   case User = 'user';
+    case Admin = 'admin';
+    case Guest = 'guest';
+    case Moderator = 'moderator';
+    case User = 'user';
 }
