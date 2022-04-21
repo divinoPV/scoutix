@@ -5,19 +5,20 @@ namespace App\Entity;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
-use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Timestampable;
+use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Localityact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Localitytory;
+use Ramsey\Uuid\Uuid;
 
 #[ORM\Entity(repositoryClass: Localitytory::class)]
 class Locality implements Localityact
 {
-    use Blameable, Idable, LifeCycleable, Nameable, Timestampable, Uuidable;
+    use Blameable, Idable, LifeCycleable, Timestampable, Titleable, Uuidable;
 
     #[ORM\ManyToOne(targetEntity: LocalityType::class, inversedBy: 'localities')]
     #[ORM\JoinColumn(nullable: false)]
@@ -29,6 +30,7 @@ class Locality implements Localityact
         #[ORM\OneToMany(mappedBy: 'locality', targetEntity: Scope::class)]
         private Collection $scopes = new ArrayCollection,
     ) {
+        $this->uuid = Uuid::uuid6();
     }
 
     public function getType(): ?LocalityType

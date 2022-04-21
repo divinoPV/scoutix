@@ -16,6 +16,7 @@ use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Newsact;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Newstory;
+use Ramsey\Uuid\Uuid;
 
 #[ORM\Entity(repositoryClass: Newstory::class)]
 class News implements Newsact
@@ -33,6 +34,11 @@ class News implements Newsact
     #[ORM\ManyToOne(targetEntity: PublicationState::class, inversedBy: 'news')]
     #[ORM\JoinColumn(nullable: false)]
     private ?PublicationState $state;
+
+    public function __construct()
+    {
+        $this->uuid = Uuid::uuid6();
+    }
 
     public function getAuthor(): ?User
     {

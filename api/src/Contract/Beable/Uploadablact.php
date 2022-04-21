@@ -4,19 +4,19 @@ namespace App\Contract\Beable;
 
 interface Uploadablact
 {
-    public function getName(): ?string;
+    public function getFileName(): ?string;
 
-    public function setName(?string $name): Uploadablact;
+    public function setFileName(?string $name): Uploadablact;
 
-    public function getMimeType(): ?string;
+    public function getFileMimeType(): ?string;
 
-    public function setMimeType(?string $mimeType): Uploadablact;
+    public function setFileMimeType(?string $mimeType): Uploadablact;
 
-    public function getPath(): ?string;
+    public function getFilePath(): ?string;
 
-    public function setPath(?string $path): Uploadablact;
+    public function setFilePath(?string $path): Uploadablact;
 
-    public function getSize(): ?float;
+    public function getFileSize(): ?float;
 
-    public function setSize(?float $size): Uploadablact;
+    public function setFileSize(?float $size): Uploadablact;
 }

@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Beable\Entity\Idable;
-use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Sluggable;
+use App\Beable\Entity\Titleable;
 use App\Contract\Entity\PublicationStateact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,7 +14,7 @@ use App\Repository\PublicationStatetory;
 #[ORM\Entity(repositoryClass: PublicationStatetory::class)]
 class PublicationState implements PublicationStateact
 {
-    use Idable, Nameable, Sluggable;
+    use Idable, Sluggable, Titleable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'state', targetEntity: EventInvitation::class)]

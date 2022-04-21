@@ -10,19 +10,23 @@ use Gedmo\Mapping\Annotation as Gedmo;
 trait Blameable
 {
     #[Gedmo\Blameable(on: Onum::CHANGE, field: 'archived')]
-    #[ORM\Column(nullable: true)]
+    #[ORM\JoinColumn(referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     protected ?User $archivedBy = null;
 
     #[Gedmo\Blameable(on: Onum::CREATE)]
-    #[ORM\Column(nullable: true)]
+    #[ORM\JoinColumn(referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     protected ?User $createdBy = null;
 
     #[Gedmo\Blameable(on: Onum::CHANGE, field: 'deleted')]
-    #[ORM\Column(nullable: true)]
+    #[ORM\JoinColumn(referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     protected ?User $deletedBy = null;
 
     #[Gedmo\Blameable(on: Onum::UPDATE)]
-    #[ORM\Column(nullable: true)]
+    #[ORM\JoinColumn(referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     protected ?User $updatedBy = null;
 
     public function getArchivedBy(): ?User

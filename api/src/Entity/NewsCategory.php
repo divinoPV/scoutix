@@ -5,9 +5,9 @@ namespace App\Entity;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
-use App\Beable\Entity\Nameable;
 use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
+use App\Beable\Entity\Titleable;
 use App\Contract\Entity\NewsCategoryact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +17,7 @@ use App\Repository\NewsCategorytory;
 #[ORM\Entity(repositoryClass: NewsCategorytory::class)]
 class NewsCategory implements NewsCategoryact
 {
-    use Blameable, Idable, LifeCycleable, Nameable, Sluggable, Timestampable;
+    use Blameable, Idable, LifeCycleable, Sluggable, Timestampable, Titleable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'category', targetEntity: News::class)]

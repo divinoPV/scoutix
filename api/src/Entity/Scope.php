@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Scopetory;
+use Ramsey\Uuid\Uuid;
 
 #[ORM\Entity(repositoryClass: Scopetory::class)]
 class Scope implements Scopeact
@@ -32,6 +33,7 @@ class Scope implements Scopeact
         #[ORM\OneToMany(mappedBy: 'scope', targetEntity: ScopeUser::class)]
         private Collection $scopeUsers = new ArrayCollection
     ) {
+        $this->uuid = Uuid::uuid6();
     }
 
     public function getActivity(): ?Activity

@@ -9,7 +9,7 @@ trait Sluggable
 {
     /** To use it you must override the property to add this attribute #[Gedmo\Slug(fields: [...])]*/
 
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $slug;
 
     public function getSlug(): ?string

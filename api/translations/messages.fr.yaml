@@ -1,3 +1,7 @@
+# Entities
+# Entity - User
+user.constraint.email.unique: Cette adresse email est déjà utilisée.
+
 # Enums
 ## Enum - Activityum
 enum.activity.accompanying_companions: >-

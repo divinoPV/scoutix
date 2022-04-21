@@ -12,64 +12,64 @@ trait Uploadable
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Gedmo\UploadableFileName]
-    protected ?string $name = null;
+    protected ?string $fileName = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Gedmo\UploadableFileMimeType]
-    protected ?string $mimeType = null;
+    protected ?string $fileMimeType = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Gedmo\UploadableFilePath]
-    protected ?string $path = null;
+    protected ?string $filePath = null;
 
     #[ORM\Column(type: Types::DECIMAL, nullable: true)]
     #[Gedmo\UploadableFileSize]
-    protected ?float $size = null;
+    protected ?float $fileSize = null;
 
-    public function getName(): ?string
+    public function getFileName(): ?string
     {
-        return $this->name;
+        return $this->fileName;
     }
 
-    public function setName(?string $name): static
+    public function setFileName(?string $fileName): static
     {
-        $this->name = $name;
+        $this->fileName = $fileName;
 
         return $this;
     }
 
-    public function getMimeType(): ?string
+    public function getFileMimeType(): ?string
     {
-        return $this->mimeType;
+        return $this->fileMimeType;
     }
 
-    public function setMimeType(?string $mimeType): static
+    public function setFileMimeType(?string $fileMimeType): static
     {
-        $this->mimeType = $mimeType;
+        $this->fileMimeType = $fileMimeType;
 
         return $this;
     }
 
-    public function getPath(): ?string
+    public function getFilePath(): ?string
     {
-        return $this->path;
+        return $this->filePath;
     }
 
-    public function setPath(?string $path): static
+    public function setFilePath(?string $filePath): static
     {
-        $this->path = $path;
+        $this->filePath = $filePath;
 
         return $this;
     }
 
-    public function getSize(): ?float
+    public function getFileSize(): ?float
     {
-        return $this->size;
+        return $this->fileSize;
     }
 
-    public function setSize(?float $size): static
+    public function setFileSize(?float $fileSize): static
     {
-        $this->size = $size;
+        $this->fileSize = $fileSize;
 
         return $this;
     }

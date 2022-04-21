@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Idable
 {
-    #[ORM\Column(type: Types::INTEGER)]
-    #[ORM\GeneratedValue]
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: Types::INTEGER)]
     protected ?int $id = null;
 
     public function getId(): ?int

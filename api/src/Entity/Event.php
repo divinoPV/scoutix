@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Eventory;
+use Ramsey\Uuid\Uuid;
 
 #[ORM\Entity(repositoryClass: Eventory::class)]
 class Event implements Eventact
@@ -39,6 +40,7 @@ class Event implements Eventact
         #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventInvitation::class)]
         private Collection $eventInvitations = new ArrayCollection
     ) {
+        $this->uuid = Uuid::uuid6();
     }
 
     public function getAuthor(): ?User

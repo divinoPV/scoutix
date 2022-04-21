@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Beable\Entity\Idable;
-use App\Beable\Entity\Nameable;
+use App\Beable\Entity\Titleable;
 use App\Contract\Entity\LocalityTypeact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +13,7 @@ use App\Repository\LocalityTypetory;
 #[ORM\Entity(repositoryClass: LocalityTypetory::class)]
 class LocalityType implements LocalityTypeact
 {
-    use Idable, Nameable;
+    use Idable, Titleable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'type', targetEntity: Locality::class)]

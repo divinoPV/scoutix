@@ -6,29 +6,30 @@ use App\Beable\Entity\Addressable;
 use App\Beable\Entity\Birthdable;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Communicable;
+use App\Beable\Entity\Emailable;
 use App\Beable\Entity\Genderable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Nameable;
+use App\Beable\Entity\Passwordable;
+use App\Beable\Entity\Roleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Uploadable;
 use App\Beable\Entity\Usernameable;
 use App\Beable\Entity\Uuidable;
-use App\Contract\Entity\Activityact;
 use App\Contract\Entity\Useract;
+use App\Repository\Usertory;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\Usertory;
+use Ramsey\Uuid\Uuid;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: Usertory::class)]
+#[UniqueEntity(fields: ['email'], message: 'user.unique.email')]
 class User implements Useract
 {
-    use Addressable, Birthdable, Blameable, Communicable, Genderable, Idable, LifeCycleable, Nameable, Timestampable, Uploadable, Usernameable, Uuidable;
-
-    #[ORM\ManyToOne(targetEntity: Role::class, inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Role $role;
+    use Addressable, Birthdable, Blameable, Communicable, Emailable, Genderable, Idable, LifeCycleable, Nameable, Passwordable, Roleable, Timestampable, Uploadable, Usernameable, Uuidable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'author', targetEntity: Event::class)]
@@ -40,18 +41,7 @@ class User implements Useract
         #[ORM\OneToMany(mappedBy: 'user', targetEntity: ScopeUser::class)]
         private Collection $scopeUsers = new ArrayCollection
     ) {
-    }
-
-    public function getRole(): ?Role
-    {
-        return $this->role;
-    }
-
-    public function setRole(?Role $role): static
-    {
-        $this->role = $role;
-
-        return $this;
+        $this->uuid = Uuid::uuid6();
     }
 
     /**
@@ -162,5 +152,35 @@ class User implements Useract
         }
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function getFullName(): string
+    {
+        return
+            $this->firstName
+            . (null !== $this->middleName ? ' ' . $this->middleName : '')
+            . (null !== $this->thirdName ? ' ' . $this->thirdName : '')
+            . ' ' . $this->patronym
+            . (null !== $this->matronym ? ' ' . $this->matronym : '')
+            . (null !== $this->maidenName ? ' ' . $this->maidenName : '')
+        ;
     }
 }

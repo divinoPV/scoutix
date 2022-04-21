@@ -5,9 +5,9 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Nameable
             <Trait>: Sluggable
             <Trait>: Timestampable
+            <Trait>: Titleable
             <Trait>: Uuidable
 
             enum: Accompagnateur compagnons
@@ -96,9 +96,9 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Nameable
             <Trait>: Sluggable
             <Trait>: Timestampable
+            <Trait>: Titleable
             <Trait>: Uuidable
         }
 
@@ -106,8 +106,8 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Nameable
             <Trait>: Timestampable
+            <Trait>: Titleable
             <Trait>: Uuidable
 
             -{field} type: LocalityType
@@ -115,7 +115,7 @@ package "BusinessRules" <<Node>> #FFF {
 
         entity LocalityType {
             <Trait>: Idable
-            <Trait>: Nameable
+            <Trait>: Titleable
 
             enum: Cluster
             enum: National
@@ -145,29 +145,18 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Nameable
             <Trait>: Sluggable
             <Trait>: Timestampable
+            <Trait>: Titleable
         }
 
         entity PublicationState {
             <Trait>: Idable
-            <Trait>: Nameable
             <Trait>: Sluggable
+            <Trait>: Titleable
 
             enum: Brouillon
             enum: Publié
-        }
-
-        entity Role {
-            <Trait>: Idable
-            <Trait>: Nameable
-            <Trait>: Sluggable
-
-            enum: ADMIN
-            enum: GUEST // optional
-            enum: MODERATOR
-            enum: USER
         }
 
         entity Scope {
@@ -195,16 +184,19 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Birthdable
             <Trait>: Blameable
             <Trait>: Communicable
+            <Trait>: Emailablact
             <Trait>: Genderable
             <Trait>: Idable
             <Trait>: LifeCycleable
             <Trait>: Nameable
+            <Trait>: PasswordAuthenticatedUserInterface
+            <Trait>: Passwordablact
+            <Trait>: Roleablact
             <Trait>: Timestampable
             <Trait>: Uploadable
             <Trait>: Usernameable
+            <Trait>: UserInterface
             <Trait>: Uuidable
-
-            -{field} role: Role
         }
 
         AuthorizationActivityFeature "Many" o--* "One" Activity: need
@@ -245,7 +237,6 @@ package "BusinessRules" <<Node>> #FFF {
         User "Many" o--* "One" Locality: blamed
         User "Many" o--* "One" News: blamed
         User "Many" o--* "One" NewsCategory: blamed
-        User "Many" o--* "One" Role: have
         User "Many" o--* "One" Scope: blamed
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Contract\Entity;
 
 use App\Contract\Beable\Idablact;
-use App\Contract\Beable\Nameablact;
 use App\Contract\Beable\Sluggablact;
+use App\Contract\Beable\Titleablact;
 
-interface PublicationStateact extends Idablact, Nameablact, Sluggablact
+interface PublicationStateact extends Idablact, Sluggablact, Titleablact
 {
 }

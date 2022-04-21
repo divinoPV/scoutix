@@ -18,4 +18,16 @@ final class Usertory extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public function findByRole(string $role): array
+    {
+        $admins = $this
+            ->createQueryBuilder('u')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($admins as $key => $admin) if ($admin->getRoles()[0] !== $role) unset($admins[$key]);
+
+        return $admins;
+    }
 }
