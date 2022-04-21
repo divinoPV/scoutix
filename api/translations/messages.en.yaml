@@ -44,7 +44,7 @@ enum.publication_state.draft: Draft
 enum.publication_state.published: Published
 
 ## Enum - Rolum
-enum.role.admin: Adminisrator
+enum.role.admin: Administrator
 enum.role.guest: Guest
 enum.role.moderator: Moderator
 enum.role.user: User
