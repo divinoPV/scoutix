@@ -5,23 +5,28 @@ namespace App\Beable\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Uploadable
 {
     /** Read https://github.com/doctrine-extensions/DoctrineExtensions/blob/main/doc/uploadable.md */
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Gedmo\UploadableFileName]
     protected ?string $fileName = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Gedmo\UploadableFileMimeType]
     protected ?string $fileMimeType = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Gedmo\UploadableFilePath]
     protected ?string $filePath = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::DECIMAL, nullable: true)]
     #[Gedmo\UploadableFileSize]
     protected ?float $fileSize = null;

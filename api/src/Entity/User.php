@@ -22,9 +22,14 @@ use App\Repository\Usertory;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[ApiResource(
+    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: Usertory::class)]
 #[UniqueEntity(fields: ['email'], message: 'user.unique.email')]
 class User implements Useract
