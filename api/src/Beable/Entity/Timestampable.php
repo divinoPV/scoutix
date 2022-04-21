@@ -4,21 +4,26 @@ namespace App\Beable\Entity;
 
 use App\Enum\Onum;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Timestampable
 {
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::CHANGE, field: 'archived')]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $archivedAt = null;
 
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::CREATE)]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $createdAt = null;
 
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::CHANGE, field: 'deleted')]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $deletedAt = null;
 
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::UPDATE)]
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $updatedAt = null;

@@ -6,24 +6,29 @@ use App\Entity\User;
 use App\Enum\Onum;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Blameable
 {
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::CHANGE, field: 'archived')]
     #[ORM\JoinColumn(referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     protected ?User $archivedBy = null;
 
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::CREATE)]
     #[ORM\JoinColumn(referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     protected ?User $createdBy = null;
 
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::CHANGE, field: 'deleted')]
     #[ORM\JoinColumn(referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     protected ?User $deletedBy = null;
 
+    #[Groups(["read", "write"])]
     #[Gedmo\Blameable(on: Onum::UPDATE)]
     #[ORM\JoinColumn(referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]

@@ -16,9 +16,11 @@ use App\Contract\Entity\Newsact;
 use App\Enum\PublicationStatum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Newstory;
 use Ramsey\Uuid\Uuid;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: Newstory::class)]
 class News implements Newsact
 {

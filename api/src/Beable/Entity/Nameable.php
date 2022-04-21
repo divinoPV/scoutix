@@ -4,24 +4,31 @@ namespace App\Beable\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Nameable
 {
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $firstName;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $maidenName = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $matronym = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $middleName = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $patronym;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $thirdName = null;
 

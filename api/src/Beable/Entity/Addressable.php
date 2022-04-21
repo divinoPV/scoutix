@@ -4,30 +4,39 @@ namespace App\Beable\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Addressable
 {
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressCity;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     protected ?string $addressComplement = null;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressCountry;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressDepartment;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressNumber;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressState;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressStreet;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $addressZipCode;
 
