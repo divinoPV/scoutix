@@ -35,15 +35,15 @@ up: kill
 kill:
 	docker kill $$(docker ps -q) || true
 
-.PHONY: sh
+.PHONY: bash
 # Run shell inside php-container
-sh:
-	${DOCKER_EXEC_PHP} /bin/sh
+bash:
+	${DOCKER_EXEC_PHP} /bin/bash
 
-.PHONY: node-sh
+.PHONY: node-bash
 # Run shell inside php-container
-node-sh:
-	${DOCKER_EXEC_NODE} /bin/sh
+node-bash:
+	${DOCKER_EXEC_NODE} /bin/bash
 
 .PHONY: clean
 # Clean all, warning all volumes and networks will be delete
