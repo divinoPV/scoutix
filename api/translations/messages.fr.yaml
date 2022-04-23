@@ -1,0 +1,487 @@
+# Entities
+# Entity - User
+user.constraint.email.unique: Cette adresse email est déjà utilisée.
+
+# Enums
+## Enum - Activityum
+enum.activity.accompanying_companions: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune accompagnatrice compagnons}
+     one {Accompagnatrice compagnons}
+     other {Accompagnatrices compagnons}
+   }}
+   male {{count, plural,
+     =0 {Aucun accompagnateur compagnons}
+     one {Accompagnateur compagnons}
+     other {Accompagnateurs compagnons}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e accompagnateur·rice compagnons}
+     one {Accompagnateur·rice compagnons}
+     other {Accompagnateur·rice·s compagnons}
+   }}
+ }
+enum.activity.pedagogical_assistant: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune accompagnatrice pédagogique}
+     one {Accompagnatrice pédagogique}
+     other {Accompagnatrices pédagogique}
+   }}
+   male {{count, plural,
+     =0 {Aucun accompagnateur pédagogique}
+     one {Accompagnateur pédagogique}
+     other {Accompagnateurs pédagogique}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e accompagnateur·rice pédagogique}
+     one {Accompagnateur·rice pédagogique}
+     other {Accompagnateur·rice·s pédagogique}
+   }}
+ }
+enum.activity.group_chaplain: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune aumôniere de groupe}
+     one {Aumôniere de groupe}
+     other {Aumônieres de groupe}
+   }}
+   male {{count, plural,
+     =0 {Aucun aumônier de groupe}
+     one {Aumônier de groupe}
+     other {Aumôniers de groupe}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e aumônier·e de groupe}
+     one {Aumônier·e de groupe}
+     other {Aumônier·e·s de groupe}
+   }}
+ }
+enum.activity.territorial_chaplain: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune aumôniere territorial}
+     one {Aumôniere territorial}
+     other {Aumônieres territorial}
+   }}
+   male {{count, plural,
+     =0 {Aucun aumônier territorial}
+     one {Aumônier territorial}
+     other {Aumôniers territorial}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e aumônier·e territorial}
+     one {Aumônier·e territorial}
+     other {Aumônier·e·s territorial}
+   }}
+ }
+enum.activity.head_of_mission: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune chargée de mission}
+     one {Chargée de mission}
+     other {Chargées de mission}
+   }}
+   male {{count, plural,
+     =0 {Aucun chargé de mission}
+     one {Chargé de mission}
+     other {Chargés de mission}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e chargé·e de mission}
+     one {Chargé·e de mission}
+     other {Chargé·e·s de mission}
+   }}
+ }
+enum.activity.communication_officer: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune chargée de mission communication}
+     one {Chargée de mission communication}
+     other {Chargées de mission communication}
+   }}
+   male {{count, plural,
+     =0 {Aucun chargé de mission communication}
+     one {Chargé de mission communication}
+     other {Chargés de mission communication}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e chargé·e de mission communication}
+     one {Chargé·e de mission communication}
+     other {Chargé·e·s de mission communication}
+   }}
+ }
+enum.activity.stewardship_officer: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune chargée de mission intendance}
+     one {Chargée de mission intendance}
+     other {Chargées de mission intendance}
+   }}
+   male {{count, plural,
+     =0 {Aucun chargé de mission intendance}
+     one {Chargé de mission intendance}
+     other {Chargés de mission intendance}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e chargé·e de mission intendance}
+     one {Chargé·e de mission intendance}
+     other {Chargé·e·s de mission intendance}
+   }}
+ }
+enum.activity.logistics_officer: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune chargée de mission logistique}
+     one {Chargée de mission logistique}
+     other {Chargées de mission logistique}
+   }}
+   male {{count, plural,
+     =0 {Aucun chargé de mission logistique}
+     one {Chargé de mission logistique}
+     other {Chargés de mission logistique}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e chargé·e de mission logistique}
+     one {Chargé·e de mission logistique}
+     other {Chargé·e·s de mission logistique}
+   }}
+ }
+enum.activity.health_officer: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune chargée de mission santé}
+     one {Chargée de mission santé}
+     other {Chargées de mission santé}
+   }}
+   male {{count, plural,
+     =0 {Aucun chargé de mission santé}
+     one {Chargé de mission santé}
+     other {Chargés de mission santé}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e chargé·e de mission santé}
+     one {Chargé·e de mission santé}
+     other {Chargé·e·s de mission santé}
+   }}
+ }
+enum.activity.head_of_unit: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune cheffe d'unité}
+     one {Cheffe d'unité}
+     other {Cheffes d'unité}
+   }}
+   male {{count, plural,
+     =0 {Aucun chef d'unité}
+     one {Chef d'unité}
+     other {Chefs d'unité}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e chef·fe d'unité}
+     one {Chef·fe d'unité}
+     other {Chef·fe·s d'unité}
+   }}
+ }
+enum.activity.cleophas: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune cleophas}
+     one {Cleophas}
+     other {Cleophas}
+   }}
+   male {{count, plural,
+     =0 {Aucun cleophas}
+     one {Cleophas}
+     other {Cleophas}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e cleophas}
+     one {Cleophas}
+     other {Cleophas}
+   }}
+ }
+enum.activity.territorial_delegate: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune déléguée territorial}
+     one {Déléguée territorial}
+     other {Déléguées territorial}
+   }}
+   male {{count, plural,
+     =0 {Aucun délégué territorial}
+     one {Délégué territorial}
+     other {Délégués territorial}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e délégué·e territorial}
+     one {Délégué·e territorial}
+     other {Délégué·e·s territorial}
+   }}
+ }
+enum.activity.impeesa: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune impeesa}
+     one {Impeesa}
+     other {Impeesa}
+   }}
+   male {{count, plural,
+     =0 {Aucun impeesa}
+     one {Impeesa}
+     other {Impeesa}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e impeesa}
+     one {Impeesa}
+     other {Impeesa}
+   }}
+ }
+enum.activity.group_manager: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune responsable de groupe}
+     one {Responsable de groupe}
+     other {Responsables de groupe}
+   }}
+   male {{count, plural,
+     =0 {Aucun responsable de groupe}
+     one {Responsable de groupe}
+     other {Responsables de groupe}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e responsable de groupe}
+     one {Responsable de groupe}
+     other {Responsables de groupe}
+   }}
+ }
+enum.activity.deputy_group_leader: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune responsable de groupe adjoint}
+     one {Responsable de groupe adjoint}
+     other {Responsables de groupe adjoint}
+   }}
+   male {{count, plural,
+     =0 {Aucun responsable de groupe adjoint}
+     one {Responsable de groupe adjoint}
+     other {Responsables de groupe adjoint}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e responsable de groupe adjoint}
+     one {Responsable de groupe adjoint}
+     other {Responsables de groupe adjoint}
+   }}
+ }
+enum.activity.head_of_department: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune responsable de pôle}
+     one {Responsable de pôle}
+     other {Responsables de pôle}
+   }}
+   male {{count, plural,
+     =0 {Aucun responsable de pôle}
+     one {Responsable de pôle}
+     other {Responsables de pôle}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e responsable de pôle}
+     one {Responsable de pôle}
+     other {Responsables de pôle}
+   }}
+ }
+enum.activity.leprechaun_manager: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune responsable farfadets}
+     one {Responsable farfadets}
+     other {Responsables farfadets}
+   }}
+   male {{count, plural,
+     =0 {Aucun responsable farfadets}
+     one {Responsable farfadets}
+     other {Responsables farfadets}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e responsable farfadets}
+     one {Responsable farfadets}
+     other {Responsables farfadets}
+   }}
+ }
+enum.activity.group_secretary: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune secrétaire de groupe}
+     one {Secrétaire de groupe}
+     other {Secrétaires de groupe}
+   }}
+   male {{count, plural,
+     =0 {Aucun secrétaire de groupe}
+     one {Secrétaire de groupe}
+     other {Secrétaires de groupe}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e secrétaire de groupe}
+     one {Secrétaire de groupe}
+     other {Secrétaires de groupe}
+   }}
+ }
+enum.activity.territorial_secretary: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune secrétaire territorial}
+     one {Secrétaire territorial}
+     other {Secrétaires territorial}
+   }}
+   male {{count, plural,
+     =0 {Aucun secrétaire territorial}
+     one {Secrétaire territorial}
+     other {Secrétaires territorial}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e secrétaire territorial}
+     one {Secrétaire territorial}
+     other {Secrétaires territorial}
+   }}
+ }
+enum.activity.group_treasurer: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune trésorière de Groupe}
+     one {Trésorière de Groupe}
+     other {Trésorières de Groupe}
+   }}
+   male {{count, plural,
+     =0 {Aucun trésorier de Groupe}
+     one {Trésorier de Groupe}
+     other {Trésoriers de Groupe}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e trésorier·ère de Groupe}
+     one {Trésorier·ère de Groupe}
+     other {Trésorier·ère·s de Groupe}
+   }}
+ }
+enum.activity.territorial_treasurer: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune trésorière territorial}
+     one {Trésorière territorial}
+     other {Trésorières territorial}
+   }}
+   male {{count, plural,
+     =0 {Aucun trésorier territorial}
+     one {Trésorier territorial}
+     other {Trésoriers territorial}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e trésorier·ère territorial}
+     one {Trésorier·ère territorial}
+     other {Trésorier·ère·s territorial}
+   }}
+ }
+
+## Enum - Genderum
+enum.gender.agender: Agenre
+enum.gender.bigender: Bigenre
+enum.gender.female: Femme
+enum.gender.genderfluid: Genderfluid
+enum.gender.genderqueer: Genderqueer
+enum.gender.intergender: Intergenre
+enum.gender.male: Homme
+enum.gender.pangender: Pangenre
+enum.gender.transgender: Transgenre
+
+## Enum - LocalityTypum
+enum.locality_type.cluster: Cluster
+enum.locality_type.national: National
+enum.locality_type.territory: Territoire
+enum.locality_type.unit: Unité
+
+## Enum - PublicationStatum
+enum.publication_state.draft: Brouillon
+enum.publication_state.published: Publié
+
+## Enum - Rolum
+enum.role.admin: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune administratrice}
+     one {Administratrice}
+     other {Administratrices}
+   }}
+   male {{count, plural,
+     =0 {Aucun Administrateur}
+     one {Administrateur}
+     other {Administrateurs}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e Administrateur·rice}
+     one {Administrateur·rice}
+     other {Administrateur·rice·s}
+   }}
+ }
+
+enum.role.guest: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune invitée}
+     one {Invitée}
+     other {Invitées}
+   }}
+   male {{count, plural,
+     =0 {Aucun invité}
+     one {Invité}
+     other {Invités}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e invité·e}
+     one {Invité·e}
+     other {Invité·e·s}
+   }}
+ }
+
+enum.role.moderator: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune modératrice}
+     one {Modératrice}
+     other {Modératrices}
+   }}
+   male {{count, plural,
+     =0 {Aucun modérateur}
+     one {Modérateur}
+     other {Modérateurs}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e odérateur·rice}
+     one {Modérateur·rice}
+     other {Modérateur·rice·s}
+   }}
+ }
+
+enum.role.user: >-
+ {gender, select,
+   female {{count, plural,
+     =0 {Aucune utilisatrice}
+     one {Utilisatrice}
+     other {Utilisatrices}
+   }}
+   male {{count, plural,
+     =0 {Aucun utilisateur}
+     one {Utilisateur}
+     other {Utilisateurs}
+   }}
+   other {{count, plural,
+     =0 {Aucun·e utilisateur·rice}
+     one {Utilisateur·rice}
+     other {Utilisateur·rice·s}
+   }}
+ }
+
+
+## Enum - Rolum
+enum.state.pending: En attente
+enum.state.send: Envoyé

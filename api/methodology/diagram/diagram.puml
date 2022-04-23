@@ -1,55 +1,213 @@
 @startuml
 package "BusinessRules" <<Node>> #FFF {
-    package "Entity" <<Database>> #EEE {
-        ' Locality
-        entity Locality /'Generic'/
-        entity National
-        entity Territory
-        entity Cluster
-        entity Unit
-
-        ' User
-        entity User {
-            <Trait>: Uuidable
+    package "Entities" <<Database>> #EEE {
+        entity Activity {
             <Trait>: Blameable
-            <Trait>: Uploadable
-            <Trait>: Namable
-            <Trait>: Addressable
-            <Trait>: Birthdable
-            <Trait>: Communicable
-            <Trait>: Genderable
-            -{field} username: string (31)
-        }
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+            <Trait>: Uuidable
 
-        entity Role {
-            enum: Délégué territorial
-            enum: Responsable de pôle
-            enum: Secrétaire territorial
-            enum: Trésorier territorial
-            enum: Aumônier territorial
+            enum: Accompagnateur compagnons
             enum: Accompagnateur pédagogique
+            enum: Aumônier de groupe
+            enum: Aumônier territorial
+            enum: Chargé de mission
+            enum: Chargé de mission communication
             enum: Chargé de mission intendance
             enum: Chargé de mission logistique
-            enum: Chargé de mission communication
             enum: Chargé de mission santé
-            enum: Responsable de Groupe
-            enum: Responsable de Groupe Adjoint
-            enum: Secrétaire de Groupe
-            enum: Trésorier de Groupe
-            enum: Cleophas
-            enum: Aumônier de Groupe
-            enum: Accompagnateur Compagnons
             enum: Chef d'unité
-            enum: Responsable Farfadets
-            enum: Chargé de mission
+            enum: Cleophas
+            enum: Délégué territorial
             enum: Impeesa
+            enum: Responsable de groupe
+            enum: Responsable de groupe adjoint
+            enum: Responsable de pôle
+            enum: Responsable farfadets
+            enum: Secrétaire de groupe
+            enum: Secrétaire territorial
+            enum: Trésorier de Groupe
+            enum: Trésorier territorial
         }
 
-        entity Feature {}
+        entity AuthorizationActivityFeature {
+            <Trait>: Blameable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+
+            -{field} activity: Activity - FPK
+            -{field} feature: Feature - FPK
+        }
+
+        entity AuthorizationEventCategory {
+            <Trait>: Blameable
+            <Trait>: Defaultable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+
+            -{field} activity: Activity - FPK
+            -{field} category: EventCategory - FPK
+        }
+
+        entity Event {
+            <Trait>: Blameable
+            <Trait>: Contentable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Mediable
+            <Trait>: Periodable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+            <Trait>: Uuidable
+
+            -{field} author: User
+            -{field} category: EventCategory
+            -{field} locality: Locality
+            -{field} state: PublicationStatum
+        }
+
+        entity EventCategory {
+            <Trait>: Blameable
+            <Trait>: Contentable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+        }
+
+        entity EventInvitation {
+            <Trait>: Blameable
+            <Trait>: Contentable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+
+            -{field} event: Event
+            -{field} recipient_entity: string - [User, Scope, Activity]
+            -{field} recipient_id: int
+            -{field} state: Statum
+        }
+
+        entity Feature {
+            <Trait>: Blameable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+            <Trait>: Uuidable
+        }
+
+        entity Locality {
+            <Trait>: Blameable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+            <Trait>: Uuidable
+
+            -{field} type: LocalityTypum
+        }
+
+        entity News {
+            <Trait>: Blameable
+            <Trait>: Contentable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Mediable
+            <Trait>: Releasable
+            <Trait>: Tagable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+            <Trait>: Uuidable
+
+            -{field} author: User
+            -{field} category: NewsCategory
+            -{field} state: PublicationStatum
+        }
+
+        entity NewsCategory {
+            <Trait>: Blameable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Titleable
+        }
 
         entity Scope {
+            <Trait>: Idable
+            <Trait>: Uuidable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+            <Trait>: Blameable
 
+            -{field} activity: Activity
+            -{field} locality: Locality
         }
+
+        entity ScopeUser {
+            <Trait>: Blameable
+            <Trait>: LifeCycleable
+            <Trait>: Timestampable
+
+            -{field} scope: Scope - FPK
+            -{field} user: User - FPK
+        }
+
+        entity User {
+            <Trait>: Addressable
+            <Trait>: Birthdable
+            <Trait>: Blameable
+            <Trait>: Communicable
+            <Trait>: Emailablact
+            <Trait>: Genderable
+            <Trait>: Idable
+            <Trait>: LifeCycleable
+            <Trait>: Nameable
+            <Trait>: PasswordAuthenticatedUserInterface
+            <Trait>: Passwordablact
+            <Trait>: Roleablact
+            <Trait>: Timestampable
+            <Trait>: Uploadable
+            <Trait>: Usernameable
+            <Trait>: UserInterface
+            <Trait>: Uuidable
+        }
+
+        AuthorizationActivityFeature "Many" o--* "One" Activity: need
+        AuthorizationActivityFeature "Many" o--* "One" Feature: have
+
+        AuthorizationEventCategory "Many" o--* "One" Activity: need
+        AuthorizationEventCategory "Many" o--* "One" EventCategory: have
+
+        Event "Many" o--* "One" EventCategory: own
+        Event "Many" o--* "One" Locality: own
+        Event "Many" o--* "One" User: written
+
+        EventInvitation "Many" o--* "One" Event: own
+
+        News "Many" o--* "One" NewsCategory: own
+        News "Many" o--* "One" User: written
+
+        Scope "Many" o--* "One" Activity: have
+        Scope "Many" o--* "One" Locality: have
+
+        ScopeUser "Many" o--* "One" Scope: have
+        ScopeUser "Many" o--* "One" User: have
+
+        User "Many" o--* "One" Activity: blamed
+        User "Many" o--* "One" AuthorizationActivityFeature: blamed
+        User "Many" o--* "One" AuthorizationEventCategory: blamed
+        User "Many" o--* "One" Event: blamed
+        User "Many" o--* "One" EventCategory: blamed
+        User "Many" o--* "One" EventInvitation: blamed
+        User "Many" o--* "One" Feature: blamed
+        User "Many" o--* "One" Locality: blamed
+        User "Many" o--* "One" News: blamed
+        User "Many" o--* "One" NewsCategory: blamed
+        User "Many" o--* "One" Scope: blamed
     }
 }
 @enduml

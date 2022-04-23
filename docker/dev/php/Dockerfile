@@ -21,6 +21,10 @@ RUN apt update -q && \
         ca-certificates \
         lsb-release \
         apt-transport-https \
+        zlib1g-dev \
+        libxml2-dev \
+        libzip-dev \
+        libpq-dev \
         software-properties-common \
         unzip && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -29,6 +33,13 @@ RUN apt update -q && \
 RUN apt update -q && \
     pecl install xdebug && \
     docker-php-ext-enable xdebug && \
+    docker-php-ext-install \
+            zip \
+            intl \
+            pdo \
+            mysqli \
+            pdo_mysql \
+            opcache && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Composer

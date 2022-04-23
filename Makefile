@@ -35,15 +35,15 @@ up: kill
 kill:
 	docker kill $$(docker ps -q) || true
 
-.PHONY: sh
+.PHONY: bash
 # Run shell inside php-container
-sh:
-	${DOCKER_EXEC_PHP} /bin/sh
+bash:
+	${DOCKER_EXEC_PHP} /bin/bash
 
-.PHONY: node-sh
+.PHONY: node-bash
 # Run shell inside php-container
-node-sh:
-	${DOCKER_EXEC_NODE} /bin/sh
+node-bash:
+	${DOCKER_EXEC_NODE} /bin/bash
 
 .PHONY: clean
 # Clean all, warning all volumes and networks will be delete
@@ -131,32 +131,37 @@ db: db-cache db-d db-c db-su db-fl
 .PHONY: db-d
 # Drop database
 db-d:
-	${DOCTRINE_DB}d --if-exists -f && \
-	${DOCTRINE_DB}d -f --env=test
+	${DOCTRINE_DB}d --if-exists -f
+
+# 	${DOCTRINE_DB}d --if-exists -f --env=test
 
 .PHONY: db-c
 # Create database
 db-c:
-	${DOCTRINE_DB}c --if-not-exists && \
-	${DOCTRINE_DB}c --env=test
+	${DOCTRINE_DB}c --if-not-exists
+
+# 	${DOCTRINE_DB}c --if-not--exists --env=test
 
 .PHONY: db-su
 # Update database schema
 db-su:
-	${DOCTRINE_SCHEMA}u -f && \
-	${DOCTRINE_SCHEMA}u -f --env=test
+	${DOCTRINE_SCHEMA}u -f
+
+# ${DOCTRINE_SCHEMA}u -f --env=test
 
 .PHONY: db-v
 # Check database schema
 db-v:
-	${DOCTRINE_SCHEMA}v && \
-	${DOCTRINE_SCHEMA}v --env=test
+	${DOCTRINE_SCHEMA}v
+
+# ${DOCTRINE_SCHEMA}v --env=test
 
 .PHONY: db-fl
 # Load fixtures
 db-fl:
-	${DOCTRINE_FIXTURES}l -n && \
-	${DOCTRINE_FIXTURES}l -n --env=test
+	${DOCTRINE_FIXTURES}l -n
+
+# ${DOCTRINE_FIXTURES}l -n --env=test
 
 .PHONY: db-m
 # Make migrations

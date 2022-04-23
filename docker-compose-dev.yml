@@ -26,7 +26,7 @@ services:
     build:
       context: ./docker/dev/node
     container_name: node-modulo-container
-    entrypoint: [ "/bin/sh", "-c", "yarn install && yarn start" ]
+    entrypoint: [ "/bin/bash", "-c", "yarn install && yarn start" ]
     ports:
       - "3000:3000"
     volumes:
