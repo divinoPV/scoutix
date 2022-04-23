@@ -2,6 +2,8 @@
 
 namespace App\Contract\Beable;
 
+use App\Enum\Genderum;
+
 interface Birthdablact
 {
     public function getBirth(): ?\DateTimeImmutable;
@@ -11,6 +13,10 @@ interface Birthdablact
     public function getBirthCity(): ?string;
 
     public function setBirthCity(?string $birthCity): Birthdablact;
+
+    public function getBirthGender(): ?Genderum;
+
+    public function setBirthGender(?Genderum $birthGender): static;
 
     public function getBirthZipCode(): ?string;
 

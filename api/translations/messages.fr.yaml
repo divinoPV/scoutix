@@ -480,3 +480,8 @@ enum.role.user: >-
      other {Utilisateur·rice·s}
    }}
  }
+
+
+## Enum - Rolum
+enum.state.pending: En attente
+enum.state.send: Envoyé

@@ -1,3 +1,7 @@
+# Entities
+# Entity - User
+user.constraint.email.unique: Email already exists.
+
 # Enums
 ## Enum - Activityum
 enum.activity.accompanying_companions: Accompanying companions
@@ -48,3 +52,7 @@ enum.role.admin: Administrator
 enum.role.guest: Guest
 enum.role.moderator: Moderator
 enum.role.user: User
+
+## Enum - Rolum
+enum.state.pending: Pending
+enum.state.send: Send

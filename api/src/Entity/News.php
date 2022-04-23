@@ -8,12 +8,13 @@ use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Mediable;
 use App\Beable\Entity\Releasable;
-use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Tagable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Newsact;
+use App\Enum\PublicationStatum;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Newstory;
 use Ramsey\Uuid\Uuid;
@@ -21,7 +22,7 @@ use Ramsey\Uuid\Uuid;
 #[ORM\Entity(repositoryClass: Newstory::class)]
 class News implements Newsact
 {
-    use Blameable, Contentable, Idable, LifeCycleable, Mediable, Releasable, Sluggable, Tagable, Timestampable, Titleable, Uuidable;
+    use Blameable, Contentable, Idable, LifeCycleable, Mediable, Releasable, Tagable, Timestampable, Titleable, Uuidable;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'news')]
     #[ORM\JoinColumn(nullable: false)]
@@ -31,9 +32,8 @@ class News implements Newsact
     #[ORM\JoinColumn(nullable: false)]
     private ?NewsCategory $category;
 
-    #[ORM\ManyToOne(targetEntity: PublicationState::class, inversedBy: 'news')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?PublicationState $state;
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false, enumType: PublicationStatum::class)]
+    private ?PublicationStatum $state;
 
     public function __construct()
     {
@@ -64,12 +64,12 @@ class News implements Newsact
         return $this;
     }
 
-    public function getState(): ?PublicationState
+    public function getState(): ?PublicationStatum
     {
         return $this->state;
     }
 
-    public function setState(?PublicationState $state): static
+    public function setState(?PublicationStatum $state): static
     {
         $this->state = $state;
 

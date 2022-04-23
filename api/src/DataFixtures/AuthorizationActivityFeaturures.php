@@ -2,23 +2,32 @@
 
 namespace App\DataFixtures;
 
-use App\Contract\Entity\Activityact;
 use App\Entity\AuthorizationActivityFeature;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-final class AuthorizationActivityFeaturures extends Fixturabs
+final class AuthorizationActivityFeaturures extends Fixturabs implements DependentFixtureInterface
 {
     public const REFERENCE = 'authorization_activity_feature_';
 
-    public const NUMBER_ELEMENT = 1;
+    public const NUMBER_ELEMENT = 5;
 
     protected function generate(ObjectManager $manager): void
     {
-        $this->create(AuthorizationActivityFeature::class, self::NUMBER_ELEMENT, function (AuthorizationActivityFeature $authorizationActivityFeature) {
+        $this->createFromRange(AuthorizationActivityFeature::class, Activityures::NUMBER_ELEMENT, function (AuthorizationActivityFeature $authorizationActivityFeature, int $i) {
             $authorizationActivityFeature
-                ->setActivity($this->randReference(Activityures::class))
+                ->setActivity($this->getReference(Activityures::REFERENCE.$i))
                 ->setFeature($this->randReference(Featurures::class))
             ;
         }, self::REFERENCE, true);
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            Activityures::class,
+            Featurures::class,
+            Userures::class,
+        ];
     }
 }

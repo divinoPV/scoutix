@@ -28,8 +28,6 @@ class Scope implements Scopeact
     private ?Locality $locality;
 
     public function __construct(
-        #[ORM\OneToMany(mappedBy: 'recipientScope', targetEntity: EventInvitation::class)]
-        private Collection $eventInvitations = new ArrayCollection,
         #[ORM\OneToMany(mappedBy: 'scope', targetEntity: ScopeUser::class)]
         private Collection $scopeUsers = new ArrayCollection
     ) {
@@ -56,35 +54,6 @@ class Scope implements Scopeact
     public function setLocality(?Locality $locality): static
     {
         $this->locality = $locality;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, EventInvitation>
-     */
-    public function getEventInvitations(): Collection
-    {
-        return $this->eventInvitations;
-    }
-
-    public function addEventInvitation(EventInvitation $eventInvitation): static
-    {
-        if (!$this->eventInvitations->contains($eventInvitation)) {
-            $this->eventInvitations[] = $eventInvitation;
-            $eventInvitation->setRecipientScope($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEventInvitation(EventInvitation $eventInvitation): static
-    {
-        if ($this->eventInvitations->removeElement($eventInvitation)
-            && $eventInvitation->getRecipientScope() === $this
-        ) {
-            $eventInvitation->setRecipientScope(null);
-        }
 
         return $this;
     }

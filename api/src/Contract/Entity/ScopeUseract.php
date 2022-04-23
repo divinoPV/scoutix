@@ -8,7 +8,7 @@ use App\Contract\Beable\Timestampablact;
 use App\Entity\Scope;
 use App\Entity\User;
 
-interface ScopeUseract extends Blameablact, LifeCycleablact, Timestampablact
+interface ScopeUseract extends Blameablact, Entityact, LifeCycleablact, Timestampablact
 {
     public function getScope(): ?Scope;
 

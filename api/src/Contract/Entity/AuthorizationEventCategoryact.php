@@ -9,7 +9,7 @@ use App\Contract\Beable\Timestampablact;
 use App\Entity\Activity;
 use App\Entity\EventCategory;
 
-interface AuthorizationEventCategoryact extends Blameablact, Defaultablact, LifeCycleablact, Timestampablact
+interface AuthorizationEventCategoryact extends Blameablact, Defaultablact, Entityact, LifeCycleablact, Timestampablact
 {
     public function getActivity(): ?Activity;
 

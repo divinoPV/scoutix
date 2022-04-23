@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
-use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
@@ -19,15 +18,13 @@ use Ramsey\Uuid\Uuid;
 #[ORM\Entity(repositoryClass: Activitytory::class)]
 class Activity implements Activityact
 {
-    use Blameable, Idable, LifeCycleable, Sluggable, Timestampable, Titleable, Uuidable;
+    use Blameable, Idable, LifeCycleable, Timestampable, Titleable, Uuidable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'activity', targetEntity: AuthorizationActivityFeature::class)]
         private Collection $authorizationActivityFeatures = new ArrayCollection,
         #[ORM\OneToMany(mappedBy: 'activity', targetEntity: AuthorizationEventCategory::class)]
         private Collection $authorizationEventCategories = new ArrayCollection,
-        #[ORM\OneToMany(mappedBy: 'recipientActivity', targetEntity: EventInvitation::class)]
-        private Collection $eventInvitations = new ArrayCollection,
         #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Scope::class)]
         private Collection $scopes = new ArrayCollection,
     ) {
@@ -87,35 +84,6 @@ class Activity implements Activityact
             && $authorizationEventCategory->getActivity() === $this
         ) {
             $authorizationEventCategory->setActivity(null);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, EventInvitation>
-     */
-    public function getEventInvitations(): Collection
-    {
-        return $this->eventInvitations;
-    }
-
-    public function addEventInvitation(EventInvitation $eventInvitation): static
-    {
-        if (!$this->eventInvitations->contains($eventInvitation)) {
-            $this->eventInvitations[] = $eventInvitation;
-            $eventInvitation->setRecipientActivity($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEventInvitation(EventInvitation $eventInvitation): static
-    {
-        if ($this->eventInvitations->removeElement($eventInvitation)
-            && $eventInvitation->getRecipientActivity() === $this
-        ) {
-            $eventInvitation->setRecipientActivity(null);
         }
 
         return $this;

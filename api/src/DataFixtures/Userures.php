@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Dispenser\Faker;
 use App\Entity\User;
 use App\Enum\Genderum;
 use App\Enum\Rolum;
@@ -11,8 +12,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class Userures extends Fixturabs
 {
-// bin/console d:f:l -n --group=Userures --group=Activityures
-
     public const REFERENCE = [
         'admin' => 'admin_',
         'moderator' => 'moderator_',
@@ -41,11 +40,10 @@ final class Userures extends Fixturabs
             ['role' => Rolum::Guest->value, 'reference' => self::REFERENCE['guest'], 'number' => self::NUMBER_ELEMENT['guest']],
             ['role' => Rolum::User->value, 'reference' => self::REFERENCE['user'], 'number' => self::NUMBER_ELEMENT['user']]
         ] as $item) {
-            if ($item['role'] !== Rolum::Admin->value) {
-                $this->userLifeCycle($this->createUser($item['role'], $item['reference'], $item['number']));
-            } else {
-                $this->createUser($item['role'], $item['reference'], $item['number']);
-            }
+            $item['role'] !== Rolum::Admin->value
+                ? $this->userLifeCycle($this->createUser($item['role'], $item['reference'], $item['number']))
+                : $this->createUser($item['role'], $item['reference'], $item['number'])
+            ;
         }
     }
 
@@ -53,16 +51,16 @@ final class Userures extends Fixturabs
     {
         return $this->create(User::class, $element, function (User $user) use ($role) {
             $user
-                ->setGender($gender = (90 <= \random_int(0, 100)
+                ->setGender($gender = (Faker::weightingBoolean(90)
                     ? (\rand(0, 1) ? Genderum::Female : Genderum::Male)
-                    : $this->faker->randomElement(Genderum::cases())
+                    : Genderum::randomIdentities()
                 ))
                 ->setFirstName($this->faker->firstName())
                 ->setMaidenName(Genderum::Female === $gender ? $this->faker->lastName() : null)
-                ->setMatronym(20 <= \random_int(0, 100) ? $this->faker->lastName() : null)
-                ->setMiddleName($middleName = (70 <= \random_int(0, 100) ? $this->faker->firstName() : null))
+                ->setMatronym(Faker::weightingBoolean(20) ? $this->faker->lastName() : null)
+                ->setMiddleName($middleName = (Faker::weightingBoolean(70) ? $this->faker->firstName() : null))
                 ->setPatronym($this->faker->lastName())
-                ->setThirdName($middleName ? (40 <= \random_int(0, 100) ? $this->faker->firstName() : null) : null)
+                ->setThirdName($middleName ? (Faker::weightingBoolean(40) ? $this->faker->firstName() : null) : null)
                 ->setAddressCity($this->faker->city())
                 ->setAddressComplement($this->faker->address())
                 ->setAddressCountry($this->faker->country())
@@ -71,12 +69,13 @@ final class Userures extends Fixturabs
                 ->setAddressState($this->faker->word())
                 ->setAddressStreet($this->faker->address())
                 ->setAddressZipCode($this->faker->postcode())
-                ->setBirth(\DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 years', '-18 years')))
+                ->setBirth(Faker::dateTimeImmutable('-120 years', '-18 years'))
                 ->setBirthCity($this->faker->city())
+                ->setBirthGender(Genderum::randomOrganics())
                 ->setBirthZipCode($this->faker->postcode())
-                ->setFax(30 <= \random_int(0, 100) ? '0'.\random_int(1, 5).\random_int(10_00_00_00, 99_99_99_99) : null)
-                ->setLandline(60 <= \random_int(0, 100) ? '0'.\random_int(1, 5).\random_int(10_00_00_00, 99_99_99_99) : null)
-                ->setMobile('0'.\random_int(6,9).\random_int(10_00_00_00, 99_99_99_99))
+                ->setFax(Faker::weightingBoolean(30) ? Faker::phoneNumber(1, 5) : null)
+                ->setLandline(Faker::weightingBoolean(60) ? Faker::phoneNumber(1, 5) : null)
+                ->setMobile(Faker::phoneNumber(6, 9))
                 ->setUsername($this->faker->username())
                 ->setRoles([$role])
                 ->setEmail($this->faker->email())

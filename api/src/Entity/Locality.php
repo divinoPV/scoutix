@@ -9,8 +9,10 @@ use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Localityact;
+use App\Enum\LocalityTypum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Localitytory;
 use Ramsey\Uuid\Uuid;
@@ -20,9 +22,8 @@ class Locality implements Localityact
 {
     use Blameable, Idable, LifeCycleable, Timestampable, Titleable, Uuidable;
 
-    #[ORM\ManyToOne(targetEntity: LocalityType::class, inversedBy: 'localities')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?LocalityType $type;
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false, enumType: LocalityTypum::class)]
+    private ?LocalityTypum $type;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'locality', targetEntity: Event::class)]
@@ -33,12 +34,12 @@ class Locality implements Localityact
         $this->uuid = Uuid::uuid6();
     }
 
-    public function getType(): ?LocalityType
+    public function getType(): ?LocalityTypum
     {
         return $this->type;
     }
 
-    public function setType(?LocalityType $type): static
+    public function setType(?LocalityTypum $type): static
     {
         $this->type = $type;
 

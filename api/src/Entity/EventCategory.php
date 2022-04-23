@@ -6,7 +6,6 @@ use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Contentable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
-use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Contract\Entity\EventCategoryact;
@@ -18,7 +17,7 @@ use App\Repository\EventCategorytory;
 #[ORM\Entity(repositoryClass: EventCategorytory::class)]
 class EventCategory implements EventCategoryact
 {
-    use Blameable, Contentable, Idable, LifeCycleable, Sluggable, Timestampable, Titleable;
+    use Blameable, Contentable, Idable, LifeCycleable, Timestampable, Titleable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'category', targetEntity: AuthorizationEventCategory::class)]

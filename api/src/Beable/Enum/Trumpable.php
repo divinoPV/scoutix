@@ -6,7 +6,7 @@ trait Trumpable
 {
     public static function random(): static
     {
-        return static::cases()[array_rand(static::cases())];
+        return static::cases()[\array_rand(static::cases())];
     }
 
     public function label(): string
@@ -16,6 +16,6 @@ trait Trumpable
 
     public function slug(): string
     {
-        return str_replace(['.', '_'], ['-', '-'], $this->value);
+        return \str_replace(['.', '_'], ['-', '-'], $this->value);
     }
 }

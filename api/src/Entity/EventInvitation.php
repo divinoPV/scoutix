@@ -9,6 +9,8 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Contract\Entity\EventInvitationact;
+use App\Enum\Statum;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EventInvitationtory;
 
@@ -21,18 +23,14 @@ class EventInvitation implements EventInvitationact
     #[ORM\JoinColumn(nullable: false)]
     private ?Event $event;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'eventInvitations')]
-    private ?User $recipientUser;
+    #[ORM\Column(type: Types::STRING, nullable: false)]
+    private ?string $recipientEntity;
 
-    #[ORM\ManyToOne(targetEntity: Scope::class, inversedBy: 'eventInvitations')]
-    private ?Scope $recipientScope;
+    #[ORM\Column(type: Types::INTEGER, nullable: false)]
+    private ?int $recipientId;
 
-    #[ORM\ManyToOne(targetEntity: Activity::class, inversedBy: 'eventInvitations')]
-    private ?Activity $recipientActivity;
-
-    #[ORM\ManyToOne(targetEntity: PublicationState::class, inversedBy: 'eventInvitations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?PublicationState $state;
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false, enumType: Statum::class)]
+    private ?Statum $state;
 
     public function getEvent(): ?Event
     {
@@ -46,48 +44,36 @@ class EventInvitation implements EventInvitationact
         return $this;
     }
 
-    public function getRecipientUser(): ?User
+    public function getRecipientEntity(): ?string
     {
-        return $this->recipientUser;
+        return $this->recipientEntity;
     }
 
-    public function setRecipientUser(?User $recipientUser): static
+    public function setRecipientEntity(?string $recipientEntity): static
     {
-        $this->recipientUser = $recipientUser;
+        $this->recipientEntity = $recipientEntity;
 
         return $this;
     }
 
-    public function getRecipientScope(): ?Scope
+    public function getRecipientId(): ?int
     {
-        return $this->recipientScope;
+        return $this->recipientId;
     }
 
-    public function setRecipientScope(?Scope $recipientScope): static
+    public function setRecipientId(?int $recipientId): static
     {
-        $this->recipientScope = $recipientScope;
+        $this->recipientId = $recipientId;
 
         return $this;
     }
 
-    public function getRecipientActivity(): ?Activity
-    {
-        return $this->recipientActivity;
-    }
-
-    public function setRecipientActivity(?Activity $recipientActivity): static
-    {
-        $this->recipientActivity = $recipientActivity;
-
-        return $this;
-    }
-
-    public function getState(): ?PublicationState
+    public function getState(): ?Statum
     {
         return $this->state;
     }
 
-    public function setState(?PublicationState $state): static
+    public function setState(?Statum $state): static
     {
         $this->state = $state;
 

@@ -2,6 +2,7 @@
 
 namespace App\Beable\Entity;
 
+use App\Enum\Genderum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,6 +13,9 @@ trait Birthdable
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $birthCity;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false, enumType: Genderum::class)]
+    protected ?Genderum $birthGender;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $birthZipCode;
@@ -36,6 +40,18 @@ trait Birthdable
     public function setBirthCity(?string $birthCity): static
     {
         $this->birthCity = $birthCity;
+
+        return $this;
+    }
+
+    public function getBirthGender(): ?Genderum
+    {
+        return $this->birthGender;
+    }
+
+    public function setBirthGender(?Genderum $birthGender): static
+    {
+        $this->birthGender = $birthGender;
 
         return $this;
     }

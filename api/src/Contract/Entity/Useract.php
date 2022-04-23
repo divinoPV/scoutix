@@ -20,8 +20,9 @@ use App\Contract\Beable\Uuidablact;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface Useract extends Addressablact, Birthdablact, Blameablact, Communicablact, Emailablact, Genderablact, Idablact, LifeCycleablact,
-                          Nameablact, PasswordAuthenticatedUserInterface, Passwordablact, Roleablact, Timestampablact,
-                          Uploadablact, Usernameablact, UserInterface, Uuidablact
+interface Useract extends Addressablact, Birthdablact, Blameablact, Communicablact, Emailablact, Entityact,
+                          Genderablact, Idablact, LifeCycleablact, Nameablact, PasswordAuthenticatedUserInterface,
+                          Passwordablact, Roleablact, Timestampablact, Uploadablact, Usernameablact, UserInterface,
+                          Uuidablact
 {
 }

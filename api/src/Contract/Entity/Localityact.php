@@ -8,11 +8,11 @@ use App\Contract\Beable\LifeCycleablact;
 use App\Contract\Beable\Timestampablact;
 use App\Contract\Beable\Titleablact;
 use App\Contract\Beable\Uuidablact;
-use App\Entity\LocalityType;
+use App\Enum\LocalityTypum;
 
-interface Localityact extends Blameablact, Idablact, LifeCycleablact, Timestampablact, Titleablact, Uuidablact
+interface Localityact extends Blameablact, Entityact, Idablact, LifeCycleablact, Timestampablact, Titleablact, Uuidablact
 {
-    public function getType(): ?LocalityType;
+    public function getType(): ?LocalityTypum;
 
-    public function setType(?LocalityType $type): Localityact;
+    public function setType(?LocalityTypum $type): Localityact;
 }

@@ -5,7 +5,6 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Sluggable
             <Trait>: Timestampable
             <Trait>: Titleable
             <Trait>: Uuidable
@@ -59,7 +58,6 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: LifeCycleable
             <Trait>: Mediable
             <Trait>: Periodable
-            <Trait>: Sluggable
             <Trait>: Timestampable
             <Trait>: Titleable
             <Trait>: Uuidable
@@ -67,6 +65,7 @@ package "BusinessRules" <<Node>> #FFF {
             -{field} author: User
             -{field} category: EventCategory
             -{field} locality: Locality
+            -{field} state: PublicationStatum
         }
 
         entity EventCategory {
@@ -74,7 +73,6 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Contentable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Sluggable
             <Trait>: Timestampable
             <Trait>: Titleable
         }
@@ -88,15 +86,15 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Titleable
 
             -{field} event: Event
-            -{field} recipient: User|Scope|Activity
-            -{field} state: PublicationState
+            -{field} recipient_entity: string - [User, Scope, Activity]
+            -{field} recipient_id: int
+            -{field} state: Statum
         }
 
         entity Feature {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Sluggable
             <Trait>: Timestampable
             <Trait>: Titleable
             <Trait>: Uuidable
@@ -110,17 +108,7 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: Titleable
             <Trait>: Uuidable
 
-            -{field} type: LocalityType
-        }
-
-        entity LocalityType {
-            <Trait>: Idable
-            <Trait>: Titleable
-
-            enum: Cluster
-            enum: National
-            enum: Territory
-            enum: Unit
+            -{field} type: LocalityTypum
         }
 
         entity News {
@@ -130,7 +118,6 @@ package "BusinessRules" <<Node>> #FFF {
             <Trait>: LifeCycleable
             <Trait>: Mediable
             <Trait>: Releasable
-            <Trait>: Sluggable
             <Trait>: Tagable
             <Trait>: Timestampable
             <Trait>: Titleable
@@ -138,25 +125,15 @@ package "BusinessRules" <<Node>> #FFF {
 
             -{field} author: User
             -{field} category: NewsCategory
-            -{field} state: PublicationState
+            -{field} state: PublicationStatum
         }
 
         entity NewsCategory {
             <Trait>: Blameable
             <Trait>: Idable
             <Trait>: LifeCycleable
-            <Trait>: Sluggable
             <Trait>: Timestampable
             <Trait>: Titleable
-        }
-
-        entity PublicationState {
-            <Trait>: Idable
-            <Trait>: Sluggable
-            <Trait>: Titleable
-
-            enum: Brouillon
-            enum: Publié
         }
 
         entity Scope {
@@ -207,18 +184,11 @@ package "BusinessRules" <<Node>> #FFF {
 
         Event "Many" o--* "One" EventCategory: own
         Event "Many" o--* "One" Locality: own
-        Event "Many" o--* "One" PublicationState: have
         Event "Many" o--* "One" User: written
 
-        EventInvitation "Many" o--* "One" Activity: send
         EventInvitation "Many" o--* "One" Event: own
-        EventInvitation "Many" o--* "One" Scope: send
-        EventInvitation "Many" o--* "One" User: send
-
-        Locality "Many" o--* "One" LocalityType: own
 
         News "Many" o--* "One" NewsCategory: own
-        News "Many" o--* "One" PublicationState: have
         News "Many" o--* "One" User: written
 
         Scope "Many" o--* "One" Activity: have

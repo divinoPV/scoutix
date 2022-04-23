@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
-use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
@@ -19,7 +18,7 @@ use Ramsey\Uuid\Uuid;
 #[ORM\Entity(repositoryClass: Featuretory::class)]
 class Feature implements Featureact
 {
-    use Blameable, Idable, LifeCycleable, Sluggable, Timestampable, Titleable, Uuidable;
+    use Blameable, Idable, LifeCycleable, Timestampable, Titleable, Uuidable;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'feature', targetEntity: AuthorizationActivityFeature::class)]

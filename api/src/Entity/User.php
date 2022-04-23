@@ -34,8 +34,6 @@ class User implements Useract
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'author', targetEntity: Event::class)]
         private Collection $events = new ArrayCollection,
-        #[ORM\OneToMany(mappedBy: 'recipientUser', targetEntity: EventInvitation::class)]
-        private Collection $eventInvitations = new ArrayCollection,
         #[ORM\OneToMany(mappedBy: 'author', targetEntity: News::class)]
         private Collection $news = new ArrayCollection,
         #[ORM\OneToMany(mappedBy: 'user', targetEntity: ScopeUser::class)]
@@ -66,35 +64,6 @@ class User implements Useract
     {
         if ($this->events->removeElement($event) && $event->getAuthor() === $this) {
             $event->setAuthor(null);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, EventInvitation>
-     */
-    public function getEventInvitations(): Collection
-    {
-        return $this->eventInvitations;
-    }
-
-    public function addEventInvitation(EventInvitation $eventInvitation): static
-    {
-        if (!$this->eventInvitations->contains($eventInvitation)) {
-            $this->eventInvitations[] = $eventInvitation;
-            $eventInvitation->setRecipientUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEventInvitation(EventInvitation $eventInvitation): static
-    {
-        if ($this->eventInvitations->removeElement($eventInvitation)
-            && $eventInvitation->getRecipientUser() === $this
-        ) {
-            $eventInvitation->setRecipientUser(null);
         }
 
         return $this;

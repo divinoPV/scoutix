@@ -8,7 +8,7 @@ use App\Contract\Beable\Timestampablact;
 use App\Entity\Activity;
 use App\Entity\Feature;
 
-interface AuthorizationActivityFeatureact extends Blameablact, LifeCycleablact, Timestampablact
+interface AuthorizationActivityFeatureact extends Blameablact, Entityact, LifeCycleablact, Timestampablact
 {
     public function getActivity(): ?Activity;
 

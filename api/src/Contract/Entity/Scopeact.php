@@ -10,7 +10,7 @@ use App\Contract\Beable\Uuidablact;
 use App\Entity\Activity;
 use App\Entity\Locality;
 
-interface Scopeact extends Idablact, Uuidablact, LifeCycleablact, Timestampablact, Blameablact
+interface Scopeact extends Blameablact, Entityact, Idablact, LifeCycleablact, Timestampablact, Uuidablact
 {
     public function getActivity(): ?Activity;
 

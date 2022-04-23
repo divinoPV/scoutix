@@ -8,31 +8,25 @@ use App\Contract\Beable\Idablact;
 use App\Contract\Beable\LifeCycleablact;
 use App\Contract\Beable\Timestampablact;
 use App\Contract\Beable\Titleablact;
-use App\Entity\Activity;
 use App\Entity\Event;
-use App\Entity\PublicationState;
-use App\Entity\Scope;
-use App\Entity\User;
+use App\Enum\Statum;
 
-interface EventInvitationact extends Blameablact, Contentablact, Idablact, LifeCycleablact, Timestampablact, Titleablact
+interface EventInvitationact extends Blameablact, Contentablact, Entityact, Idablact, LifeCycleablact, Timestampablact,
+                                     Titleablact
 {
     public function getEvent(): ?Event;
 
     public function setEvent(?Event $event): EventInvitationact;
 
-    public function getRecipientUser(): ?User;
+    public function getRecipientEntity(): ?string;
 
-    public function setRecipientUser(?User $recipientUser): EventInvitationact;
+    public function setRecipientEntity(?string $recipientEntity): EventInvitationact;
 
-    public function getRecipientScope(): ?Scope;
+    public function getRecipientId(): ?int;
 
-    public function setRecipientScope(?Scope $recipientScope): EventInvitationact;
+    public function setRecipientId(?int $recipientId): EventInvitationact;
 
-    public function getRecipientActivity(): ?Activity;
+    public function getState(): ?Statum;
 
-    public function setRecipientActivity(?Activity $recipientActivity): EventInvitationact;
-
-    public function getState(): ?PublicationState;
-
-    public function setState(?PublicationState $state): EventInvitationact;
+    public function setState(?Statum $state): EventInvitationact;
 }

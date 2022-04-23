@@ -8,13 +8,14 @@ use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Mediable;
 use App\Beable\Entity\Periodable;
-use App\Beable\Entity\Sluggable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Eventact;
+use App\Enum\PublicationStatum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Eventory;
 use Ramsey\Uuid\Uuid;
@@ -22,7 +23,7 @@ use Ramsey\Uuid\Uuid;
 #[ORM\Entity(repositoryClass: Eventory::class)]
 class Event implements Eventact
 {
-    use Blameable, Contentable, Idable, LifeCycleable, Mediable, Periodable, Sluggable, Timestampable, Titleable, Uuidable;
+    use Blameable, Contentable, Idable, LifeCycleable, Mediable, Periodable, Timestampable, Titleable, Uuidable;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'events')]
     #[ORM\JoinColumn(nullable: false)]
@@ -35,6 +36,9 @@ class Event implements Eventact
     #[ORM\ManyToOne(targetEntity: Locality::class, inversedBy: 'events')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Locality $locality;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: false, enumType: PublicationStatum::class)]
+    private ?PublicationStatum $state;
 
     public function __construct(
         #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventInvitation::class)]
@@ -75,6 +79,18 @@ class Event implements Eventact
     public function setLocality(?Locality $locality): static
     {
         $this->locality = $locality;
+
+        return $this;
+    }
+
+    public function getState(): ?PublicationStatum
+    {
+        return $this->state;
+    }
+
+    public function setState(?PublicationStatum $state): static
+    {
+        $this->state = $state;
 
         return $this;
     }
