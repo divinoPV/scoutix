@@ -19,7 +19,7 @@ help:
 
 .PHONY: start
 # start project
-start : up perm bundles assets db cc perm
+start : up perm bundles db cc perm
 
 ##
 ## Docker
@@ -38,12 +38,12 @@ kill:
 .PHONY: bash
 # Run shell inside php-container
 bash:
-	${DOCKER_EXEC_PHP} /bin/bash
+	${DOCKER_EXEC_PHP} ${SHELL}
 
 .PHONY: node-bash
 # Run shell inside php-container
 node-bash:
-	${DOCKER_EXEC_NODE} /bin/bash
+	${DOCKER_EXEC_NODE} ${SHELL}
 
 .PHONY: clean
 # Clean all, warning all volumes and networks will be delete
@@ -274,33 +274,13 @@ commands:
 bundles: cpr-i yarn-i
 
 ##
-## Assets
+## Yarn
 ##
-
-.PHONY: assets
-# Run assets
-assets: php-assets yarn-assets
-
-.PHONY: assets-watch
-# Run assets watch
-assets-watch: php-assets
-	${YARN} watch
-
-.PHONY: php-assets
-# Run php assets
-php-assets:
-	${DOCKER_EXEC_PHP_BC} assets:install
-
-.PHONY: yarn-assets
-# Run yarn assets
-yarn-assets:
-	${YARN} run encore dev
 
 .PHONY: yarn-lint
 # Run yarn lint
 yarn-lint:
 	${YARN} lint
-
 
 .PHONY: yarn-lint-fix
 # Run yarn lint
