@@ -15,7 +15,10 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\EventCategorytory;
 
-#[ApiResource]
+#[ApiResource(
+    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: EventCategorytory::class)]
 class EventCategory implements EventCategoryact
 {
