@@ -52,11 +52,11 @@ enum Genderum: string
 
     public static function randomOrganics(): static
     {
-        return static::cases()[\array_rand(static::organics())];
+        return static::organics()[\array_rand(static::organics())];
     }
 
     public static function randomIdentities(): static
     {
-        return static::cases()[\array_rand(static::identities())];
+        return static::identities()[\array_rand(static::identities())];
     }
 }
