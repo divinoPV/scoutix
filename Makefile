@@ -135,36 +135,31 @@ db: db-cache db-d db-c db-su db-fl
 # Drop database
 db-d:
 	${DOCTRINE_DB}d --if-exists -f
-
-# 	${DOCTRINE_DB}d --if-exists -f --env=test
+	${DOCTRINE_DB}d -f --env=test
 
 .PHONY: db-c
 # Create database
 db-c:
 	${DOCTRINE_DB}c --if-not-exists
-
-# 	${DOCTRINE_DB}c --if-not--exists --env=test
+	${DOCTRINE_DB}c --env=test
 
 .PHONY: db-su
 # Update database schema
 db-su:
 	${DOCTRINE_SCHEMA}u -f
-
-# ${DOCTRINE_SCHEMA}u -f --env=test
+	${DOCTRINE_SCHEMA}u -f --env=test
 
 .PHONY: db-v
 # Check database schema
 db-v:
 	${DOCTRINE_SCHEMA}v
-
-# ${DOCTRINE_SCHEMA}v --env=test
+	${DOCTRINE_SCHEMA}v --env=test
 
 .PHONY: db-fl
 # Load fixtures
 db-fl:
 	${DOCTRINE_FIXTURES}l -n
-
-# ${DOCTRINE_FIXTURES}l -n --env=test
+	${DOCTRINE_FIXTURES}l -n --env=test
 
 .PHONY: db-m
 # Make migrations

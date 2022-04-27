@@ -16,6 +16,8 @@ RUN apt update -q && \
         zip \
         wget \
         curl \
+        sqlite3 \
+        libsqlite3-dev \
 		libgmp-dev \
         cron \
         ca-certificates \

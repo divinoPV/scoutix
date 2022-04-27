@@ -5,9 +5,11 @@ namespace App\Beable\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Passwordable
 {
+    #[Groups(['write'])]
     #[ORM\Column(type: Types::STRING)]
     protected ?string $password;
 
