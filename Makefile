@@ -19,7 +19,7 @@ help:
 
 .PHONY: start
 # start project
-start : up perm bundles db cc perm
+start: up perm bundles db cc perm
 
 ##
 ## Docker
@@ -56,6 +56,7 @@ clean:
 ##
 ## Composer
 ##
+
 COMPOSER = ${DOCKER_EXEC_PHP} composer
 
 .PHONY: cpr
@@ -76,6 +77,7 @@ cpr-u:
 ##
 ## NPM
 ##
+
 NPM = ${DOCKER_EXEC_NODE} npm
 YARN = ${DOCKER_EXEC_NODE} yarn
 
@@ -117,6 +119,7 @@ yb:
 ##
 ## Database
 ##
+
 DOCTRINE = ${DOCKER_EXEC_PHP_BC} doctrine:
 DOCTRINE_DB = ${DOCTRINE}d:
 DOCTRINE_SCHEMA = ${DOCTRINE}s:
@@ -190,6 +193,7 @@ db-cache-m:
 ##
 ## Test
 ##
+
 VENDOR = vendor/bin/
 TEST = ${DOCKER_EXEC_PHP} ${VENDOR}
 
@@ -215,6 +219,7 @@ phpunit:
 ##
 ## Git flow
 ##
+
 GIT = git
 FLOW = ${GIT} flow
 
@@ -286,3 +291,11 @@ yarn-lint:
 # Run yarn lint
 yarn-lint-fix:
 	${YARN} lint-and-fix
+
+##
+## Processes
+##
+
+.PHONY: updated-preprod
+# Update preprod
+updated-preprod: bundles db cc
