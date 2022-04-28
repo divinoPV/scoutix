@@ -296,6 +296,21 @@ yarn-lint-fix:
 ## Processes
 ##
 
-.PHONY: updated-preprod
-# Update preprod
-updated-preprod: bundles db cc
+.PHONY: up-pp
+# Update preprod without docker
+up-pp:
+	cd api && composer install -q
+	cd client && yarn install --non-interactive
+	cd api \
+		&& php bin/console doctrine:cache:clear-result \
+		&& php bin/console doctrine:cache:clear-query \
+		&& php bin/console doctrine:cache:clear-metadata \
+	    && php bin/console doctrine:migrations:migrate -n \
+		&& php bin/console cache:clear --no-warmup \
+		&& php bin/console cache:warmup
+
+.PHONY: up-pp-d
+# Update preprod with docker
+up-pp-d: bundles db cc
+
+
