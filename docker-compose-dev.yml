@@ -28,7 +28,7 @@ services:
     container_name: node-modulo-container
     entrypoint: [ "/bin/bash", "-c", "yarn install && yarn start" ]
     ports:
-      - "3000:3000"
+      - "7857:3000"
     volumes:
       - ./client/:/app
     environment:
