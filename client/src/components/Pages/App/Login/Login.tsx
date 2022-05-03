@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Login() {
+const Login = (): JSX.Element => {
   return (
     <div>LoginPage</div>
   );

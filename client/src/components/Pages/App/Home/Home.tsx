@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { setUser } from '../../redux/slices/userSlice';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../../utils/Redux/hooks';
+import { setUser } from '../../../../utils/Redux/Slices/userSlice';
 
-function Home() {
+const Home = (): JSX.Element => {
   const user = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
 
@@ -18,11 +18,11 @@ function Home() {
 
   return <div>
     <h1>Home</h1>
-    <Link to='/office'>Office</Link>
-    {user ? <div>
-      {user.name}
-      <button onClick={() => editUser()}>edit</button>
-    </div> : <div>empty user</div>}
+    <Link to="/office">Office</Link>
+    { user ? <div>
+      { user.name }
+      <button onClick={ () => editUser() }>edit</button>
+    </div> : <div>empty user</div> }
   </div>;
 }
 
