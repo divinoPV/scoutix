@@ -3,21 +3,24 @@
 namespace App\Platapi;
 
 use ApiPlatform\Core\OpenApi\Factory\OpenApiFactoryInterface;
+use ApiPlatform\Core\OpenApi\Model\Operation;
+use ApiPlatform\Core\OpenApi\Model\PathItem;
+use ApiPlatform\Core\OpenApi\Model\RequestBody;
 use ApiPlatform\Core\OpenApi\OpenApi;
-use ApiPlatform\Core\OpenApi\Model;
 
 final class JwtDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
-        private OpenApiFactoryInterface $decorated
-    ) {}
+        private readonly OpenApiFactoryInterface $decorated
+    ) {
+    }
 
     public function __invoke(array $context = []): OpenApi
     {
         $openApi = ($this->decorated)($context);
         $schemas = $openApi->getComponents()->getSchemas();
 
-        $schemas['Token'] = new \ArrayObject([
+        $schemas['jwt_access_token'] = new \ArrayObject([
             'type' => 'object',
             'properties' => [
                 'token' => [
@@ -27,7 +30,7 @@ final class JwtDecorator implements OpenApiFactoryInterface
             ],
         ]);
 
-        $schemas['Credentials'] = new \ArrayObject([
+        $schemas['jwt_access_token_credentials'] = new \ArrayObject([
             'type' => 'object',
             'properties' => [
                 'email' => [
@@ -36,14 +39,14 @@ final class JwtDecorator implements OpenApiFactoryInterface
                 ],
                 'password' => [
                     'type' => 'string',
-                    'example' => 'apassword',
+                    'example' => 'password',
                 ],
             ],
         ]);
 
-        $pathItem = new Model\PathItem(
+        $authenticationToken = new PathItem(
             ref: 'JWT Token',
-            post: new Model\Operation(
+            post: new Operation(
                 operationId: 'postCredentialsItem',
                 tags: ['Token'],
                 responses: [
@@ -52,26 +55,131 @@ final class JwtDecorator implements OpenApiFactoryInterface
                         'content' => [
                             'application/json' => [
                                 'schema' => [
-                                    '$ref' => '#/components/schemas/Token',
+                                    '$ref' => '#/components/schemas/jwt_access_token',
                                 ],
                             ],
                         ],
                     ],
                 ],
                 summary: 'Get JWT token to login.',
-                requestBody: new Model\RequestBody(
+                requestBody: new RequestBody(
                     description: 'Generate new JWT Token',
                     content: new \ArrayObject([
                         'application/json' => [
                             'schema' => [
-                                '$ref' => '#/components/schemas/Credentials',
+                                '$ref' => '#/components/schemas/jwt_access_token_credentials',
                             ],
                         ],
                     ]),
                 ),
             ),
         );
-        $openApi->getPaths()->addPath('/authentication_token', $pathItem);
+
+        $schemas['refresh_token'] = new \ArrayObject([
+            'type' => 'object',
+            'properties' => [
+                'refresh_token' => [
+                    'type' => 'string',
+                    'readOnly' => true,
+                ],
+            ],
+        ]);
+
+        $schemas['refresh_token_credentials'] = new \ArrayObject([
+            'type' => 'object',
+            'properties' => [
+                'refresh_token' => [
+                    'type' => 'string',
+                    'example' => 'ae8cd2f6d27fd10ebf39d826f4e4a884c848b70089e1f231d99eefa61950e762061f6475a7daede71a',
+                ],
+            ],
+        ]);
+
+        $refreshToken = new PathItem(
+            ref: 'JWT Refresh Token',
+            post: new Operation(
+                operationId: 'postCredentialsItem',
+                tags: ['Token'],
+                responses: [
+                    '200' => [
+                        'description' => 'Get JWT Refresh Token',
+                        'content' => [
+                            'application/json' => [
+                                'schema' => [
+                                    '$ref' => '#/components/schemas/refresh_token',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                summary: 'Get JWT Refresh Token.',
+                requestBody: new RequestBody(
+                    description: 'Generate new JWT Token',
+                    content: new \ArrayObject([
+                        'application/json' => [
+                            'schema' => [
+                                '$ref' => '#/components/schemas/refresh_token_credentials',
+                            ],
+                        ],
+                    ]),
+                ),
+            ),
+        );
+
+        $schemas['invalidate_token'] = new \ArrayObject([
+            'type' => 'object',
+            'properties' => [
+                'refresh_token' => [
+                    'type' => 'string',
+                    'readOnly' => true,
+                ],
+            ],
+        ]);
+
+        $schemas['invalidate_token_credentials'] = new \ArrayObject([
+            'type' => 'object',
+            'properties' => [
+                'refresh_token' => [
+                    'type' => 'string',
+                    'example' => 'ae8cd2f6d27fd10ebf39d826f4e4a884c848b70089e1f231d99eefa61950e762061f6475a7daede71ab',
+                ],
+            ],
+        ]);
+
+        $tokenInvalidate = new PathItem(
+            ref: 'JWT Token invalidate',
+            post: new Operation(
+                operationId: 'postCredentialsItem',
+                tags: ['Token'],
+                responses: [
+                    '200' => [
+                        'description' => 'Invalidate JWT Token',
+                        'content' => [
+                            'application/json' => [
+                                'schema' => [
+                                    '$ref' => '#/components/schemas/invalidate_token',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                summary: 'Invalidate JWT Token.',
+                requestBody: new RequestBody(
+                    description: 'Invalidate a JWT Token',
+                    content: new \ArrayObject([
+                        'application/json' => [
+                            'schema' => [
+                                '$ref' => '#/components/schemas/invalidate_token_credentials',
+                            ],
+                        ],
+                    ]),
+                ),
+            ),
+        );
+
+        $openApi->getPaths()->addPath('/authentication_token', $authenticationToken);
+        $openApi->getPaths()->addPath('/refresh_token', $refreshToken);
+        $openApi->getPaths()->addPath('/token_invalidate', $tokenInvalidate);
 
         return $openApi;
     }

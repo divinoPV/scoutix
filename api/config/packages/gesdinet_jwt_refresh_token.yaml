@@ -1,0 +1,14 @@
+gesdinet_jwt_refresh_token:
+  cookie:
+    enabled: true
+    same_site: lax
+    path: /
+    domain: (scoutix.ovh|modulo.co)
+    http_only: true
+    secure: true
+    remove_token_from_body: true
+  firewall: api
+  return_expiration: true
+  refresh_token_class: App\Entity\RefreshToken
+  ttl: 2592000
+  ttl_update: true
