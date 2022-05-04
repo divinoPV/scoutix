@@ -1,29 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../utils/Redux/hooks';
-import { setUser } from '../../../../utils/Redux/Slices/userSlice';
 
-const Home = (): JSX.Element => {
-  const user = useAppSelector(state => state.user);
-  const dispatch = useAppDispatch();
+import Container from '../../../Atoms/Container/Container';
+import Footer from '../../../Organisms/Footer/App/Footer';
+import Header from '../../../Organisms/Header/App/Header';
+import Main from '../../../Atoms/Main/Main';
+import PageTitle from '../../../Atoms/Title/Page/PageTitle';
 
-  const editUser = () => {
-    dispatch(setUser({
-      name: 'john do',
-      age: 10,
-      firstName: 'john',
-      lastName: 'do',
-    }));
-  };
-
-  return <div>
-    <h1>Home</h1>
-    <Link to="/office">Office</Link>
-    { user ? <div>
-      { user.name }
-      <button onClick={ () => editUser() }>edit</button>
-    </div> : <div>empty user</div> }
-  </div>;
-}
+const Home: React.FC = () => {
+  return <>
+    <Header />
+    <Main>
+      <Container>
+        <PageTitle>Accueil</PageTitle>
+      </Container>
+    </Main>
+    <Footer />
+  </>;
+};
 
 export default Home;

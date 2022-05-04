@@ -1,0 +1,14 @@
+@import '../../../bemit/settings/_colors.scss';
+
+.Footer {
+  align-items: center;
+  background-color: $color-secondary;
+  display: flex;
+  padding: 21px 34px;
+
+  a {
+    &:hover {
+      color: $color-background-dark;
+    }
+  }
+}

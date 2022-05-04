@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import './bemit/scoutix.scss';
 
+import './utils/Declarations/declaration.d.ts';
 import { store } from './utils/Redux/store';
 
 import App from './components/Trumps/Env/App/App';
