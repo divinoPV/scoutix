@@ -7,8 +7,8 @@ DOCKER_EXEC_PHP = ${DOCKER_EXEC} ${CTNR_PHP}
 DOCKER_EXEC_PHP_BC = ${DOCKER_EXEC_PHP} ${PHP_BC}
 DOCKER_EXEC_NODE = ${DOCKER_EXEC} ${CTNR_NODE}
 
-CTNR_PHP = php-modulo-service
-CTNR_NODE = node-modulo-service
+CTNR_PHP = php-scoutix-service
+CTNR_NODE = node-scoutix-service
 
 PHP_BC = php bin/console
 
@@ -272,7 +272,7 @@ purge:
 .PHONY: commands
 # Display all commands in the project namespace
 commands:
-	${DOCKER_EXEC_PHP_BC} list modulo
+	${DOCKER_EXEC_PHP_BC} list scoutix
 
 .PHONY: bundles
 # Display all commands in the project namespace

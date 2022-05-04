@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import './bemit/modulo.scss';
+import './bemit/scoutix.scss';
 
 import { store } from './utils/Redux/store';
 
