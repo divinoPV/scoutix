@@ -1,21 +1,20 @@
 import React from 'react';
-
-import Container from '../../../Atoms/Container/Container';
-import Footer from '../../../Organisms/Footer/App/Footer';
 import Header from '../../../Organisms/Header/App/Header';
 import Main from '../../../Atoms/Main/Main';
+import Container from '../../../Atoms/Container/Container';
 import PageTitle from '../../../Atoms/Title/Page/PageTitle';
+import Footer from '../../../Organisms/Footer/App/Footer';
 
-const Login: React.FC = () => {
-  return <>
+const ScopeChoice: React.FC = () => {
+  return  <>
     <Header />
     <Main>
       <Container>
-        <PageTitle>Connexion</PageTitle>
+        <PageTitle>Changement de scope</PageTitle>
       </Container>
     </Main>
     <Footer />
   </>;
 };
 
-export default Login;
+export default ScopeChoice;

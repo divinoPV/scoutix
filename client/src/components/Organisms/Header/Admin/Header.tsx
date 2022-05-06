@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 import Headerom from '../../../Atoms/Header/Header';
-import Navbar from '../../../Molecules/Nav/App/Header/Navbar';
+import Navbar from '../../../Molecules/Nav/Admin/Header/Navbar';
 
 const Header: React.FC = () => <Headerom
   className={ `${ styles['Header'] }` }

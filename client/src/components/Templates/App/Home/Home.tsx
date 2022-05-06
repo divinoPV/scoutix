@@ -1,18 +1,17 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-import Container from '../../../Atoms/Container/Container';
+import styles from './Home.module.scss';
+
 import Footer from '../../../Organisms/Footer/App/Footer';
 import Header from '../../../Organisms/Header/App/Header';
 import Main from '../../../Atoms/Main/Main';
-import PageTitle from '../../../Atoms/Title/Page/PageTitle';
 
 const Home: React.FC = () => {
   return <>
     <Header />
-    <Main>
-      <Container>
-        <PageTitle>Accueil</PageTitle>
-      </Container>
+    <Main className={ `${ styles['Home__main'] }` }>
+      <Outlet />
     </Main>
     <Footer />
   </>;

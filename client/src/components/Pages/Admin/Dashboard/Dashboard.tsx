@@ -2,12 +2,12 @@ import React from 'react';
 import Container from '../../../Atoms/Container/Container';
 import PageTitle from '../../../Atoms/Title/Page/PageTitle';
 
-const Role: React.FC = () => {
+const Dashboard: React.FC = () => {
   return <>
     <Container>
-      <PageTitle>Autorisation - Role</PageTitle>
+      <PageTitle>Tableau de bord</PageTitle>
     </Container>
   </>;
 };
 
-export default Role;
+export default Dashboard;
