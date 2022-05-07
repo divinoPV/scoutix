@@ -19,7 +19,7 @@ help:
 
 .PHONY: start
 # start project
-start: up perm bundles db cc perm
+start: perm up bundles db cc perm
 
 ##
 ## Docker

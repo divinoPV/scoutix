@@ -8,7 +8,9 @@ import Headerom from '../../../Atoms/Header/Header';
 const Header: React.FC<{
   nav: React.ReactElement;
 }> = (
-  { nav }
+  {
+    nav
+  }
 ) => <Headerom className={ `${ style['Header'] }` }>
   <div className={ `${ style['Header__logoLink'] }` }>
     <object data="/media/svg/logo_white.svg" type="image/svg+xml" />

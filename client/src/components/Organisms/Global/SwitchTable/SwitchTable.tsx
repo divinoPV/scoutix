@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './SwitchTable.module.scss';
 
-import Switch from '../../../Atoms/Buttons/Switch/Switch';
+import SwitchBtn from '../../../Atoms/Button/Switch/SwitchBtn';
 
 const SwitchTable: React.FC<{
   className?: string;
@@ -47,7 +47,7 @@ const SwitchTable: React.FC<{
       { data.header.map(() => <div
         className={ `${ style['SwitchTable__cell'] }` }
       >
-        <Switch onChange={ () => '' } />
+        <SwitchBtn onChange={ () => '' } />
       </div>) }
     </div>) }
   </div>

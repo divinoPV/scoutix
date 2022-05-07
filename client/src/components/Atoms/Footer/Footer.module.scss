@@ -5,6 +5,7 @@
   background-color: $color-secondary;
   display: flex;
   padding: 21px 34px;
+  z-index: 1000;
 
   a {
     &:hover {
