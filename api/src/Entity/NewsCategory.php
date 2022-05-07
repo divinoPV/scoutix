@@ -11,8 +11,10 @@ use App\Contract\Entity\NewsCategoryact;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\NewsCategorytory;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: NewsCategorytory::class)]
 class NewsCategory implements NewsCategoryact
 {

@@ -4,12 +4,15 @@ namespace App\Beable\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait LifeCycleable
 {
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
     protected ?bool $archived = false;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
     protected ?bool $deleted = false;
 

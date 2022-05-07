@@ -5,9 +5,11 @@ namespace App\Beable\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Titleable
 {
+    #[Groups(["read","write"])]
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     protected ?string $title;
 

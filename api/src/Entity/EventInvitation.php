@@ -12,8 +12,10 @@ use App\Contract\Entity\EventInvitationact;
 use App\Enum\Statum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\EventInvitationtory;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: EventInvitationtory::class)]
 class EventInvitation implements EventInvitationact
 {
