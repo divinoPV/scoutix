@@ -1,44 +1,44 @@
 version: '3.4'
 
 networks:
-  modulo-network:
+  scoutix-network:
     driver: bridge
 
 services:
-  mariadb-modulo-service:
+  mariadb-scoutix-service:
     image: mariadb:10.8
-    container_name: mariadb-modulo-container
+    container_name: mariadb-scoutix-container
     ports:
       - "4306:3306"
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: modulo
-      MYSQL_USER: modulo_admin
-      MYSQL_PASSWORD: modulo
+      MYSQL_DATABASE: scoutix
+      MYSQL_USER: scoutix_admin
+      MYSQL_PASSWORD: scoutix
     networks:
-      - modulo-network
+      - scoutix-network
 
-  pma-modulo-service:
+  pma-scoutix-service:
     image: phpmyadmin/phpmyadmin
-    container_name: pma-modulo-container
+    container_name: pma-scoutix-container
     ports:
       - "8080:80"
     restart: always
     environment:
-      PMA_HOST: mariadb-modulo-service
+      PMA_HOST: mariadb-scoutix-service
       PMA_USER: root
       PMA_PASSWORD: root
       PMA_PMADB: phpmyadmin
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - modulo-network
+      - scoutix-network
 
-  mailhog-modulo-service:
+  mailhog-scoutix-service:
     image: mailhog/mailhog
-    container_name: mailhog-modulo-container
+    container_name: mailhog-scoutix-container
     ports:
       - "1080:80"
     networks:
-      - modulo-network
+      - scoutix-network

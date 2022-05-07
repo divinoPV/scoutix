@@ -1,0 +1,58 @@
+@import '../../../../bemit/settings/_colors.scss';
+
+.Footer {
+  display: block !important;
+
+  &__address {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+
+  &__fa {
+    color: white;
+    font-size: 24px;
+    margin-right: 13px;
+
+    &__container {
+      margin-top: 13px;
+    }
+  }
+
+  &__headquarters {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  &__headquartersAddress {
+    align-items: start;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 13px 0 8px;
+  }
+
+  &__information {
+    width: 320px;
+  }
+
+  &__logoLink {
+    height: 105px;
+    position: relative;
+    width: 320px;
+
+    a {
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}

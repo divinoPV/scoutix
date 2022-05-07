@@ -1,0 +1,22 @@
+.Header {
+  gap: 34px;
+
+  &__logoLink {
+    height: 55px;
+    position: relative;
+    width: 168px;
+
+    a {
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    object {
+      height: 55px;
+    }
+  }
+}
