@@ -3,13 +3,14 @@ import { Outlet } from 'react-router-dom';
 
 import style from './Home.module.scss';
 
-import Footer from '../../../Organisms/Footer/App/Footer';
-import Header from '../../../Organisms/Header/App/Header';
+import Footer from '../../../Organisms/Global/Footer/Footer';
+import Header from '../../../Organisms/Global/Header/Header';
 import Main from '../../../Atoms/Main/Main';
+import Navbar from '../../../Molecules/App/Nav/Header/Navbar';
 
 const Home: React.FC = () => {
   return <>
-    <Header />
+    <Header nav={ <Navbar /> } />
     <Main className={ `${ style['Home__main'] }` }>
       <Outlet />
     </Main>

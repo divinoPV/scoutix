@@ -5,12 +5,14 @@ const Item: React.FC<{
   classNameList?: string;
   classNameLink?: string;
   path: string;
-}> = ({
-  children,
-  classNameList = '',
-  classNameLink = '',
-  path
-}) => <li
+}> = (
+  {
+    children,
+    classNameList = '',
+    classNameLink = '',
+    path
+  }
+) => <li
   className={ `${ classNameList }` }
 >
   <Link className={ `${ classNameLink }` } to={ path }>

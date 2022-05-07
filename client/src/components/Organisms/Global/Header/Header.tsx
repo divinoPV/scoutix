@@ -4,16 +4,17 @@ import { Link } from 'react-router-dom';
 import style from './Header.module.scss';
 
 import Headerom from '../../../Atoms/Header/Header';
-import Navbar from '../../../Molecules/Nav/Admin/Header/Navbar';
 
-const Header: React.FC = () => <Headerom
-  className={ `${ style['Header'] }` }
->
+const Header: React.FC<{
+  nav: React.ReactElement;
+}> = (
+  { nav }
+) => <Headerom className={ `${ style['Header'] }` }>
   <div className={ `${ style['Header__logoLink'] }` }>
     <object data="/media/svg/logo_white.svg" type="image/svg+xml" />
     <Link to="/" />
   </div>
-  <Navbar />
+  { nav }
 </Headerom>;
 
 export default Header;

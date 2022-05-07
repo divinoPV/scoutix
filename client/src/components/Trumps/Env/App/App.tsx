@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Appter from '../../Router/Appter';
 
-const App = (): JSX.Element => <Router>
+const App: React.FC = () => <Router>
   <Appter />
 </Router>;
 

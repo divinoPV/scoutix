@@ -9,7 +9,7 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import style from './Footer.module.scss';
 
 import Footerom from '../../../Atoms/Footer/Footer';
-import Navbar from '../../../Molecules/Nav/App/Footer/Navbar';
+import Navbar from '../../../Molecules/Global/Nav/Footer/Navbar';
 
 const Footer: React.FC = () => <Footerom
   className={ `${ style['Footer'] }` }

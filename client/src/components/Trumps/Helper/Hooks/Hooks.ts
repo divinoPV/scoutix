@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-type UseHook = (
+export const useFirstEffect: (
   callback: () => void,
   deps: any[],
-) => void;
-
-export const useFirstEffect: UseHook = (effect, deps) => {
+) => void = (
+  effect,
+  deps
+) => {
   const firstUpdate = useRef<boolean>(true);
 
   useEffect(() => {

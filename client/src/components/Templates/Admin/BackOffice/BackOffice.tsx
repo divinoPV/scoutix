@@ -3,14 +3,15 @@ import { Outlet } from 'react-router-dom';
 
 import style from './BackOffice.module.scss';
 
-import Footer from '../../../Organisms/Footer/App/Footer';
-import Header from '../../../Organisms/Header/Admin/Header';
+import Footer from '../../../Organisms/Global/Footer/Footer';
+import Header from '../../../Organisms/Global/Header/Header';
 import Main from '../../../Atoms/Main/Main';
+import Navbar from '../../../Molecules/Admin/Nav/Header/Navbar';
 
 const BackOffice: React.FC = () => {
   return <>
-    <Header />
-    <Main className={ `${style['BackOffice__main']}` }>
+    <Header nav={ <Navbar /> } />
+    <Main className={ `${ style['BackOffice__main'] }` }>
       <Outlet />
     </Main>
     <Footer />

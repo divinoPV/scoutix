@@ -4,10 +4,12 @@ import style from './Main.module.scss';
 
 const Main: React.FC<{
   className?: string;
-}> = ({
-  children,
-  className = '',
-}) => <main
+}> = (
+  {
+    children,
+    className = '',
+  }
+) => <main
   className={ `${ style['Main'] } ${ className }` }
 >
   { children }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Adminter from '../../Router/Adminter';
 
-const Admin = (): JSX.Element => <Router>
+const Admin: React.FC = () => <Router>
   <Adminter />
 </Router>;
 
