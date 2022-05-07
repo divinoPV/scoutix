@@ -1,88 +1,56 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import style from './_switch_table.module.scss';
+import style from './SwitchTable.module.scss';
+
 import Switch from '../../../Atoms/Buttons/Switch/Switch';
-import ScrollContainer from 'react-indiana-drag-scroll';
 
-const SwitchTable = () => {
-  return <ScrollContainer horizontal={false} hideScrollbars={false}>
-    <Grid style={{ display: 'flex'}}>
-      <div style={{ marginRight: '1rem' }}>
-        <Row style={{ flexDirection: 'column' }}>
-          <Col className={style.box}>Roles</Col>
-          <Col className={style.box}>Test</Col>
-          <Col className={style.box}>Test</Col>
-          <Col className={style.box}>Test</Col>
-        </Row>
+const SwitchTable: React.FC<{
+  className?: string;
+  data: {
+    body: { id: number, name: string, }[];
+    header: { id: number, name: string, }[];
+  };
+  horizontalHeaderLabel: string;
+  verticalHeaderLabel: string;
+}> = (
+  {
+    className = '',
+    data,
+    horizontalHeaderLabel,
+    verticalHeaderLabel,
+  }
+) => <div className={ `${ style['SwitchTable'] } ${ className }` }>
+  <div className={ `${ style['SwitchTable__header'] }` }>
+    <div className={ `${ style['SwitchTable__cell'] } ${ style['SwitchTable__cell--info'] }` }>
+      <div className={ `${ style['SwitchTable__cell--info__vertical'] }` }>
+        <span>{ verticalHeaderLabel }</span>
       </div>
-      <ScrollContainer vertical={false} hideScrollbars={false}>
-        <div>
-          <Row>
-            <Col className={style.box}>Calendar</Col>
-            <Col className={style.box}>Posts</Col>
-            <Col className={style.box}>Categ</Col>
-            <Col className={style.box}>Event</Col>
-            <Col className={style.box}>Admin</Col>
-            <Col className={style.box}>Calendar</Col>
-            <Col className={style.box}>Posts</Col>
-            <Col className={style.box}>Categ</Col>
-            <Col className={style.box}>Event</Col>
-            <Col className={style.box}>Admin</Col>
-            <Col className={style.box}>Calendar</Col>
-            <Col className={style.box}>Posts</Col>
-            <Col className={style.box}>Categ</Col>
-            <Col className={style.box}>Event</Col>
-            <Col className={style.box}>Admin</Col>
-            <Col className={style.box}>Calendar</Col>
-            <Col className={style.box}>Posts</Col>
-            <Col className={style.box}>Categ</Col>
-            <Col className={style.box}>Event</Col>
-            <Col className={style.box}>Admin</Col>
-          </Row>
-        </div>
-        <div>
-          {[...Array(15).keys()].map(() => (<Row>
-            <Col className={style.box}>Test</Col>
-            <Col className={style.box}>Test</Col>
-            <Col className={style.box}>Test</Col>
-            <Col className={style.box}>Test</Col>
-            <Col className={style.box}>Test</Col>
-          </Row>))}
-        </div>
-      </ScrollContainer>
-    </Grid>;
-  </ScrollContainer>
-  /*<div
-    style={{ height: '50vh', overflowY: 'auto' }}>
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-    }}>
-      <table className="table cell boxshadow" style={{ color: '#fff' }}>
-        <colgroup>
-          <col span={1} style={{ backgroundColor: '#427176' }}/>
-        </colgroup>
-        <tr>
-          <th>Postes</th>
-        </tr>
-        {[...Array(50).keys()].map(() => (<tr>
-          <td><p>CT</p></td>
-        </tr>))}
-      </table>
-      <ScrollContainer vertical={false}>
-        <table className="table cell">
-          <tr>
-            {[...Array(10).keys()].map(() => <th>Company</th>)}
-          </tr>
-          {[...Array(50).keys()].map(() => (<tr>
-            {[...Array(10).keys()].map(() => <td><Switch
-              onChange={() => 'test'}></Switch></td>)}
-          </tr>))}
-        </table>
-      </ScrollContainer>
+      <div className={ `${ style['SwitchTable__cell--info__horizontal'] }` }>
+        <span>{ horizontalHeaderLabel }</span>
+      </div>
     </div>
-  </div>;*/
-};
+    { data.header.map((item) => <div
+      className={ `${ style['SwitchTable__cell'] }` }
+      key={ item.id }
+    >
+      <span>{ item.name }</span>
+    </div>) }
+  </div>
+  <div className={ `${ style['SwitchTable__body'] }` }>
+    { data.body.map((item) => <div
+      className={ `${ style['SwitchTable__rows'] }` }
+      key={ item.id }
+    >
+      <div className={ `${ style['SwitchTable__cell'] }` }>
+        <span>{ item.name }</span>
+      </div>
+      { data.header.map(() => <div
+        className={ `${ style['SwitchTable__cell'] }` }
+      >
+        <Switch onChange={ () => '' } />
+      </div>) }
+    </div>) }
+  </div>
+</div>;
 
 export default SwitchTable;

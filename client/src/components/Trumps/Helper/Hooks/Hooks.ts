@@ -7,11 +7,14 @@ type UseHook = (
 
 export const useFirstEffect: UseHook = (effect, deps) => {
   const firstUpdate = useRef<boolean>(true);
+
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
+
       return;
     }
+
     effect();
   }, deps);
-}
+};

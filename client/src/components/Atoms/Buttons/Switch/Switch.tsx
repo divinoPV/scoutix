@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 
-import { useFirstEffect } from '../../../Trumps/Helper/Hooks/Hooks';
+import style from './Switch.module.scss';
 
-import classes from './_switch.module.scss';
+import { useFirstEffect } from '../../../Trumps/Helper/Hooks/Hooks';
 
 const Switch: React.FC<{
   isOn?: boolean;
   onChange: (value: boolean) => void;
-}> = ({ isOn = false, onChange }) => {
+}> = (
+  {
+    isOn = false,
+    onChange
+  }
+) => {
   const [checked, setChecked] = useState<boolean>(isOn);
 
-  const handleChange = () => {
-    setChecked(!checked);
-  };
+  useFirstEffect(() => onChange(checked), [checked]);
 
-  useFirstEffect(
-    () => {
-      onChange(checked);
-    },
-    [checked],
-  );
-
-  return <label className={`${classes['switch']}`}>
-    <input type="checkbox" className={`${classes['field']}`}
-      onInput={() => handleChange()} defaultChecked={isOn}/>
-    <span className={`${classes['slider']} ${classes['round']}`}></span>
-  </label>
+  return <label className={ `${ style['Switch'] }` }>
+    <input
+      className={ `${ style['Switch__field'] }` }
+      onInput={ () => setChecked(!checked) } defaultChecked={ isOn }
+      type="checkbox"
+    />
+    <span className={ `${ style['Switch__slider'] } ${ style['Switch__round'] }` }></span>
+  </label>;
 };
 
 export default Switch;

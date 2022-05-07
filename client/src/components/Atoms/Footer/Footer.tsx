@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Footer.module.scss';
+import style from './Footer.module.scss';
 
 const Footer: React.FC<{
   className?: string;
@@ -8,7 +8,7 @@ const Footer: React.FC<{
   children,
   className = '',
 }) => <footer
-  className={ `${ styles['Footer'] } ${ className }` }
+  className={ `${ style['Footer'] } ${ className }` }
 >
   { children }
 </footer>;

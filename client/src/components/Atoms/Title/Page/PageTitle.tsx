@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './PageTitle.module.scss';
+import style from './PageTitle.module.scss';
 
 const PageTitle: React.FC<{
   className?: string;
@@ -8,7 +8,7 @@ const PageTitle: React.FC<{
   children,
   className= '',
 }) => <h1
-  className={ `${styles['PageTitle']} ${ className }` }
+  className={ `${style['PageTitle']} ${ className }` }
 >
   { children }
 </h1>;

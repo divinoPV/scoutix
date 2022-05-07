@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Main.module.scss';
+import style from './Main.module.scss';
 
 const Main: React.FC<{
   className?: string;
@@ -8,7 +8,7 @@ const Main: React.FC<{
   children,
   className = '',
 }) => <main
-  className={ `${ styles['Main'] } ${ className }` }
+  className={ `${ style['Main'] } ${ className }` }
 >
   { children }
 </main>;

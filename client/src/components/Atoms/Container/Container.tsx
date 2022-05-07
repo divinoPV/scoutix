@@ -1,4 +1,4 @@
-import styles from './Container.module.scss';
+import style from './Container.module.scss';
 
 const Container: React.FC<{
   className?: string;
@@ -6,7 +6,7 @@ const Container: React.FC<{
   children,
   className = '',
 }) => <div
-  className={ `${ styles['Container'] } ${ className }` }
+  className={ `${ style['Container'] } ${ className }` }
 >
   { children }
 </div>;

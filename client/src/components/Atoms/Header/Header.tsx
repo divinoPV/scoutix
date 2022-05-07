@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Header.module.scss';
+import style from './Header.module.scss';
 
 const Header: React.FC<{
   className?: string;
@@ -8,9 +8,9 @@ const Header: React.FC<{
   children,
   className = '',
 }) => <header
-  className={ `${ styles['Header'] } ${ className }` }
+  className={ `${ style['Header'] } ${ className }` }
 >
-  <div className={ `${ styles['Header__container'] } ${ className }` }>
+  <div className={ `${ style['Header__container'] } ${ className }` }>
     { children }
   </div>
 </header>;
