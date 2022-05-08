@@ -1,12 +1,11 @@
-import axios from '../../../../utils/Axios/axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
-import { useState } from 'react';
-import * as Yup from 'yup';
 import { Navigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import style from './Login.module.scss';
 
+import axios from '../../../../utils/Axios/axios';
 import Authentication from '../../../Templates/Authentication/Authentication';
 import FormControl from '../../../Trumps/Factory/FormControl';
 import FormBtn from '../../../Atoms/Button/Form/FormBtn';

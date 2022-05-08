@@ -1,0 +1,14 @@
+@import 'src/bemit/settings/colors';
+
+.Field {
+  border: 2px solid $color-secondary;
+  border-radius: 10px;
+  color: $color-text;
+  padding: 5px 13px;
+
+  &:focus, &:focus-visible {
+    background-image: none !important;
+    border-color: $color-primary;
+    outline: none;
+  }
+}
