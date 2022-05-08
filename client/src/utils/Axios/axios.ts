@@ -1,6 +1,10 @@
-//TODO Axios call setup maybe with interceptors for token
-// requests and refresh token requests
+import axios from 'axios';
 
-export function interceptors() {
-  return;
-}
+const baseAxios = axios.create({
+  baseURL: 'http://scoutix.co:80',
+  headers: {
+    Accept: 'application/ld+json',
+  },
+});
+
+export default baseAxios;

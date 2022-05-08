@@ -6,9 +6,6 @@ import Loading from '../Loader/Default/Loading';
 const Connected = React.lazy(
   () => import('../../Pages/App/Home/Connected/Connected')
 );
-const Dashboard = React.lazy(
-  () => import('../../Pages/Admin/Dashboard/Dashboard')
-);
 const Home = React.lazy(() => import('../../Templates/App/Home/Home'));
 const Login = React.lazy(
   () => import('../../Pages/Authentication/Login/Login')
