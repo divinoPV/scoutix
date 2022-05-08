@@ -1,0 +1,51 @@
+@import '../../../../bemit/settings/_colors.scss';
+
+.Table {
+  $block: &;
+
+  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.3);
+  max-width: calc(100vw - 63px);
+  min-width: calc(100vw - 63px);
+  overflow: auto;
+
+  &__body, &__header {
+    display: flex;
+  }
+
+  &__body {
+    flex-direction: column;
+
+    #{$block}__cell {
+      border-top: 1px solid $color-primary;
+      border-right: 1px solid $color-primary;
+    }
+
+    #{$block}__rows {
+      display: flex;
+    }
+  }
+
+  &__header {
+    #{$block}__cell {
+      background-color: $color-primary;
+      border-left: 1px solid $color-secondary;
+
+      span {
+        color: white;
+        font-weight: 600;
+        letter-spacing: 0.05rem;
+      }
+    }
+  }
+
+  &__body, &__header {
+    #{$block}__cell {
+      align-items: center;
+      display: flex;
+      max-width: 210px;
+      min-width: 210px;
+      padding: 13px 21px;
+      justify-content: center;
+    }
+  }
+}
