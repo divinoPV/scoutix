@@ -1,7 +1,19 @@
 controllers:
-    resource: ../src/Controller/
-    type: annotation
+  resource: ../src/Controller/
+  type: annotation
 
 kernel:
-    resource: ../src/Kernel.php
-    type: annotation
+  resource: ../src/Kernel.php
+  type: annotation
+
+authentication_token:
+  path: /authentication_token
+  methods: [ 'POST' ]
+
+refresh_token:
+  path: /refresh_token
+  methods: [ 'POST' ]
+
+token_invalidate:
+  path: /token_invalidate
+  methods: [ 'POST' ]

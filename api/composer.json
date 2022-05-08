@@ -11,9 +11,11 @@
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.11",
+        "doctrine/orm": "^2.12",
         "gedmo/doctrine-extensions": "^3.6",
+        "gesdinet/jwt-refresh-token-bundle": "^1.1",
         "knplabs/doctrine-behaviors": "^2.6",
+        "lexik/jwt-authentication-bundle": "^2.15",
         "monolog/monolog": "^2.5",
         "nelmio/cors-bundle": "^2.2",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -91,9 +93,16 @@
         }
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "dama/doctrine-test-bundle": "^7.0",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fakerphp/faker": "^1.19",
+        "hautelook/alice-bundle": "^2.10",
+        "liip/test-fixtures-bundle": "^2.0.0",
+        "nelmio/alice": "^3.10",
         "phpunit/phpunit": "^9",
+        "symfony/browser-kit": "6.0.*",
+        "symfony/http-client": "6.0.*",
         "symfony/maker-bundle": "^1.38",
         "symfony/phpunit-bridge": "^6.0"
     }

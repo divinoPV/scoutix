@@ -384,5 +384,5 @@ yarn-error.log
 ###< lexik/jwt-authentication-bundle ###
 
 ###> tests ###
-/tests
+/tests/scoutix_test
 ###< tests ###

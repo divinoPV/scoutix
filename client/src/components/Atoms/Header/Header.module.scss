@@ -1,8 +1,8 @@
-@import '../../../bemit/settings/_colors.scss';
+@import 'src/bemit/settings/_colors.scss';
 
 .Header {
   position: relative;
-  z-index: 100;
+  z-index: 1000;
   
   &__container {
     align-items: center;

@@ -4,10 +4,12 @@ import style from './Footer.module.scss';
 
 const Footer: React.FC<{
   className?: string;
-}> = ({
-  children,
-  className = '',
-}) => <footer
+}> = (
+  {
+    children,
+    className = '',
+  }
+) => <footer
   className={ `${ style['Footer'] } ${ className }` }
 >
   { children }

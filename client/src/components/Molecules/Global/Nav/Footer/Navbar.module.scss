@@ -1,0 +1,25 @@
+@import 'src/bemit/settings/_colors.scss';
+
+.FooterAppNav {
+  width: 100%;
+
+  &__list {
+    align-items: center;
+    display: flex;
+    gap: 21px;
+    justify-content: end;
+  }
+
+  &__item {
+    color: white;
+    font-size: .8rem;
+    font-weight: 300;
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+}

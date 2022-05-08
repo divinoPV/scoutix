@@ -1,0 +1,7 @@
+lexik_jwt_authentication:
+    pass_phrase: '%env(JWT_PASSPHRASE)%'
+    public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
+    secret_key: '%env(resolve:JWT_SECRET_KEY)%'
+    token_ttl: 20
+    user_id_claim: 'username'
+    user_identity_field: 'email'

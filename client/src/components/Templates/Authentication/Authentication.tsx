@@ -1,18 +1,15 @@
 import React from 'react';
 
-import style from './Authentication.module.scss';
-
-import Footer from '../../Organisms/Footer/App/Footer';
-import Header from '../../Organisms/Header/Authentication/Header';
+import Header from '../../Organisms/Global/Header/Header';
 import Main from '../../Atoms/Main/Main';
+import Navbar from '../../Molecules/Authentication/Nav/Header/Navbar';
 
 const Authentication: React.FC = ({ children }) => {
   return <>
-    <Header />
-    <Main className={ `${ style['Authentication__main'] }` }>
+    <Header nav={ <Navbar /> } />
+    <Main>
       { children }
     </Main>
-    <Footer />
   </>;
 };
 

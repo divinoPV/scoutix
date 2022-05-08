@@ -4,16 +4,14 @@ import style from './Role.module.scss';
 
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
-import SwitchTable from
-  '../../../../Organisms/Generics/SwitchTable/SwitchTable'
-;
+import SwitchTable from '../../../../Organisms/Global/SwitchTable/SwitchTable';
 
 const Role: React.FC = () => {
   return <>
     <Container>
       <PageTitle>Autorisation - Role</PageTitle>
       <SwitchTable
-        className={ `${style['Role__switchTable']}` }
+        className={ `${ style['Role__switchTable'] }` }
         data={ {
           'body': [
             { 'id': 1, 'name': 'Function 1' },

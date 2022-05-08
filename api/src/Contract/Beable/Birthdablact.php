@@ -16,7 +16,7 @@ interface Birthdablact
 
     public function getBirthGender(): ?Genderum;
 
-    public function setBirthGender(?Genderum $birthGender): static;
+    public function setBirthGender(?Genderum $birthGender): Birthdablact;
 
     public function getBirthZipCode(): ?string;
 
