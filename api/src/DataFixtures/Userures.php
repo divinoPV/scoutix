@@ -34,6 +34,10 @@ final class Userures extends Fixturabs
 
     protected function generate(ObjectManager $manager): void
     {
+        foreach (['lauraagss', 'divino', 'spacelocust'] as $item) {
+            $this->createUser(Rolum::Admin->value, self::REFERENCE['admin'], 1, $item);
+        }
+
         foreach ([
             ['role' => Rolum::Admin->value, 'reference' => self::REFERENCE['admin'], 'number' => self::NUMBER_ELEMENT['admin']],
             ['role' => Rolum::Moderator->value, 'reference' => self::REFERENCE['moderator'], 'number' => self::NUMBER_ELEMENT['moderator']],
@@ -47,15 +51,15 @@ final class Userures extends Fixturabs
         }
     }
 
-    private function createUser(string $role, string $reference, int $element): Collection
+    private function createUser(string $role, string $reference, int $element, string $name = null): Collection
     {
-        return $this->create(User::class, $element, function (User $user) use ($role) {
+        return $this->create(User::class, $element, function (User $user) use ($role, $name) {
             $user
                 ->setGender($gender = (Faker::weightingBoolean(90)
                     ? (\rand(0, 1) ? Genderum::Female : Genderum::Male)
                     : Genderum::randomIdentities()
                 ))
-                ->setFirstName($this->faker->firstName())
+                ->setFirstName($name ?? $this->faker->firstName())
                 ->setMaidenName(Genderum::Female === $gender ? $this->faker->lastName() : null)
                 ->setMatronym(Faker::weightingBoolean(20) ? $this->faker->lastName() : null)
                 ->setMiddleName($middleName = (Faker::weightingBoolean(70) ? $this->faker->firstName() : null))
@@ -76,12 +80,12 @@ final class Userures extends Fixturabs
                 ->setFax(Faker::weightingBoolean(30) ? Faker::phoneNumber(1, 5) : null)
                 ->setLandline(Faker::weightingBoolean(60) ? Faker::phoneNumber(1, 5) : null)
                 ->setMobile(Faker::phoneNumber(6, 9))
-                ->setUsername($this->faker->username())
+                ->setUsername($name ?? $this->faker->username())
                 ->setRoles([$role])
-                ->setEmail($this->faker->email())
+                ->setEmail(null !== $name ? $name.'@scoutix.ovh' : $this->faker->email())
                 ->setPassword($this->passwordHasher->hashPassword($user, self::PASSWORD))
             ;
-        }, $reference);
+        }, null !== $name ? $reference.$name : $reference);
     }
 
     private function userLifeCycle(Collection $users): void

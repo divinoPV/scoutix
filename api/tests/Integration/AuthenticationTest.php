@@ -13,9 +13,9 @@ class AuthenticationTest extends ApiTestCase
 {
     use ReloadDatabaseTrait;
 
-    const URL = 'http://modulo.co/';
+    const URL = 'http://scoutix.co/';
 
-    const EMAIL = 'test@modulo.co';
+    const EMAIL = 'test@scoutix.co';
 
     const PASSWORD = 'Azerty1234&.';
 

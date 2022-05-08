@@ -5,6 +5,7 @@ namespace App\Beable\Entity;
 use App\Enum\Onum;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait Timestampable
 {
