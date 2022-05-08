@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import style from './BackOffice.module.scss';
 
@@ -15,6 +16,7 @@ const BackOffice: React.FC = () => {
       <Outlet />
     </Main>
     <Footer />
+    <ToastContainer />
   </>;
 };
 

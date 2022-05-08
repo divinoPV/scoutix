@@ -36,12 +36,14 @@ const User: React.FC = () => {
     )),
     editable: {
       onRowUpdate: upUser,
-      onRowAdd: addUser,
       onRowDelete: deleteUser,
+      onRowAdd: addUser,
     },
-    Validators: {
-      name: (rowData: object) => rowData.name === '' ?
+    validators: {
+      name: rowData => rowData.name === '' ?
         { isValid: false, helperText: 'Name cannot be empty' } : true,
+      firstName: rowData => rowData.firstName === '' ?
+        { isValid: false, helperText: 'Firstname cannot be empty' } : true,
     }
   };
 
