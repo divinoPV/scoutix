@@ -6,7 +6,7 @@ import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
 const Connected: React.FC = () => {
   return <>
     <Container>
-      <PageTitle>Accueil</PageTitle>
+      <PageTitle>Accueil - Co</PageTitle>
     </Container>
   </>;
 };
