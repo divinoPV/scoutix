@@ -1,37 +1,16 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-import Authentication from '../../../Templates/Authentication/Authentication';
-import Container from '../../../Atoms/Container/Container';
-import PageTitle from '../../../Atoms/Title/Page/PageTitle';
-import useSleep from '../../../Trumps/Helper/Hook/Sleep';
+import { useAppDispatch } from '../../../../utils/Redux/store';
+import { logout } from '../../../../utils/Redux/Slice/User';
 
 const Logout: React.FC = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const redirect = async () => {
-    await useSleep(3000);
-    navigate('/');
-  }
+  dispatch(logout());
+  localStorage.clear();
 
-  const userState = localStorage.getItem('userState')
-    && JSON.parse(localStorage.getItem('userState') as string)
-  ;
-
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    if (userState || token) {
-      localStorage.clear();
-      redirect();
-    }
-  }, []);
-
-  return <Authentication>
-    <Container>
-      <PageTitle>Se déconnecter</PageTitle>
-    </Container>
-  </Authentication>;
+  return <Navigate to={ '/' } />;
 };
 
 export default Logout;
