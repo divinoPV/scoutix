@@ -3,14 +3,18 @@ import Calendar from 'react-calendar';
 import { differenceInCalendarDays as isSameDay } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Navigate } from 'react-router-dom';
 
 import 'react-calendar/dist/Calendar.css';
 
 import style from './Connected.module.scss';
 
 import Disconnect from '../Disconnect/Disconnect';
+import { Store, useAppSelector } from '../../../../../utils/Redux/store';
 
 const Connected: React.FC = () => {
+  const user = useAppSelector((state: Store) => state.user);
+
   const [value, onChange] = useState(new Date());
 
   /** TODO: refactor this */
@@ -36,61 +40,63 @@ const Connected: React.FC = () => {
     }
   ];
 
-  return <>
-    <Disconnect
-      afterSwiper={
-        <div className={ `${ style['Connected__afterSwiper'] }` }>
-          <strong className={ `${ style['Connected__afterSwiper__title'] }` }>
-            Les prochains événements
-          </strong>
-          <div className={ `${ style['Connected__afterSwiper__container'] } ` }>
-            <FontAwesomeIcon icon={ faPlus } className={ `${ style['Connected__afterSwiper__container__add'] }` } />
-            <Calendar
-              className={ `${ style['Connected__afterSwiper__calendar'] } ` }
-              onChange={ onChange }
-              tileClassName={ ({ date, view }): any => {
-                if (view === 'month') {
-                  if (events.find((
-                    { date: eventDate }
-                  ) => isSameDay(eventDate, date) === 0)) {
-                    return `${ style['Connected__afterSwiper__calendar__event'] }`;
+  return user.logged
+    ? <>
+      <Disconnect
+        afterSwiper={
+          <div className={ `${ style['Connected__afterSwiper'] }` }>
+            <strong className={ `${ style['Connected__afterSwiper__title'] }` }>
+              Les prochains événements
+            </strong>
+            <div className={ `${ style['Connected__afterSwiper__container'] } ` }>
+              <FontAwesomeIcon icon={ faPlus } className={ `${ style['Connected__afterSwiper__container__add'] }` } />
+              <Calendar
+                className={ `${ style['Connected__afterSwiper__calendar'] } ` }
+                onChange={ onChange }
+                tileClassName={ ({ date, view }): any => {
+                  if (view === 'month') {
+                    if (events.find((
+                      { date: eventDate }
+                    ) => isSameDay(eventDate, date) === 0)) {
+                      return `${ style['Connected__afterSwiper__calendar__event'] }`;
+                    }
                   }
-                }
-              } }
-              value={ value }
-            />
-            { events && <div className={ `${ style['Connected__afterSwiper__items'] } ` }>
-              { events.map(({ date, name, tags }) => <div
-                className={ `${ style['Connected__afterSwiper__item'] } ` }
-              >
-                <div className={ `${ style['Connected__afterSwiper__item__tags'] } ` }>
-                  { tags && tags.map((tag) => <span
-                    className={ `${ style['Connected__afterSwiper__item__tag'] } ` }
-                  >
-                    { tag }
-                  </span>) }
-                </div>
-                <strong className={ `${ style['Connected__afterSwiper__item__name'] } ` }>
-                  { name }
-                </strong>
-                <span className={ `${ style['Connected__afterSwiper__item__date'] } ` }>
-                  { date.toLocaleDateString() }
-                </span>
-              </div>) }
-            </div> }
+                } }
+                value={ value }
+              />
+              { events && <div className={ `${ style['Connected__afterSwiper__items'] } ` }>
+                { events.map(({ date, name, tags }) => <div
+                  className={ `${ style['Connected__afterSwiper__item'] } ` }
+                >
+                  <div className={ `${ style['Connected__afterSwiper__item__tags'] } ` }>
+                    { tags && tags.map((tag) => <span
+                      className={ `${ style['Connected__afterSwiper__item__tag'] } ` }
+                    >
+                      { tag }
+                    </span>) }
+                  </div>
+                  <strong className={ `${ style['Connected__afterSwiper__item__name'] } ` }>
+                    { name }
+                  </strong>
+                  <span className={ `${ style['Connected__afterSwiper__item__date'] } ` }>
+                    { date.toLocaleDateString() }
+                  </span>
+                </div>) }
+              </div> }
+            </div>
           </div>
-        </div>
-      }
-      afterEvent={
-        <div className={ `${ style['Connected__afterEvent'] }` }>
-          <button className={ `${ style['Connected__afterEvent__cta'] }` }>
-            Laisser un message
-          </button>
-        </div>
-      }
-      classNameLastChild={ `${ style['Connected__lastChild'] }` }
-    />
-  </>;
+        }
+        afterEvent={
+          <div className={ `${ style['Connected__afterEvent'] }` }>
+            <button className={ `${ style['Connected__afterEvent__cta'] }` }>
+              Laisser un message
+            </button>
+          </div>
+        }
+        classNameLastChild={ `${ style['Connected__lastChild'] }` }
+      />
+    </>
+    : <Navigate to="/connexion" />;
 };
 
 export default Connected;
