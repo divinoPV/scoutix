@@ -123,6 +123,7 @@ export const user = createSlice(
         state.fileSize = action.payload.fileSize;
         state.username = action.payload.username;
         state.uuid = action.payload.uuid;
+        state.logged = true;
       },
       reset: (state) => {
         state.id = 0;

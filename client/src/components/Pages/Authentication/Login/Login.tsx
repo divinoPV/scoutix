@@ -27,14 +27,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (user.id) {
-      axios.get(
-        `users/${ user.id }`,
-        {
-          headers: {
-            'Authorization': `Bearer ${ localStorage.getItem('token') }`
-          }
-        }
-      )
+      axios.get(`users/${ user.id }`)
         .then((response) => {
           dispatch(set(response.data));
         })
