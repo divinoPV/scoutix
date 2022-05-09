@@ -5,7 +5,7 @@
 
   box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.3);
   max-width: calc(100vw - 63px);
-  min-width: calc(100vw - 63px);
+  min-width: calc(100vw - 63px) !important;
   overflow: auto;
 
   &__body, &__header {
@@ -76,7 +76,7 @@
       align-items: center;
       display: flex;
       max-width: 210px;
-      min-width: 210px;
+      min-width: 210px !important;
       padding: 13px 21px;
 
       &:first-child {
