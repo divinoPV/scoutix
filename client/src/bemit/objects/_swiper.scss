@@ -1,0 +1,19 @@
+:root .swiper {
+  &-button {
+    $arrow-margin: 34px;
+
+    &-next {
+      margin-right: $arrow-margin;
+    }
+
+    &-prev {
+      margin-left: $arrow-margin;
+    }
+
+    &-next, &-prev {
+      &:after {
+        font-weight: 700;
+      }
+    }
+  }
+}

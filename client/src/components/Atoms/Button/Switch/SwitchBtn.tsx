@@ -17,7 +17,7 @@ const SwitchBtn: React.FC<{
 
   useFirstEffect(() => onChange(checked), [checked]);
 
-  return <label className={ `${ style['SwitchBtn'] }` }>
+  return <label className={ `${ style['Switch'] }` }>
     <input
       className={ `${ style['Switch__field'] }` }
       onInput={ () => setChecked(!checked) } defaultChecked={ isOn }

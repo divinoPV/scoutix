@@ -4,8 +4,6 @@
   $block: &;
 
   box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.3);
-  max-width: calc(100vw - 63px);
-  min-width: calc(100vw - 63px) !important;
   overflow: auto;
 
   &__body, &__header {

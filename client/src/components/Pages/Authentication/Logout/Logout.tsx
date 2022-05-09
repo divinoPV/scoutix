@@ -14,7 +14,10 @@ const Logout: React.FC = () => {
     navigate('/');
   }
 
-  const userState = localStorage.getItem('userState') && JSON.parse(localStorage.getItem('userState'));
+  const userState = localStorage.getItem('userState')
+    && JSON.parse(localStorage.getItem('userState') as string)
+  ;
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {

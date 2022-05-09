@@ -17,7 +17,21 @@ import Container from '../../../../Atoms/Container/Container';
 
 SwiperCore.use([Autoplay, EffectFade, Navigation, Pagination]);
 
-const Disconnect: React.FC = () => {
+const Disconnect: React.FC<{
+  afterSwiper?: React.ReactElement;
+  afterNews?: React.ReactElement;
+  afterBackground?: React.ReactElement;
+  afterEvent?: React.ReactElement;
+  classNameLastChild?: string;
+}> = (
+  {
+    afterSwiper = null,
+    afterNews = null,
+    afterBackground = null,
+    afterEvent = null,
+    classNameLastChild = '',
+  }
+) => {
   return <>
     <Swiper
       centeredSlides={ true }
@@ -166,6 +180,7 @@ const Disconnect: React.FC = () => {
         </SwiperSlide>)
       }
     </Swiper>
+    { afterSwiper && afterSwiper }
     <Container>
       <List
         classNameContainer={ `${ style['Disconnect__list'] }` }
@@ -215,20 +230,34 @@ const Disconnect: React.FC = () => {
               image: 'media/img/news-5.jpg',
               title: 'Et quae asperiores qui',
             },
+            {
+              description: 'Dicta maxime ea' +
+                ' consequatur sit molestias. ',
+              leading: 'Proloty virium - 21 janvier 2022',
+              id: 6,
+              image: 'media/img/news-6.jpg',
+              title: 'Utinam quisquam',
+            },
           ]
         }
         title={ 'Nos derniers articles' }
       />
     </Container>
+    { afterNews && afterNews }
     <div className={ `${ style['Disconnect__background'] }` }>
       <img
         alt="Image de fond"
-        src="media/img/background-1.jpg"
+        src="/media/img/background-1.jpg"
       />
     </div>
+    { afterBackground && afterBackground }
     <Container>
       <List
-        classNameContainer={ `${ style['Disconnect__list'] }` }
+        classNameContainer={ `
+          ${ style['Disconnect__list'] }
+          ${ style['Disconnect__list--last'] }
+          ${ classNameLastChild }
+        ` }
         data={
           [
             {
@@ -281,6 +310,7 @@ const Disconnect: React.FC = () => {
         title={ 'Nos derniers événements' }
       />
     </Container>
+    { afterEvent && afterEvent }
   </>;
 };
 
