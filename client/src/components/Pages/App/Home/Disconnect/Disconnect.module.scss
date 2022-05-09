@@ -2,7 +2,7 @@
 
 .Disconnect {
   &__background {
-    margin: 89px 0;
+    margin: 89px 0 65px;
     height: 800px;
     overflow: hidden;
     position: relative;
@@ -19,8 +19,8 @@
   }
 
   &__list {
-    &:last-child {
-      margin-bottom: 89px;
+    &--last {
+      margin-bottom: 144px;
     }
   }
 
@@ -28,8 +28,9 @@
     $height: calc(100vh - 81px);
 
     --swiper-navigation-color: white;
+    --swiper-theme-color: white;
 
-    margin-bottom: 55px;
+    margin-bottom: 60px;
     height: $height !important;
     width: 100%;
 
@@ -77,6 +78,7 @@
           display: block;
           font-size: 1.4rem;
           font-weight: 600;
+          line-height: calc(1.4rem * 1.5);
           margin-bottom: 13px;
         }
       }

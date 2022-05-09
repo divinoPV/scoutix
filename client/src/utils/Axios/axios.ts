@@ -8,9 +8,10 @@ const baseAxios = axios.create({
 });
 
 baseAxios.interceptors.request.use((req) => {
-  if(localStorage.getItem('token')) {
-    req.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-  }
+  undefined !== req.headers
+  && localStorage.getItem('token')
+  && (req.headers.Authorization = `Bearer ${ localStorage.getItem('token') }`)
+  ;
 
   return req;
 });

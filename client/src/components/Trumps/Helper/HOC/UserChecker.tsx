@@ -5,19 +5,29 @@ import axios from '../../../../utils/Axios/axios';
 import { set } from '../../../../utils/Redux/Slice/User';
 import { useAppDispatch } from '../../../../utils/Redux/store';
 
-const UserChecker: React.FC = ({ children }) => {
+const UserChecker: React.FC = (
+  {
+    children,
+  }
+) => {
   const dispatch = useAppDispatch();
+
   const navigation = useNavigate();
 
-  const userState = localStorage.getItem('userState') && JSON.parse(localStorage.getItem('userState'));
+  const userState = localStorage.getItem('userState')
+    && JSON.parse(localStorage.getItem('userState') as string)
+  ;
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (userState && token) {
-      axios.get(`users/${userState.id}`)
+      axios
+        .get(`users/${ userState.id }`)
         .then((response) => {
           dispatch(set(response.data));
-        }).catch((error) => {
+        })
+        .catch(() => {
           navigation('/');
         });
     } else {
@@ -25,7 +35,7 @@ const UserChecker: React.FC = ({ children }) => {
     }
   }, []);
 
-  return <>{children}</>;
+  return <>{ children }</>;
 };
 
 export default UserChecker;

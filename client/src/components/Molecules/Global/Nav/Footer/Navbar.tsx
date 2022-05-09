@@ -10,11 +10,17 @@ const Navbar: React.FC = () => <Nav className={ `${ style['Nav'] }` }>
     <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="/">
       © Scoutix - 2022
     </NavItem>
-    <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="/mentions-legales">
+    <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="#" /*path="/aide"*/>
+      Aide
+    </NavItem>
+    <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="#" /*path="/mentions-legales"*/>
       Mentions légales
     </NavItem>
-    <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="/gestions-des-cookies">
+    <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="#" /*path="/gestions-des-cookies"*/>
       Gestions des cookies
+    </NavItem>
+    <NavItem classNameLink={ `${ style['FooterAppNav__item'] }` } path="#" /*path="/a-propos"*/>
+      A propos
     </NavItem>
   </ul>
 </Nav>;

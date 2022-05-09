@@ -6,7 +6,7 @@ import Navbar from '../../Molecules/Authentication/Nav/Header/Navbar';
 
 const Authentication: React.FC = ({ children }) => {
   return <>
-    <Header nav={ <Navbar /> } />
+    <Header fromAuth={ true } nav={ <Navbar /> } />
     <Main>
       { children }
     </Main>

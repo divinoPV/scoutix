@@ -5,7 +5,9 @@ const key = 'userState';
 export function loadUserState() {
   try {
     const serializedState = localStorage.getItem(key);
+
     if (!serializedState) return undefined;
+
     return { user: { ...JSON.parse(serializedState) } };
   } catch (e) {
     return undefined;

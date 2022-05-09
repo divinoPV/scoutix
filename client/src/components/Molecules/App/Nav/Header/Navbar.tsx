@@ -1,12 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { Store, useAppSelector } from '../../../../../utils/Redux/store';
 
 import style from './Navbar.module.scss';
 
 import Nav from '../../../../Atoms/Nav/Nav';
 import NavItem from '../../../../Atoms/Nav/Item';
-import { Store, useAppSelector } from '../../../../../utils/Redux/store';
 
 const Navbar: React.FC = () => {
   const user = useAppSelector((state: Store) => state.user);
@@ -16,25 +14,22 @@ const Navbar: React.FC = () => {
       <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/">
         Accueil
       </NavItem>
-      { !user.logged && <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/connexion">
-        Se connecter
-      </NavItem> }
-      { user.logged && <li>
-        <a className={ `${ style['Navbar__item'] } ${ style['Navbar__item--external'] }` }
-          href="http://iplmi03kw9aw.scoutix.co:3000"
-        >
-          Tableau de bord
-          <FontAwesomeIcon icon={ faArrowUpRightFromSquare } />
-        </a>
-      </li> }
-      { user.logged && <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/changement-de-scope">
-        Changer de scope
-      </NavItem> }
-      { user.logged && <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/deconnexion">
-        Se déconnecter
-      </NavItem> }
+      { user.logged && <>
+        <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/annuaire">
+          Annuaire
+        </NavItem>
+        <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/agenda">
+          Agenda
+        </NavItem>
+        <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/documents">
+          Documents
+        </NavItem>
+        <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/messagerie">
+          Messagerie
+        </NavItem>
+      </> }
     </ul>
   </Nav>;
-}
+};
 
 export default Navbar;

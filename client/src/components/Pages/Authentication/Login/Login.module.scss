@@ -35,9 +35,10 @@
     }
 
     &__title {
-      font-size: 34px;
+      font-size: 3rem;
       font-weight: 600;
-      margin-bottom: 55px;
+      line-height: calc(3rem * 1.5);
+      margin-bottom: 34px;
     }
 
     &__video {

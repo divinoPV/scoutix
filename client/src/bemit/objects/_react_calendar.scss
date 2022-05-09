@@ -1,0 +1,49 @@
+:root .react-calendar {
+  border: none;
+  border-radius: 10px;
+  color: $color-text;
+  padding: 8px 13px;
+
+  &__navigation {
+    &__arrow {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: calc(1.2rem * 1.5);
+      min-width: 44px !important;
+    }
+
+    &__label {
+      text-transform: uppercase;
+    }
+  }
+
+  &__tile {
+    &--active {
+      background-color: $color-secondary;
+
+      &:enabled {
+        &:focus, &:hover {
+          background-color: $color-primary;
+        }
+      }
+
+      * {
+        color: white;
+      }
+    }
+
+    &--now {
+      background-color: $color-ternary;
+
+      &:enabled {
+        &:focus, &:hover {
+          background-color: $color-ternary-light;
+        }
+      }
+
+      * {
+        color: white;
+      }
+    }
+  }
+}
