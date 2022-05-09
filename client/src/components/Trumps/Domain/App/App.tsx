@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 import Appter from '../../Router/Appter';
-import { store } from '../../../../utils/Redux/store';
+import UserChecker from '../../Helper/HOC/UserChecker';
 
-const App: React.FC = () => <Provider store={ store }>
+const App: React.FC = () =>
   <Router>
-    <Appter />
+    <UserChecker>
+      <Appter/>
+    </UserChecker>
   </Router>
-</Provider>;
+;
 
 export default App;
