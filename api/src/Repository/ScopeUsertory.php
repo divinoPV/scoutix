@@ -18,4 +18,9 @@ final class ScopeUsertory extends ServiceEntityRepository
     {
         parent::__construct($registry, ScopeUser::class);
     }
+
+    public function findByUser(int $id): array
+    {
+        return $this->findBy(['user' => $id]);
+    }
 }

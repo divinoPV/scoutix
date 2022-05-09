@@ -43,9 +43,9 @@ const Login: React.FC = () => {
       <video
         autoPlay
         className={ ` ${ style['Login__form__video'] } ` }
+        id="login__video"
         loop
         muted
-        id="login__video"
       >
         <source src="/media/video/login_background.mp4" type="video/mp4" />
       </video>
