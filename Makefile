@@ -308,4 +308,9 @@ up-pp:
 # Update preprod with docker
 up-pp-d: bundles db cc
 
+.PHONY: jwt-keys
+# Generate JWT keys
+jwt-keys: perm
+	${DOCKER_EXEC_PHP_BC} lexik:jwt:generate-keypair
+
 
