@@ -12,6 +12,9 @@ const Dashboard = React.lazy(
 const EventCategory = React.lazy(
   () => import('../../Pages/Admin/Crud/EventCategory/EventCategory')
 );
+const Login = React.lazy(
+  () => import('../../Pages/Authentication/Login/Login')
+);
 const Logout = React.lazy(
   () => import('../../Pages/Authentication/Logout/Logout')
 );
@@ -36,6 +39,7 @@ const Adminter: React.FC = () => <>
         { path: '/utilisateur', element: <User /> },
       ]
     },
+    { path: '/connexion', element: <Loading><Login /></Loading> },
     { path: '/deconnexion', element: <Loading><Logout /></Loading> },
   ]) }
 </>;
