@@ -1,59 +1,97 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
 import Table from '../../../../Organisms/Global/Table/Table';
+import { getUsers, updateUser } from './apiRequest/apiRequest';
 
 const User: React.FC = () => {
-  /** TODO */
-  const updateUser = () => new Promise(
-    (resolve) => setTimeout(() => resolve(1), 5000)
-  );
+  const [isFetching, setIsFetching] = React.useState<boolean>(true);
+  const [users, setUsers] = React.useState<object[]>([]);
 
-  const upUser = async (newData: any, oldData: any) => {
-    await updateUser();
+  const upUser = async (newData, oldData) => {
+    try {
+      await updateUser(oldData.id, newData);
+    } catch (e) {
+
+    }
   };
 
-  const deleteUser = async (oldData: any) => {
-    await updateUser();
+  const deleteUser = async (oldData) => {
+    try {
+      await updateUser(oldData.id, { ...oldData, deleted: true });
+    } catch (e) {
+
+    }
   };
 
-  const addUser = async (newData: any) => {
-    await updateUser();
+  const addUser = async (newData) => {
+    try {
+      await addUser(newData);
+    } catch (e) {
+
+    }
   };
+
+  const fetchUsers = async () => {
+    try {
+      const { data } = await getUsers();
+      setUsers(data['hydra:member']);
+      setIsFetching(false);
+    } catch (e) {
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
 
   const config = {
     title: 'Mes utilisateurs',
+    options: {
+      columnsButton: true,
+    },
     columns: [
-      {title: 'Nom', field: 'name'},
-      {title: 'Prénom', field: 'firstName'},
-      {title: 'Email', field: 'email'},
+      { title: 'Pseudonyme', field: 'username' },
+      { title: 'Nom', field: 'patronym' },
+      { title: 'Prénom', field: 'firstName' },
+      { title: 'Email', field: 'email' },
+      { title: 'Téléphone', field: 'mobile' },
+      { title: 'Département', field: 'addressDepartment' },
+      { title: 'Adresse rue', field: 'addressStreet' },
+      { title: 'Ville', field: 'addressCity' },
+      { title: 'N° adresse', field: 'addressNumber' },
+      { title: 'Code postal', field: 'addressZipCode' },
+      { title: 'Pays', field: 'addressCountry' },
+      { title: 'Etat', field: 'addressState' },
+      { title: 'Genre', field: 'gender' },
+      { title: 'Date de naissance', field: 'birth' },
+      { title: 'Ville de naissance', field: 'birthCity' },
+      { title: 'Genre de naissance', field: 'birthGender' },
+      { title: 'Code postal de naissance', field: 'birthZipCode' },
+      { title: 'Mot de passe', field: 'password' },
     ],
-    rows: [...Array(10).keys()].map((i) => (
-      {
-        id: i,
-        name: `John-${i}`,
-        firstName: `Doe-${i}`,
-        email: `johndoe${i}@example.com`
-      }
-    )),
+    rows: users,
     editable: {
       onRowUpdate: upUser,
       onRowDelete: deleteUser,
       onRowAdd: addUser,
     },
     validators: {
-      name: (rowData: { name: string }) => rowData.name === '' ?
-        {isValid: false, helperText: 'Name cannot be empty'} : true,
-      firstName: (rowData: { firstName: string }) => rowData.firstName === '' ?
-        {isValid: false, helperText: 'Firstname cannot be empty'} : true,
+      patronym: rowData => !rowData.patronym ?
+        { isValid: false, helperText: 'Veuillez saisir un nom' } : true,
+      firstName: rowData => !rowData.firstName ?
+        { isValid: false, helperText: 'Veuillez saisir un prénom' } : true,
+      email: rowData => !rowData.email ?
+        { isValid: false, helperText: 'Veuillez saisir une adresse e-mail' } : true,
     }
   };
 
   return <>
     <Container>
       <PageTitle>Utilisateur</PageTitle>
-      <Table table={config}/>
+      {!isFetching ? <Table table={config}/> : 'loading...'}
     </Container>
   </>;
 };
