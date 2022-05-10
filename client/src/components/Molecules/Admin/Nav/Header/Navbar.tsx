@@ -32,9 +32,6 @@ const Navbar: React.FC = () => <Nav className={ `${ style['Nav'] }` }>
         <FontAwesomeIcon icon={ faArrowUpRightFromSquare } />
       </a>
     </li>
-    <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/deconnexion">
-      Se déconnecter
-    </NavItem>
   </ul>
 </Nav>;
 

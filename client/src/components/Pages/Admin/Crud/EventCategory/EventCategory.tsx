@@ -60,9 +60,9 @@ const EventCategory: React.FC = () => {
       onRowAdd: addCateg,
     },
     validators: {
-      title: rowData => rowData.title === '' ?
+      title: rowData => !rowData.title ?
         { isValid: false, helperText: 'Veuillez saisir un titre' } : true,
-      content: rowData => rowData.content === '' ?
+      content: rowData => !rowData.content ?
         { isValid: false, helperText: 'Veuillez saisir un contenu' } : true,
     }
   };

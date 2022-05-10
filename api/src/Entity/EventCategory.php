@@ -22,7 +22,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
         'post',
         'available' => [
             'method' => 'get',
-            'path' => '/event-categories/available',
+            'path' => '/event_categories/available',
             'controller' => EventCategoryController::class,
         ]
     ],

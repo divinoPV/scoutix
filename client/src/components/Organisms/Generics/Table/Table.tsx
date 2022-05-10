@@ -13,11 +13,21 @@ type Validators<Obj> = {
   [K in keyof Obj]: Validator<Obj[K]>
 }
 
+type Col = {
+  title: string;
+  field: string;
+  [key: string]: any;
+}
+
+type Index = {
+  [key: string]: string;
+}
+
 const Table:
   React.FC<{
     table: {
       actions?: Array<Action<object>>;
-      columns: Array<object>;
+      columns: Array<Col>;
       rows: Array<object>;
       title: string;
       localization?: Localization;
@@ -43,8 +53,9 @@ const Table:
     const editables = useRef({});
     const [data, setData] = useState<Array<object>>(rows);
 
-    const addValidator = (): Array<object> => columns.reduce((acc, curr) => {
-      return [...acc, curr.field in validators ? { ...curr, validate: validators[curr.field] } : curr];
+    const addValidator = () => columns.reduce((acc: Array<object>, curr) => {
+      return [...acc, ('field' in curr) && (curr.field in validators) ?
+        { ...curr, validate: validators[curr.field] } : curr];
     }, []);
 
     if (editable) {
