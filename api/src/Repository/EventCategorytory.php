@@ -18,4 +18,14 @@ final class EventCategorytory extends ServiceEntityRepository
     {
         parent::__construct($registry, EventCategory::class);
     }
+
+    public function findAvailable()
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.deleted = :val')
+            ->setParameter('val', false)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

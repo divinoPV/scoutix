@@ -1,44 +1,43 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
-import Table from "../../../../Organisms/Generics/Table/Table";
-import useNotif from "../../../../Trumps/Helper/Hook/Notif";
-import baseAxios from "../../../../../utils/Axios/axios";
+import Table from '../../../../Organisms/Generics/Table/Table';
+import {
+  addCategory,
+  getCategories,
+  updateCategory
+} from './ApiRequest/ApiRequest';
 
 const EventCategory: React.FC = () => {
-
   const [isFetching, setIsFetching] = React.useState<boolean>(true);
-  const [categs, setCategs] = React.useState<any[]>([]);
-  const updateCateg = (id: number, data: object) => baseAxios.put(`/event_categories/${id},${data}`);
-  const delCateg = (id: number, data: object) => baseAxios.patch(`/event_categories/${id},${data}`);
-  const adCateg = (data: object) => baseAxios.post(`/event_categories/${data}`);
+  const [categories, setCategories] = React.useState<any[]>([]);
 
-  const upCatge = async (newData, oldData) => {
+  const updateCateg = async (newData, oldData) => {
     try {
-      await updateCateg(newData.id, newData);
+      await updateCategory(oldData.id, newData);
     } catch (e) {
     }
   }
 
   const deleteCateg = async (oldData) => {
     try {
-      await delCateg(oldData.id,oldData.delete);
+      await updateCategory(oldData.id, { ...oldData, deleted: true });
     } catch (e) {
     }
   }
 
   const addCateg = async (newData) => {
     try {
-      await adCateg(newData);
+      await addCategory(newData);
     } catch (e) {
     }
   }
 
   const getCategs = async () => {
     try {
-      const { data } = await baseAxios.get('/event_categories');
-      setCategs(data);
+      const { data } = await getCategories();
+      setCategories(data['hydra:member']);
       setIsFetching(false);
     } catch (e) {
     }
@@ -52,26 +51,26 @@ const EventCategory: React.FC = () => {
     title: 'Mes catégories d\'évènements',
     columns: [
       { title: 'Titre', field: 'title' },
-      { title: 'Content', field: 'content' },
+      { title: 'Contenu', field: 'content' },
     ],
-    rows: categs,
+    rows: categories,
     editable: {
-      onRowUpdate: upCatge,
+      onRowUpdate: updateCateg,
       onRowDelete: deleteCateg,
       onRowAdd: addCateg,
     },
     validators: {
       title: rowData => rowData.title === '' ?
-          { isValid: false, helperText: 'Title cannot be empty' } : true,
+        { isValid: false, helperText: 'Veuillez saisir un titre' } : true,
       content: rowData => rowData.content === '' ?
-          { isValid: false, helperText: 'Content cannot be empty' } : true,
+        { isValid: false, helperText: 'Veuillez saisir un contenu' } : true,
     }
   };
 
   return <>
     <Container>
       <PageTitle>Événement - Catégorie</PageTitle>
-      { !isFetching ? <Table table={config}/> : 'loading...' }
+      { !isFetching ? <Table table={config} /> : 'loading...' }
     </Container>
   </>;
 };

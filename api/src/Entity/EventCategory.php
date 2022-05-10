@@ -9,15 +9,23 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Titleable;
 use App\Contract\Entity\EventCategoryact;
+use App\Controller\Global\EventCategoryController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\EventCategorytory;
 
 #[ApiResource(
     denormalizationContext: ['groups' => ['write']],
     normalizationContext: ['groups' => ['read']],
+    collectionOperations: [
+        'post',
+        'available' => [
+            'method' => 'get',
+            'path' => '/event-categories/available',
+            'controller' => EventCategoryController::class,
+        ]
+    ],
 )]
 #[ORM\Entity(repositoryClass: EventCategorytory::class)]
 class EventCategory implements EventCategoryact
