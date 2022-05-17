@@ -30,7 +30,7 @@ const Messaging = React.lazy(
   () => import('../../Pages/App/Messaging/Messaging')
 );
 const ScopeChoice = React.lazy(
-  () => import('../../Pages/App/ScopeChoice/ScopeChoice')
+  () => import('../../Pages/Authentication/Scope/Scope')
 );
 
 const Appter: React.FC = () => {
@@ -41,10 +41,6 @@ const Appter: React.FC = () => {
       {
         path: '/', element: <Loading><Home /></Loading>, children: [
           { path: '/', element: user.logged ? <Connected /> : <Disconnect /> },
-          {
-            path: '/changement-de-scope',
-            element: <Loading><ScopeChoice /></Loading>
-          },
           {
             path: '/annuaire',
             element: <Loading><Directory /></Loading>
@@ -65,6 +61,7 @@ const Appter: React.FC = () => {
       },
       { path: '/connexion', element: <Loading><Login /></Loading> },
       { path: '/deconnexion', element: <Loading><Logout /></Loading> },
+      {path: '/changement-de-scope', element: <Loading><ScopeChoice /></Loading>},
     ]) }
   </>;
 }

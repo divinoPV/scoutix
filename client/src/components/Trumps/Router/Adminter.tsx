@@ -24,6 +24,11 @@ const Role = React.lazy(
 const Scope = React.lazy(
   () => import('../../Pages/Admin/Crud/Scope/Scope')
 );
+
+const ScopeChoice= React.lazy(
+  () => import('../../Pages/Authentication/Scope/Scope')
+);
+
 const User = React.lazy(
   () => import('../../Pages/Admin/Crud/User/User')
 );
@@ -41,6 +46,7 @@ const Adminter: React.FC = () => <>
     },
     { path: '/connexion', element: <Loading><Login /></Loading> },
     { path: '/deconnexion', element: <Loading><Logout /></Loading> },
+    { path: '/changement-de-scope', element: <Loading><ScopeChoice /></Loading> },
   ]) }
 </>;
 

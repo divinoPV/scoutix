@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/users')]
 final class Useroller extends AbstractController
 {
-    #[Route('/{id}/scopes', methods: ['POST'])]
+    #[Route('/{id}/scopes', methods: ['GET'])]
     public function scopes(int $id, ScopeUsertory $scopeUsertory): JsonResponse
     {
         return new JsonResponse([
