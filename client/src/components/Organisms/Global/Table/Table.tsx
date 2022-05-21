@@ -38,7 +38,7 @@ const Table: React.FC<{
     };
     validators?: any;
   }
-}> = ({table}) => {
+}> = ({ table }) => {
   const {
     actions,
     columns,
@@ -55,7 +55,7 @@ const Table: React.FC<{
   const addValidator = () => columns.reduce(
     (acc: Array<object>, curr: { field: string }) => [
       ...acc, curr.field in validators
-        ? {...curr, validate: validators[curr.field]}
+        ? { ...curr, validate: validators[curr.field] }
         : curr
     ], []);
 
@@ -67,11 +67,11 @@ const Table: React.FC<{
             editable.onRowDelete && await editable.onRowDelete(oldData);
             const dataDelete: { id: number }[] = [...data];
             dataDelete.splice(
-              dataDelete.findIndex(({id}) => id === oldData.id),
+              dataDelete.findIndex(({ id }) => id === oldData.id),
               1
             );
             setData([...dataDelete]);
-            useNotif({message: 'Element supprimée'});
+            useNotif({ message: 'Element supprimée' });
           } catch (e) {
             useNotif({
               message: 'Erreur lors de la suppréssion',
@@ -89,10 +89,10 @@ const Table: React.FC<{
             && await editable.onRowUpdate(newData, oldData);
             const dataUpdate = [...data];
             dataUpdate[dataUpdate.findIndex(
-              ({id}) => id === oldData.id
+              ({ id }) => id === oldData.id
             )] = newData;
             setData([...dataUpdate]);
-            useNotif({message: 'Element modifié'});
+            useNotif({ message: 'Element modifié' });
           } catch (e) {
             useNotif({
               message: 'Erreur lors de la modification',
@@ -108,7 +108,7 @@ const Table: React.FC<{
           try {
             editable.onRowAdd && await editable.onRowAdd(newData);
             setData([...data, newData]);
-            useNotif({message: 'Element créer'});
+            useNotif({ message: 'Element créer' });
           } catch {
             useNotif({
               message: 'Erreur lors de la création',
