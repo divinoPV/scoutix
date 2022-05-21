@@ -9,6 +9,10 @@ import {
   updateCategory
 } from './ApiRequest/ApiRequest';
 
+interface EventCategory {
+  [key: string]: string | number;
+}
+
 const EventCategory: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState<boolean>(true);
   const [categories, setCategories] = React.useState<any[]>([]);
@@ -64,10 +68,10 @@ const EventCategory: React.FC = () => {
       onRowAdd: addCateg,
     },
     validators: {
-      title: (rowData: { title: string }) => !rowData.title ?
-        {isValid: false, helperText: 'Veuillez saisir un titre'} : true,
-      content: (rowData: { content: string }) => !rowData.content ?
-        {isValid: false, helperText: 'Veuillez saisir un contenu'} : true,
+      title: (rowData: EventCategory) => !rowData.title ?
+        { isValid: false, helperText: 'Veuillez saisir un titre' } : true,
+      content: (rowData: EventCategory) => !rowData.content ?
+        { isValid: false, helperText: 'Veuillez saisir un contenu' } : true,
     }
   };
 
