@@ -19,7 +19,7 @@ help:
 
 .PHONY: start
 # start project
-start: perm up bundles db cc perm
+start: perm up bundles db jwt-keys cc perm
 
 ##
 ## Docker
@@ -311,6 +311,6 @@ up-pp-d: bundles db cc
 .PHONY: jwt-keys
 # Generate JWT keys
 jwt-keys: perm
-	${DOCKER_EXEC_PHP_BC} lexik:jwt:generate-keypair
+	${DOCKER_EXEC_PHP_BC} lexik:jwt:generate-keypair --skip-if-exists
 
 

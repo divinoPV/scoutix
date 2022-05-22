@@ -2,29 +2,32 @@ import React from 'react';
 
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
-import Table from '../../../../Organisms/Generics/Table/Table';
+import Table from '../../../../Organisms/Global/Table/Table';
 
 const User: React.FC = () => {
-  const updateUser = () => new Promise((resolve) => setTimeout(() => resolve(), 5000));
+  /** TODO */
+  const updateUser = () => new Promise(
+    (resolve) => setTimeout(() => resolve(1), 5000)
+  );
 
-  const upUser = async (newData, oldData) => {
+  const upUser = async (newData: any, oldData: any) => {
     await updateUser();
-  }
+  };
 
-  const deleteUser = async (oldData) => {
+  const deleteUser = async (oldData: any) => {
     await updateUser();
-  }
+  };
 
-  const addUser = async (newData) => {
+  const addUser = async (newData: any) => {
     await updateUser();
-  }
+  };
 
   const config = {
     title: 'Mes utilisateurs',
     columns: [
-      { title: 'Nom', field: 'name' },
-      { title: 'Prénom', field: 'firstName' },
-      { title: 'Email', field: 'email' },
+      {title: 'Nom', field: 'name'},
+      {title: 'Prénom', field: 'firstName'},
+      {title: 'Email', field: 'email'},
     ],
     rows: [...Array(10).keys()].map((i) => (
       {
@@ -40,10 +43,10 @@ const User: React.FC = () => {
       onRowAdd: addUser,
     },
     validators: {
-      name: rowData => rowData.name === '' ?
-        { isValid: false, helperText: 'Name cannot be empty' } : true,
-      firstName: rowData => rowData.firstName === '' ?
-        { isValid: false, helperText: 'Firstname cannot be empty' } : true,
+      name: (rowData: { name: string }) => rowData.name === '' ?
+        {isValid: false, helperText: 'Name cannot be empty'} : true,
+      firstName: (rowData: { firstName: string }) => rowData.firstName === '' ?
+        {isValid: false, helperText: 'Firstname cannot be empty'} : true,
     }
   };
 
