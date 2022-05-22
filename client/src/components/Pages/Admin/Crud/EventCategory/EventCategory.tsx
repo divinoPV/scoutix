@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
-import Table from '../../../../Organisms/Generics/Table/Table';
+import Table from '../../../../Organisms/Global/Table/Table';
 import {
   addCategory,
   getCategories,
@@ -13,35 +13,39 @@ const EventCategory: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState<boolean>(true);
   const [categories, setCategories] = React.useState<any[]>([]);
 
-  const updateCateg = async (newData, oldData) => {
+  const updateCateg = async (newData: object, oldData: { id: number }) => {
     try {
       await updateCategory(oldData.id, newData);
     } catch (e) {
+      e;
     }
-  }
+  };
 
-  const deleteCateg = async (oldData) => {
+  const deleteCateg = async (oldData: { id: number }) => {
     try {
-      await updateCategory(oldData.id, { ...oldData, deleted: true });
+      await updateCategory(oldData.id, {...oldData, deleted: true});
     } catch (e) {
+      e;
     }
-  }
+  };
 
-  const addCateg = async (newData) => {
+  const addCateg = async (newData: object) => {
     try {
       await addCategory(newData);
     } catch (e) {
+      e;
     }
-  }
+  };
 
   const getCategs = async () => {
     try {
-      const { data } = await getCategories();
+      const {data} = await getCategories();
       setCategories(data['hydra:member']);
       setIsFetching(false);
     } catch (e) {
+      e;
     }
-  }
+  };
 
   useEffect(() => {
     getCategs();
@@ -50,8 +54,8 @@ const EventCategory: React.FC = () => {
   const config = {
     title: 'Mes catégories d\'évènements',
     columns: [
-      { title: 'Titre', field: 'title' },
-      { title: 'Contenu', field: 'content' },
+      {title: 'Titre', field: 'title'},
+      {title: 'Contenu', field: 'content'},
     ],
     rows: categories,
     editable: {
@@ -60,17 +64,17 @@ const EventCategory: React.FC = () => {
       onRowAdd: addCateg,
     },
     validators: {
-      title: rowData => !rowData.title ?
-        { isValid: false, helperText: 'Veuillez saisir un titre' } : true,
-      content: rowData => !rowData.content ?
-        { isValid: false, helperText: 'Veuillez saisir un contenu' } : true,
+      title: (rowData: { title: string }) => !rowData.title ?
+        {isValid: false, helperText: 'Veuillez saisir un titre'} : true,
+      content: (rowData: { content: string }) => !rowData.content ?
+        {isValid: false, helperText: 'Veuillez saisir un contenu'} : true,
     }
   };
 
   return <>
     <Container>
       <PageTitle>Événement - Catégorie</PageTitle>
-      { !isFetching ? <Table table={config} /> : 'loading...' }
+      {!isFetching ? <Table table={config}/> : 'loading...'}
     </Container>
   </>;
 };
