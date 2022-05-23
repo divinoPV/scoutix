@@ -15,6 +15,9 @@ const Navbar: React.FC = () => <Nav className={ `${ style['Nav'] }` }>
     <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/autorisation-role">
       Autorisation de rôle
     </NavItem>
+    <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/autorisation-category">
+      Autorisation de categorie
+    </NavItem>
     <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/categorie-evenement">
       Catégorie d'événement
     </NavItem>

@@ -7,6 +7,10 @@ const BackOffice = React.lazy(
   () => import('../../Templates/Admin/BackOffice/BackOffice')
 );
 
+const Category = React.lazy(
+  () => import('../../Pages/Admin/Authorization/Category/Category')
+);
+
 const Dashboard = React.lazy(
   () => import('../../Pages/Admin/Dashboard/Dashboard')
 );
@@ -46,6 +50,7 @@ const Adminter: React.FC = () => <>
         { path: '/', element: <Dashboard /> },
         { path: '/categorie-evenement', element: <EventCategory /> },
         { path: '/autorisation-role', element: <Role /> },
+        { path: '/autorisation-category', element: <Category /> },
         { path: '/scope', element: <Scope /> },
         { path: '/utilisateur', element: <User /> },
       ]
