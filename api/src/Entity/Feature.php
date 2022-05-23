@@ -16,7 +16,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Featuretory;
 use Ramsey\Uuid\Uuid;
 
-#[ApiResource]
+#[ApiResource(
+    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: Featuretory::class)]
 class Feature implements Featureact
 {
