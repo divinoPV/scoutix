@@ -18,7 +18,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Localitory;
 use Ramsey\Uuid\Uuid;
 
-#[ApiResource]
+#[ApiResource(
+    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: Localitory::class)]
 class Locality implements Localityact
 {

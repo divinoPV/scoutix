@@ -1,4 +1,6 @@
 api_platform:
+  defaults:
+    pagination_enabled: false
   mapping:
     paths: [ '%kernel.project_dir%/src/Entity', '%kernel.project_dir%/config/api_platform/resources' ]
   formats:
@@ -19,3 +21,5 @@ api_platform:
         name: Authorization
         type: header
     versions: [ 3 ]
+  eager_loading:
+    force_eager: false

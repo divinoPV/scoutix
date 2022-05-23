@@ -18,4 +18,14 @@ final class Scopetory extends ServiceEntityRepository
     {
         parent::__construct($registry, Scope::class);
     }
+
+    public function findAvailable()
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.deleted = :val')
+            ->setParameter('val', false)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
