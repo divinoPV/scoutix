@@ -6,17 +6,17 @@ interface Uploadablact
 {
     public function getFileName(): ?string;
 
-    public function setFileName(?string $name): Uploadablact;
+    public function setFileName(?string $name): static;
 
     public function getFileMimeType(): ?string;
 
-    public function setFileMimeType(?string $mimeType): Uploadablact;
+    public function setFileMimeType(?string $mimeType): static;
 
     public function getFilePath(): ?string;
 
-    public function setFilePath(?string $path): Uploadablact;
+    public function setFilePath(?string $path): static;
 
     public function getFileSize(): ?float;
 
-    public function setFileSize(?float $size): Uploadablact;
+    public function setFileSize(?float $size): static;
 }

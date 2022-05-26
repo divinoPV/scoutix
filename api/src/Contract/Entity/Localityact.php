@@ -14,5 +14,5 @@ interface Localityact extends Blameablact, Entityact, Idablact, LifeCycleablact,
 {
     public function getType(): ?LocalityTypum;
 
-    public function setType(?LocalityTypum $type): Localityact;
+    public function setType(?LocalityTypum $type): static;
 }

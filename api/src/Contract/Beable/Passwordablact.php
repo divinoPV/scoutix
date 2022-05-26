@@ -6,5 +6,5 @@ interface Passwordablact
 {
     public function getPassword(): ?string;
 
-    public function setPassword(?string $password): Passwordablact;
+    public function setPassword(?string $password): static;
 }

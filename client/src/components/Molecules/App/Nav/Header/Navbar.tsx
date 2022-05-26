@@ -1,5 +1,5 @@
 import React from 'react';
-import { Store, useAppSelector } from '../../../../../utils/Redux/store';
+import { Store, useSelectorook } from '../../../../../utils/Redux/store';
 
 import style from './Navbar.module.scss';
 
@@ -7,7 +7,7 @@ import Nav from '../../../../Atoms/Nav/Nav';
 import NavItem from '../../../../Atoms/Nav/Item';
 
 const Navbar: React.FC = () => {
-  const user = useAppSelector((state: Store) => state.user);
+  const user = useSelectorook((state: Store) => state.user);
 
   return <Nav className={ `${ style['Nav'] }` }>
     <ul className={ `${ style['Navbar__list'] }` }>

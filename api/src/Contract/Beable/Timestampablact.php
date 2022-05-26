@@ -6,17 +6,17 @@ interface Timestampablact
 {
     public function getArchivedAt(): ?\DateTimeImmutable;
 
-    public function setArchivedAt(?\DateTimeImmutable $archivedAt): Timestampablact;
+    public function setArchivedAt(?\DateTimeImmutable $archivedAt): static;
 
     public function getCreatedAt(): ?\DateTimeImmutable;
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): Timestampablact;
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static;
 
     public function getDeletedAt(): ?\DateTimeImmutable;
 
-    public function setDeletedAt(?\DateTimeImmutable $deletedAt): Timestampablact;
+    public function setDeletedAt(?\DateTimeImmutable $deletedAt): static;
 
     public function getUpdatedAt(): ?\DateTimeImmutable;
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): Timestampablact;
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static;
 }

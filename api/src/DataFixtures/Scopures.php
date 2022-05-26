@@ -10,7 +10,7 @@ final class Scopures extends Fixturabs implements DependentFixtureInterface
 {
     public const REFERENCE = 'scope_';
 
-    public const NUMBER_ELEMENT = 10;
+    public const NUMBER_ELEMENT = 20;
 
     protected function generate(ObjectManager $manager): void
     {

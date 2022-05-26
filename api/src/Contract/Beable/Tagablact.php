@@ -6,5 +6,5 @@ interface Tagablact
 {
     public function getTags(): ?array;
 
-    public function setTags(?array $tags): Tagablact;
+    public function setTags(?array $tags): static;
 }

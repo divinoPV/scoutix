@@ -12,9 +12,9 @@ interface AuthorizationActivityFeatureact extends Blameablact, Entityact, LifeCy
 {
     public function getActivity(): ?Activity;
 
-    public function setActivity(?Activity $activity): AuthorizationActivityFeatureact;
+    public function setActivity(?Activity $activity): static;
 
     public function getFeature(): ?Feature;
 
-    public function setFeature(?Feature $feature): AuthorizationActivityFeatureact;
+    public function setFeature(?Feature $feature): static;
 }

@@ -6,5 +6,5 @@ interface Titleablact
 {
     public function getTitle(): ?string;
 
-    public function setTitle(?string $title): Titleablact;
+    public function setTitle(?string $title): static;
 }

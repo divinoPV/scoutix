@@ -14,8 +14,30 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 final class Activitytory extends ServiceEntityRepository
 {
+    public const ALIAS = 'a';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Activity::class);
+    }
+
+    /** TODO: create Ancestor for that */
+    public function byFields(array $fields, int $id = -1): ?array
+    {
+        $qb = $this
+            ->createQueryBuilder(self::ALIAS)
+            ->select(...$fields)
+        ;
+
+        return -1 !== $id
+            ? $qb
+                ->where(self::ALIAS.'.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getOneOrNullResult()
+            : $qb
+                ->getQuery()
+                ->getResult()
+        ;
     }
 }

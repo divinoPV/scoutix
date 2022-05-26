@@ -15,7 +15,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Scopetory;
 use Ramsey\Uuid\Uuid;
 
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: Scopetory::class)]
 class Scope implements Scopeact
 {

@@ -10,10 +10,10 @@ import 'react-calendar/dist/Calendar.css';
 import style from './Connected.module.scss';
 
 import Disconnect from '../Disconnect/Disconnect';
-import { Store, useAppSelector } from '../../../../../utils/Redux/store';
+import { Store, useSelectorook } from '../../../../../utils/Redux/store';
 
 const Connected: React.FC = () => {
-  const user = useAppSelector((state: Store) => state.user);
+  const user = useSelectorook((state: Store) => state.user);
 
   const [value, onChange] = useState(new Date());
 
@@ -40,8 +40,9 @@ const Connected: React.FC = () => {
     }
   ];
 
-  return user.logged
-    ? <>
+  return !user.logged
+    ? <Navigate to="/connexion" />
+    : <>
       <Disconnect
         afterSwiper={
           <div className={ `${ style['Connected__afterSwiper'] }` }>
@@ -95,8 +96,7 @@ const Connected: React.FC = () => {
         }
         classNameLastChild={ `${ style['Connected__lastChild'] }` }
       />
-    </>
-    : <Navigate to="/connexion" />;
+    </>;
 };
 
 export default Connected;

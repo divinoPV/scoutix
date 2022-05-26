@@ -8,19 +8,34 @@ use Doctrine\Persistence\ObjectManager;
 
 final class ScopeUserures extends Fixturabs implements DependentFixtureInterface
 {
-    public const REFERENCE = 'scope_user_';
-
-    public const NUMBER_ELEMENT = 20;
-
     protected function generate(ObjectManager $manager): void
     {
+        foreach (range(1, 4) as $i) {
+            $this->createFromArray(
+                ScopeUser::class,
+                ['lauraagss', 'divino', 'spacelocust'],
+                function (ScopeUser $scopeUser, string $item) use ($i) {
+                    $scopeUser
+                        ->setScope($this->getReference(Scopures::REFERENCE.$i))
+                        ->setUser($this->getReference(Userures::REFERENCE['admin'].$item.'1'))
+                    ;
+                },
+                lifeCycle: true
+            );
+        }
+
         foreach (['admin', 'moderator', 'guest', 'user'] as $type) {
-            $this->createFromRange(ScopeUser::class, Userures::NUMBER_ELEMENT[$type], function (ScopeUser $scopeUser, int $i) use ($type) {
-                $scopeUser
-                    ->setScope($this->randReference(Scopures::class))
-                    ->setUser($this->getReference(Userures::REFERENCE[$type].$i))
-                ;
-            }, self::REFERENCE.'_'.$type, true);
+            $this->createFromRange(
+                ScopeUser::class,
+                Userures::NUMBER_ELEMENT[$type],
+                function (ScopeUser $scopeUser, int $i) use ($type) {
+                    $scopeUser
+                        ->setScope($this->randReference(Scopures::class))
+                        ->setUser($this->getReference(Userures::REFERENCE[$type].$i))
+                    ;
+                },
+                lifeCycle: true
+            );
         }
     }
 

@@ -1,19 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import { loadUserState } from '../BrowserStorage/BrowserStorage';
-import userSlice from './Slice/User';
+import { preloader } from '../Storage/storage';
+import userlice from './Slice/user';
+import scopelice from './Slice/scope';
 
 export const store = configureStore({
   reducer: {
-    user: userSlice,
+    user: userlice,
+    scope: scopelice,
   },
   devTools: true,
-  preloadedState: loadUserState(),
+  preloadedState: preloader(),
 });
 
 export type Store = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type Dispatch = typeof store.dispatch;
 
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<Store> = useSelector;
+export const useDispatchook = () => useDispatch<Dispatch>();
+export const useSelectorook: TypedUseSelectorHook<Store> = useSelector;

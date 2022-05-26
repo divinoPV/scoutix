@@ -6,5 +6,5 @@ interface Emailablact
 {
     public function getEmail(): ?string;
 
-    public function setEmail(?string $email): Emailablact;
+    public function setEmail(?string $email): static;
 }

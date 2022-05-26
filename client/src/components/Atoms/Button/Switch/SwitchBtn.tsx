@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import style from './SwitchBtn.module.scss';
 
-import useFirstEffect from '../../../Trumps/Helper/Hook//FirstEffect';
+import useFirstEffect from '../../../Trumps/Hook//FirstEffect';
 
 const SwitchBtn: React.FC<{
   isOn?: boolean;

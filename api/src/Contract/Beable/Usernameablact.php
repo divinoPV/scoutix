@@ -6,5 +6,5 @@ interface Usernameablact
 {
     public function getUsername(): ?string;
 
-    public function setUsername(?string $username): Usernameablact;
+    public function setUsername(?string $username): static;
 }

@@ -16,7 +16,7 @@ final class Activityures extends Fixturabs implements DependentFixtureInterface
     protected function generate(ObjectManager $manager): void
     {
         $this->create(Activity::class, self::NUMBER_ELEMENT, function (Activity $activity) {
-            $activity->setTitle(Faker::title(3));
+            $activity->setTitle(Faker::title(\random_int(1, 2)));
         }, self::REFERENCE, true);
     }
 

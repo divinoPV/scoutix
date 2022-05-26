@@ -6,5 +6,5 @@ interface Releasablact
 {
     public function getReleasedAt(): ?\DateTimeImmutable;
 
-    public function setReleasedAt(?\DateTimeImmutable $releasedAt): Releasablact;
+    public function setReleasedAt(?\DateTimeImmutable $releasedAt): static;
 }

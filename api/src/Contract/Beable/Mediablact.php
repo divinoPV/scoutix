@@ -6,5 +6,5 @@ interface Mediablact
 {
     public function getMedias(): ?array;
 
-    public function setMedias(?array $medias): Mediablact;
+    public function setMedias(?array $medias): static;
 }
