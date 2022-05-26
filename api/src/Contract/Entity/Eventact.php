@@ -21,17 +21,17 @@ interface Eventact extends Blameablact, Contentablact, Entityact, Idablact, Life
 {
     public function getAuthor(): ?User;
 
-    public function setAuthor(?User $author): Eventact;
+    public function setAuthor(?User $author): static;
 
     public function getCategory(): ?EventCategory;
 
-    public function setCategory(?EventCategory $category): Eventact;
+    public function setCategory(?EventCategory $category): static;
 
     public function getLocality(): ?Locality;
 
-    public function setLocality(?Locality $locality): Eventact;
+    public function setLocality(?Locality $locality): static;
 
     public function getState(): ?PublicationStatum;
 
-    public function setState(?PublicationStatum $state): Eventact;
+    public function setState(?PublicationStatum $state): static;
 }

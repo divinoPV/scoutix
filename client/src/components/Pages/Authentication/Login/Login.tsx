@@ -11,34 +11,33 @@ import FormControl from '../../../Trumps/Factory/FormControl';
 import FormBtn from '../../../Atoms/Button/Form/FormBtn';
 import {
   Store,
-  useAppDispatch,
-  useAppSelector
+  useSelectorook
 } from '../../../../utils/Redux/store';
-import { set, login } from '../../../../utils/Redux/Slice/User';
+import { set, login } from '../../../../utils/Redux/Slice/user';
+import useDispatch from '../../../Trumps/Hook/Dispatch';
+import toast from '../../../../utils/Toast/default';
 
 const Login: React.FC = () => {
-  const [user, setUser] = useState({ id: null, email: '', password: '' });
+  const [userForm, setUserForm] = useState({
+    id: null,
+    email: '',
+    password: '',
+  });
 
   const [error, setError] = useState('');
 
-  const selector = useAppSelector((state: Store) => state.user);
+  const user = useSelectorook((state: Store) => state.user);
 
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.id) {
-      axios.get(`users/${ user.id }`)
-        .then((response) => {
-          dispatch(set(response.data));
-        })
-        .catch((error) => {
-          setError(error.response.data.message);
-        });
+    if (user.logged) {
+      toast(`Bienvenue ${ user.username } 👋 !`, 'success');
     }
-  }, [user]);
+  }, [user])
 
-  return selector.logged
-    ? <Navigate to="/" />
+  return user.logged
+    ? <Navigate to="/changement-de-scope" />
     : <Authentication>
       <video
         autoPlay
@@ -64,23 +63,26 @@ const Login: React.FC = () => {
               .string()
               .required('Vous devez saisir votre mot de passe')
           }) }
-          onSubmit={ () => {
-            axios
-              .post(
+          onSubmit={ async () => {
+            try {
+              const { id, token } = (await axios.post(
                 'authentication_token',
                 {
-                  username: user.email,
-                  password: user.password
+                  username: userForm.email,
+                  password: userForm.password
                 },
-              )
-              .then((response) => {
-                localStorage.setItem('token', response.data.token);
-                setUser({ ...user, id: response.data.id });
-                dispatch(login());
-              })
-              .catch((error) => {
-                setError(error.response.data.message);
-              });
+              )).data;
+
+              localStorage.setItem('token', token);
+
+              try {
+                dispatch(set((await axios.get(`users/${ id }`))?.data), login());
+              } catch (error: any) {
+                setError(error.message);
+              }
+            } catch (error: any) {
+              setError(error.message);
+            }
           } }
         >
           { formik => <Form className={ `${ style['Login__form__container'] }` }>
@@ -89,8 +91,8 @@ const Login: React.FC = () => {
               control="input"
               label="Adresse email"
               name="email"
-              onInput={ (e: any): void => setUser({
-                ...user,
+              onInput={ (e: any): void => setUserForm({
+                ...userForm,
                 email: e.target.value
               }) }
               type="email"
@@ -100,8 +102,8 @@ const Login: React.FC = () => {
               control="input"
               label="Mot de passe"
               name="password"
-              onInput={ (e: any): void => setUser({
-                ...user,
+              onInput={ (e: any): void => setUserForm({
+                ...userForm,
                 password: e.target.value
               }) }
               type="password"

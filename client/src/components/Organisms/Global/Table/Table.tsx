@@ -5,7 +5,7 @@ import MaterialTable, {
   Options
 } from '@material-table/core';
 
-import useNotif from '../../../Trumps/Helper/Hook/Notif';
+import useNotif from '../../../Trumps/Hook/Notif';
 
 type Validator<T> = T extends () => boolean ? T : never;
 

@@ -6,5 +6,5 @@ interface Defaultablact
 {
     public function isDefault(): ?bool;
 
-    public function setDefault(?bool $default): Defaultablact;
+    public function setDefault(?bool $default): static;
 }

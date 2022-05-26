@@ -50,8 +50,14 @@
       color: white;
       font-size: 1.2rem;
       font-weight: 500;
-      line-height: calc(1.2rem * 1.5);
+      line-height: 1.5;
       text-decoration: none;
+
+      &--svg {
+        svg {
+          margin-right: 5px;
+        }
+      }
     }
 
     &__user {
@@ -61,7 +67,7 @@
       span {
         font-size: 1.2rem;
         font-weight: 600;
-        line-height: calc(1.2rem * 1.5);
+        line-height: 1.5;
       }
 
       svg {

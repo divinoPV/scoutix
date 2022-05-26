@@ -6,9 +6,9 @@ interface LifeCycleablact
 {
     public function isArchived(): ?bool;
 
-    public function setArchived(?bool $archived): LifeCycleablact;
+    public function setArchived(?bool $archived): static;
 
     public function isDeleted(): ?bool;
 
-    public function setDeleted(?bool $deleted): LifeCycleablact;
+    public function setDeleted(?bool $deleted): static;
 }

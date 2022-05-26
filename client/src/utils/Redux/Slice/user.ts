@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface User {
+export interface User {
   id: number,
   addressCity: string,
   addressComplement: string,
@@ -168,13 +168,10 @@ export const user = createSlice(
       login: (state) => {
         state.logged = true;
       },
-      logout: (state) => {
-        state.logged = false;
-      }
     },
-  }
+  },
 );
 
-export const { set, reset, login, logout } = user.actions;
+export const { set, reset, login } = user.actions;
 
 export default user.reducer;

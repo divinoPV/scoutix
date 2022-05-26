@@ -21,13 +21,13 @@ interface Newsact extends Blameablact, Contentablact, Entityact, Idablact, LifeC
 {
     public function getAuthor(): ?User;
 
-    public function setAuthor(?User $author): Newsact;
+    public function setAuthor(?User $author): static;
 
     public function getCategory(): ?NewsCategory;
 
-    public function setCategory(?NewsCategory $category): Newsact;
+    public function setCategory(?NewsCategory $category): static;
 
     public function getState(): ?PublicationStatum;
 
-    public function setState(?PublicationStatum $state): Newsact;
+    public function setState(?PublicationStatum $state): static;
 }

@@ -6,33 +6,33 @@ interface Addressablact
 {
     function getAddressCity(): ?string;
 
-    function setAddressCity(?string $addressCity): Addressablact;
+    function setAddressCity(?string $addressCity): static;
 
     function getAddressComplement(): ?string;
 
-    function setAddressComplement(?string $addressComplement): Addressablact;
+    function setAddressComplement(?string $addressComplement): static;
 
     function getAddressCountry(): ?string;
 
-    function setAddressCountry(?string $addressCountry): Addressablact;
+    function setAddressCountry(?string $addressCountry): static;
 
     function getAddressDepartment(): ?string;
 
-    function setAddressDepartment(?string $addressDepartment): Addressablact;
+    function setAddressDepartment(?string $addressDepartment): static;
 
     function getAddressNumber(): ?string;
 
-    function setAddressNumber(?string $addressNumber): Addressablact;
+    function setAddressNumber(?string $addressNumber): static;
 
     function getAddressState(): ?string;
 
-    function setAddressState(?string $addressState): Addressablact;
+    function setAddressState(?string $addressState): static;
 
     function getAddressStreet(): ?string;
 
-    function setAddressStreet(?string $addressStreet): Addressablact;
+    function setAddressStreet(?string $addressStreet): static;
 
     function getAddressZipCode(): ?string;
 
-    function setAddressZipCode(?string $addressZipCode): Addressablact;
+    function setAddressZipCode(?string $addressZipCode): static;
 }

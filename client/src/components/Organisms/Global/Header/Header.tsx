@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faUserTie, faUserGear } from '@fortawesome/free-solid-svg-icons';
 
 import style from './Header.module.scss';
 
 import Headerom from '../../../Atoms/Header/Header';
-import { Store, useAppSelector } from '../../../../utils/Redux/store';
+import { Store, useSelectorook } from '../../../../utils/Redux/store';
+import axios from '../../../../utils/Axios/axios';
+import toast from '../../../../utils/Toast/default';
 
 const Header: React.FC<{
   nav: React.ReactElement;
@@ -14,10 +16,57 @@ const Header: React.FC<{
 }> = (
   {
     nav,
-    fromAuth= false,
+    fromAuth = false,
   }
 ) => {
-  const user = useAppSelector((state: Store) => state.user);
+  const [scopate, setScopate] = useState(
+    {
+      activity: '',
+      locality: '',
+    } as {
+      activity: string;
+      locality: string;
+    }
+  );
+
+  const [error, setError] = useState('');
+
+  const user = useSelectorook((state: Store) => state.user);
+
+  const scope = useSelectorook((state: Store) => state.scope);
+
+  useEffect(() => {
+    if (0 !== scope.id) {
+      axios.get(`/activities/${ scope.id }/only/?fields=title`)
+        .then((result) => {
+          const activity = JSON.parse(result.data).title;
+
+          axios.get(`/localities/${ scope.id }/only/?fields=title`)
+            .then((result) => {
+              const locality = JSON.parse(result.data).title;
+
+              setScopate({
+                activity,
+                locality,
+              });
+            })
+            .catch((error) => {
+              setError(error.message);
+            })
+          ;
+        })
+        .catch((error) => {
+          setError(error.message);
+        })
+      ;
+    }
+  }, [scope]);
+
+  useEffect(() => {
+    if (0 !== scope.id && error) {
+      toast(error, 'error');
+    }
+  }, [error, scope]);
 
   return <Headerom className={ `${ style['Header'] }` }>
     <div className={ `${ style['Header__container'] }` }>
@@ -36,9 +85,18 @@ const Header: React.FC<{
               <span>{ user.username }</span>
             </div>
             <span className={ `${ style['Header__authentication__divider'] }` }>|</span>
-            <Link className={ `${ style['Header__authentication__item'] }` } to="/changement-de-scope">
-              Changer de scope
-            </Link>
+            { !window.location.href.includes('/changement-de-scope') &&
+              <Link
+                className={
+                  `${ style['Header__authentication__item'] }`
+                  + ` ${ style['Header__authentication__item--svg'] }`
+                }
+                to="/changement-de-scope"
+              >
+                <FontAwesomeIcon icon={ faUserGear } />
+                { `${scopate.activity} - ${scopate.locality}` }
+              </Link>
+            }
             <Link className={ `${ style['Header__authentication__item'] }` } to="/deconnexion">
               Se déconnecter
             </Link>

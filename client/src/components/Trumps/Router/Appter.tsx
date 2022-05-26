@@ -2,7 +2,7 @@ import React from 'react';
 import { useRoutes } from 'react-router-dom';
 
 import Loading from '../Loader/Default/Loading';
-import { Store, useAppSelector } from '../../../utils/Redux/store';
+import { Store, useSelectorook } from '../../../utils/Redux/store';
 
 const Agenda = React.lazy(
   () => import('../../Pages/App/Agenda/Agenda')
@@ -29,12 +29,12 @@ const Logout = React.lazy(
 const Messaging = React.lazy(
   () => import('../../Pages/App/Messaging/Messaging')
 );
-const ScopeChoice = React.lazy(
+const Scope = React.lazy(
   () => import('../../Pages/Authentication/Scope/Scope')
 );
 
 const Appter: React.FC = () => {
-  const user = useAppSelector((state: Store) => state.user);
+  const user = useSelectorook((state: Store) => state.user);
 
   return <>
     { useRoutes([
@@ -61,9 +61,12 @@ const Appter: React.FC = () => {
       },
       { path: '/connexion', element: <Loading><Login /></Loading> },
       { path: '/deconnexion', element: <Loading><Logout /></Loading> },
-      {path: '/changement-de-scope', element: <Loading><ScopeChoice /></Loading>},
+      {
+        path: '/changement-de-scope',
+        element: <Loading><Scope /></Loading>
+      },
     ]) }
   </>;
-}
+};
 
 export default Appter;

@@ -6,5 +6,5 @@ interface Contentablact
 {
     public function getContent(): ?string;
 
-    public function setContent(?string $content): Contentablact;
+    public function setContent(?string $content): static;
 }

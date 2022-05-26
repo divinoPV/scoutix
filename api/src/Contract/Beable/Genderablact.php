@@ -8,5 +8,5 @@ interface Genderablact
 {
     public function getGender(): ?Genderum;
 
-    public function setGender(?Genderum $gender): Genderablact;
+    public function setGender(?Genderum $gender): static;
 }

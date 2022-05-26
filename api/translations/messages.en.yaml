@@ -56,3 +56,10 @@ enum.role.user: User
 ## Enum - Rolum
 enum.state.pending: Pending
 enum.state.send: Send
+
+# Error
+## Error - Response
+### Error - Response - Activitoller
+error.response.activitoller.only.bad_request:
+  missing_fields: The 'fields' parameter is mandatory in your query!
+  invalid_field: The "%field%" field does not exist for the "Activity" class.

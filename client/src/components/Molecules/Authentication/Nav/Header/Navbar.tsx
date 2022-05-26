@@ -10,8 +10,10 @@ import NavItem from '../../../../Atoms/Nav/Item';
 const Navbar: React.FC = () => <Nav className={ `${ style['Nav'] }` }>
   <ul className={ `${ style['Navbar__list'] }` }>
     <NavItem classNameLink={ `${ style['Navbar__item'] }` } path="/">
-      <FontAwesomeIcon icon={ faRotateLeft } />
-      Retour
+      { !window.location.href.includes('/changement-de-scope') && <>
+        <FontAwesomeIcon icon={ faRotateLeft } />
+        Retour
+      </> }
     </NavItem>
   </ul>
 </Nav>;

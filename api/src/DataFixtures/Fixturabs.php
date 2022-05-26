@@ -60,7 +60,7 @@ abstract class Fixturabs extends Fixture
         $collections = new ArrayCollection;
 
         foreach ($array as $key => $element) {
-            $callback($object = new $class, $element->value, $key);
+            $callback($object = new $class, $element, $key);
             $collections->add($object);
             $lifeCycle && $this->lifeCycle($object);
             $this->manager->persist($object);

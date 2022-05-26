@@ -12,9 +12,9 @@ interface ScopeUseract extends Blameablact, Entityact, LifeCycleablact, Timestam
 {
     public function getScope(): ?Scope;
 
-    public function setScope(?Scope $scope): ScopeUseract;
+    public function setScope(?Scope $scope): static;
 
     public function getUser(): ?User;
 
-    public function setUser(?User $user): ScopeUseract;
+    public function setUser(?User $user): static;
 }

@@ -16,17 +16,17 @@ interface EventInvitationact extends Blameablact, Contentablact, Entityact, Idab
 {
     public function getEvent(): ?Event;
 
-    public function setEvent(?Event $event): EventInvitationact;
+    public function setEvent(?Event $event): static;
 
     public function getRecipientEntity(): ?string;
 
-    public function setRecipientEntity(?string $recipientEntity): EventInvitationact;
+    public function setRecipientEntity(?string $recipientEntity): static;
 
     public function getRecipientId(): ?int;
 
-    public function setRecipientId(?int $recipientId): EventInvitationact;
+    public function setRecipientId(?int $recipientId): static;
 
     public function getState(): ?Statum;
 
-    public function setState(?Statum $state): EventInvitationact;
+    public function setState(?Statum $state): static;
 }

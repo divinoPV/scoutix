@@ -14,9 +14,9 @@ interface Scopeact extends Blameablact, Entityact, Idablact, LifeCycleablact, Ti
 {
     public function getActivity(): ?Activity;
 
-    public function setActivity(?Activity $activity): Scopeact;
+    public function setActivity(?Activity $activity): static;
 
     public function getLocality(): ?Locality;
 
-    public function setLocality(?Locality $locality): Scopeact;
+    public function setLocality(?Locality $locality): static;
 }

@@ -1,16 +1,27 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../utils/Redux/store';
-import { logout } from '../../../../utils/Redux/Slice/User';
+import { reset as userReset } from '../../../../utils/Redux/Slice/user';
+import { reset as scopeReset } from '../../../../utils/Redux/Slice/scope';
+import toast from '../../../../utils/Toast/default';
+import useDispatch from '../../../Trumps/Hook/Dispatch';
+import { Store, useSelectorook } from '../../../../utils/Redux/store';
 
 const Logout: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
-  dispatch(logout());
-  localStorage.clear();
+  const navigate = useNavigate();
 
-  return <Navigate to={ '/' } />;
+  const user = useSelectorook((state: Store) => state.user);
+
+  useEffect(() => {
+    toast(`À bientôt ${ user.username } 👋 !`, 'success');
+    dispatch(userReset(), scopeReset());
+    localStorage.clear();
+    navigate('/');
+  }, []);
+
+  return <></>;
 };
 
 export default Logout;

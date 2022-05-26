@@ -13,9 +13,9 @@ interface AuthorizationEventCategoryact extends Blameablact, Defaultablact, Enti
 {
     public function getActivity(): ?Activity;
 
-    public function setActivity(?Activity $activity): AuthorizationEventCategoryact;
+    public function setActivity(?Activity $activity): static;
 
     public function getCategory(): ?EventCategory;
 
-    public function setCategory(?EventCategory $category): AuthorizationEventCategoryact;
+    public function setCategory(?EventCategory $category): static;
 }

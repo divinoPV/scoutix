@@ -8,17 +8,17 @@ interface Birthdablact
 {
     public function getBirth(): ?\DateTimeImmutable;
 
-    public function setBirth(?\DateTimeImmutable $birth): Birthdablact;
+    public function setBirth(?\DateTimeImmutable $birth): static;
 
     public function getBirthCity(): ?string;
 
-    public function setBirthCity(?string $birthCity): Birthdablact;
+    public function setBirthCity(?string $birthCity): static;
 
     public function getBirthGender(): ?Genderum;
 
-    public function setBirthGender(?Genderum $birthGender): Birthdablact;
+    public function setBirthGender(?Genderum $birthGender): static;
 
     public function getBirthZipCode(): ?string;
 
-    public function setBirthZipCode(?string $birthZipCode): Birthdablact;
+    public function setBirthZipCode(?string $birthZipCode): static;
 }

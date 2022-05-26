@@ -6,9 +6,9 @@ interface Periodablact
 {
     public function getStartDate(): ?\DateTimeImmutable;
 
-    public function setStartDate(?\DateTimeImmutable $startDate): Periodablact;
+    public function setStartDate(?\DateTimeImmutable $startDate): static;
 
     public function getEndDate(): ?\DateTimeImmutable;
 
-    public function setEndDate(?\DateTimeImmutable $endDate): Periodablact;
+    public function setEndDate(?\DateTimeImmutable $endDate): static;
 }

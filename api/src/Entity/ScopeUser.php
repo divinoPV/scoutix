@@ -10,7 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ScopeUsertory;
 
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: ScopeUsertory::class)]
 class ScopeUser implements ScopeUseract
 {
