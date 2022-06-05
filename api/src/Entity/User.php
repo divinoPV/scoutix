@@ -19,7 +19,6 @@ use App\Beable\Entity\Usernameable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Useract;
 use App\Repository\Usertory;
-use App\Controller\Global\UserController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,18 +26,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[ApiResource(
-    collectionOperations: [
-        'post',
-        'available' => [
-            'method' => 'get',
-            'path' => '/users/available',
-            'controller' => UserController::class,
-        ]
-    ],
-    denormalizationContext: ['groups' => ['write']],
-    normalizationContext: ['groups' => ['read']],
-)]
+#[ApiResource]
 #[ORM\Entity(repositoryClass: Usertory::class)]
 #[UniqueEntity(fields: ['email'], message: 'user.unique.email')]
 class User implements Useract

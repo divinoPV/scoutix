@@ -37,6 +37,7 @@ const Header: React.FC<{
 
   useEffect(() => {
     if (0 !== scope.id) {
+      setError('');
       axios.get(`/activities/${ scope.id }/only/?fields=title`)
         .then((result) => {
           const activity = JSON.parse(result.data).title;
@@ -66,7 +67,7 @@ const Header: React.FC<{
     if (0 !== scope.id && error) {
       toast(error, 'error');
     }
-  }, [error, scope]);
+  }, [error]);
 
   return <Headerom className={ `${ style['Header'] }` }>
     <div className={ `${ style['Header__container'] }` }>

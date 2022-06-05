@@ -5,6 +5,7 @@ namespace App\Controller\Global;
 use App\Ancestor\Controller\Jsoncestor;
 use App\Contract\Controller\Jsonact;
 use App\Entity\Activity;
+use App\Enum\SerializeFormatum;
 use App\Repository\Activitytory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,7 @@ final class Activitoller extends Jsoncestor implements Jsonact
             return new JsonResponse(
                 $this->serializer->serialize(
                     $this->translator->trans(self::KEY_ONLY_BAD_REQUEST.'.missing_fields'),
-                    self::SERIALIZE_FORMAT,
+                    SerializeFormatum::JSON,
                 ),
                 Response::HTTP_BAD_REQUEST,
                 self::HEADER,
@@ -51,7 +52,7 @@ final class Activitoller extends Jsoncestor implements Jsonact
                         $this->translator->trans(self::KEY_ONLY_BAD_REQUEST.'.invalid_field', [
                             '%field%' => $field,
                         ]),
-                        self::SERIALIZE_FORMAT,
+                        SerializeFormatum::JSON,
                     ),
                     Response::HTTP_BAD_REQUEST,
                     self::HEADER,
@@ -67,7 +68,7 @@ final class Activitoller extends Jsoncestor implements Jsonact
                         preg_filter('/^/', Activitytory::ALIAS.'.', $fields),
                         $id,
                     ),
-                self::SERIALIZE_FORMAT,
+                SerializeFormatum::JSON,
             ),
             Response::HTTP_ACCEPTED,
             self::HEADER,

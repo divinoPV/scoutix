@@ -1,0 +1,13 @@
+App\Entity\User:
+  attributes:
+    denormalization_context:
+      groups: [ 'write' ]
+    normalization_context:
+      groups: [ 'read' ]
+  collectionOperations:
+    available:
+      method: GET
+      path: /users/available
+      controller: App\Controller\Global\Useroller::available
+    get: ~
+    post: ~

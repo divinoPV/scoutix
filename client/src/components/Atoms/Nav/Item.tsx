@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Item: React.FC<{
-  classNameList?: string;
+  classNameElement?: string;
   classNameLink?: string;
   path: string;
 }> = (
   {
     children,
-    classNameList = '',
+    classNameElement = '',
     classNameLink = '',
     path
   }
 ) => <li
-  className={ `${ classNameList }` }
+  className={ `${ classNameElement }` }
 >
   <Link className={ `${ classNameLink }` } to={ path }>
     { children }

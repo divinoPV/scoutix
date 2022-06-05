@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseAxios = axios.create({
-  baseURL: 'http://scoutix.co:80',
+  baseURL: `${window.location.protocol}//${window.location.hostname}:80`,
   headers: {
     Accept: 'application/ld+json',
   },

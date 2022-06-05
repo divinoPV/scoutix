@@ -6,24 +6,35 @@ import Loading from '../Loader/Default/Loading';
 const BackOffice = React.lazy(
   () => import('../../Templates/Admin/BackOffice/BackOffice')
 );
+
 const Dashboard = React.lazy(
   () => import('../../Pages/Admin/Dashboard/Dashboard')
 );
+
 const EventCategory = React.lazy(
   () => import('../../Pages/Admin/Crud/EventCategory/EventCategory')
 );
+
 const Login = React.lazy(
   () => import('../../Pages/Authentication/Login/Login')
 );
+
 const Logout = React.lazy(
   () => import('../../Pages/Authentication/Logout/Logout')
 );
+
 const Role = React.lazy(
   () => import('../../Pages/Admin/Authorization/Role/Role')
 );
+
 const Scope = React.lazy(
+  () => import('../../Pages/Admin/Crud/Scope/Scope')
+);
+
+const ScopeChange = React.lazy(
   () => import('../../Pages/Authentication/Scope/Scope')
 );
+
 const User = React.lazy(
   () => import('../../Pages/Admin/Crud/User/User')
 );
@@ -43,7 +54,7 @@ const Adminter: React.FC = () => <>
     { path: '/deconnexion', element: <Loading><Logout /></Loading> },
     {
       path: '/changement-de-scope',
-      element: <Loading><Scope /></Loading>
+      element: <Loading><ScopeChange /></Loading>
     },
   ]) }
 </>;

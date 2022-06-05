@@ -31,13 +31,15 @@ final class Usertory extends ServiceEntityRepository
         return $admins;
     }
 
-    public function findAvailable()
+    public function findAvailable(): array
     {
-        return $this->createQueryBuilder('u')
+        return $this
+            ->createQueryBuilder('u')
             ->andWhere('u.deleted = :val')
             ->setParameter('val', false)
+            ->orderBy('u.createdAt')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 }

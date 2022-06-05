@@ -44,10 +44,7 @@ final class Userures extends Fixturabs
             ['role' => Rolum::Guest->value, 'reference' => self::REFERENCE['guest'], 'number' => self::NUMBER_ELEMENT['guest']],
             ['role' => Rolum::User->value, 'reference' => self::REFERENCE['user'], 'number' => self::NUMBER_ELEMENT['user']]
         ] as $item) {
-            $item['role'] !== Rolum::Admin->value
-                ? $this->userLifeCycle($this->createUser($item['role'], $item['reference'], $item['number']))
-                : $this->createUser($item['role'], $item['reference'], $item['number'])
-            ;
+            $this->createUser($item['role'], $item['reference'], $item['number']);
         }
     }
 
@@ -85,11 +82,11 @@ final class Userures extends Fixturabs
                 ->setEmail(null !== $name ? $name.'@scoutix.ovh' : $this->faker->email())
                 ->setPassword($this->passwordHasher->hashPassword($user, self::PASSWORD))
             ;
-        }, null !== $name ? $reference.$name : $reference);
-    }
 
-    private function userLifeCycle(Collection $users): void
-    {
-        foreach ($users->getValues() as $user) $this->lifeCycle($user);
+            Rolum::Admin->value === $role
+                ? $user->setCreatedAt(Faker::dateTimeImmutable('-2 years', '-1 year'))
+                : $this->lifeCycle($user)
+            ;
+        }, null !== $name ? $reference.$name : $reference);
     }
 }

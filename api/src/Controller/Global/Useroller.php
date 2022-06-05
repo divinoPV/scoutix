@@ -2,22 +2,31 @@
 
 namespace App\Controller\Global;
 
+use App\Ancestor\Controller\Jsoncestor;
+use App\Contract\Controller\Jsonact;
 use App\Entity\ScopeUser;
+use App\Enum\Http\Methodum;
+use App\Enum\SerializeFormatum;
 use App\Repository\ScopeUsertory;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\Usertory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/users')]
-final class Useroller extends AbstractController
+final class Useroller extends Jsoncestor implements Jsonact
 {
-    #[Route('/{id}/scopes', methods: ['GET'])]
-    public function scopes(int $id, ScopeUsertory $scopeUsertory, SerializerInterface $serializer): JsonResponse
+    #[Route('/available', methods: [Methodum::GET])]
+    public function available(Usertory $usertory): array
+    {
+        return $usertory->findAvailable();
+    }
+
+    #[Route('/{id}/scopes', methods: [Methodum::GET])]
+    public function scopes(int $id, ScopeUsertory $scopeUsertory): JsonResponse
     {
         return new JsonResponse(
-            $serializer->serialize((array_map(
+            $this->serializer->serialize((array_map(
                 static fn (ScopeUser $scopeUser) => [
                     'id' => $scopeUser->getScope()?->getId(),
                     'activity' => [
@@ -30,9 +39,9 @@ final class Useroller extends AbstractController
                     ],
                 ],
                 $scopeUsertory->findByUser($id),
-            )), 'json'),
+            )), SerializeFormatum::JSON),
             Response::HTTP_ACCEPTED,
-            ['Content-Type' => "application/json"],
+            self::HEADER,
         );
     }
 }
