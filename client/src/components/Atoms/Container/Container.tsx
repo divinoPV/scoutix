@@ -1,3 +1,5 @@
+import React from 'react';
+
 import style from './Container.module.scss';
 
 const Container: React.FC<{

@@ -1,10 +1,14 @@
 @import 'src/bemit/settings/colors';
 
-.Connected {
+.Agenda {
   &__afterSwiper {
     padding: 0 233px;
 
     &__calendar {
+      height: fit-content;
+      margin-top: 11px;
+      width: 100%;
+
       &__event {
         background-color: $sunray;
         color: white;
@@ -27,6 +31,10 @@
     }
 
     &__item {
+      background: white;
+      border-radius: 5px;
+      padding: 13px 21px;
+
       &, &s {
         display: flex;
         flex-direction: column;
@@ -35,6 +43,13 @@
       &s {
         gap: 21px;
         padding: 5px 34px;
+
+        &__title {
+          display: block;
+          font-size: 1.8rem;
+          font-weight: 700;
+          line-height: 1.5;
+        }
       }
 
       &__date {
@@ -69,23 +84,6 @@
       }
     }
 
-    &__seeAll {
-      background: $color-secondary;
-      border: 1px solid $color-secondary;
-      border-radius: 21px;
-      bottom: 0;
-      color: white;
-      padding: 5px 13px;
-      position: absolute;
-      right: 0;
-      text-decoration: none;
-
-      &:hover {
-        background: white;
-        color: $color-secondary;
-      }
-    }
-
     &__title {
       display: block;
       font-size: 2.4rem;
@@ -112,6 +110,17 @@
         background-color: $color-secondary;
         color: white;
       }
+    }
+  }
+
+  &__container {
+    &__calendar {
+      display: flex;
+      margin: 21px 0 55px;
+    }
+
+    &__title {
+      margin-top: 34px;
     }
   }
 
