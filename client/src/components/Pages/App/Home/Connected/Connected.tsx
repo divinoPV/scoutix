@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { differenceInCalendarDays as isSameDay } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import 'react-calendar/dist/Calendar.css';
 
@@ -11,34 +11,28 @@ import style from './Connected.module.scss';
 
 import Disconnect from '../Disconnect/Disconnect';
 import { Store, useSelectorook } from '../../../../../utils/Redux/store';
+import { all } from '../../../../../utils/Request/eventequest';
+import toast from '../../../../../utils/Toast/default';
 
 const Connected: React.FC = () => {
   const user = useSelectorook((state: Store) => state.user);
 
   const [value, onChange] = useState(new Date());
 
-  /** TODO: refactor this */
-  const date1 = new Date();
-  const date2 = new Date();
-  const date3 = new Date();
+  const [events, setEvents] = useState<any[]>([]);
 
-  const events = [
-    {
-      date: new Date(date1.setDate(date1.getDate() + 11)),
-      name: 'Having A Provocative Scoutisme Works Only Under These Conditions',
-      tags: ['works', 'provocative'],
-    },
-    {
-      date: new Date(date2.setDate(date2.getDate() + 5)),
-      name: 'Fighting For Scoutisme: The Samurai Way',
-      tags: ['fighting', 'samurai'],
-    },
-    {
-      date: new Date(date3.setDate(date3.getDate() + 2)),
-      name: 'If You Don\'t Scoutisme Now, You\'ll Hate Yourself Later',
-      tags: ['yourself', 'hate'],
-    }
-  ];
+  useEffect(() => {
+    all()
+      .then((result) => {
+        setEvents(result.data['hydra:member'].slice(0, 4));
+      })
+      .catch(() => {
+        toast('La récupération des événements a échouée', 'error');
+      })
+    ;
+  }, []);
+
+  console.log(events);
 
   return !user.logged
     ? <Navigate to="/connexion" />
@@ -51,14 +45,18 @@ const Connected: React.FC = () => {
             </strong>
             <div className={ `${ style['Connected__afterSwiper__container'] } ` }>
               <FontAwesomeIcon icon={ faPlus } className={ `${ style['Connected__afterSwiper__container__add'] }` } />
+
               <Calendar
                 className={ `${ style['Connected__afterSwiper__calendar'] } ` }
                 onChange={ onChange }
                 tileClassName={ ({ date, view }): any => {
                   if (view === 'month') {
                     if (events.find((
-                      { date: eventDate }
-                    ) => isSameDay(eventDate, date) === 0)) {
+                      {
+                        endDate: end,
+                        startDate: start,
+                      }
+                    ) => (date > new Date(start) && date < new Date(end)))) {
                       return `${ style['Connected__afterSwiper__calendar__event'] }`;
                     }
                   }
@@ -66,24 +64,28 @@ const Connected: React.FC = () => {
                 value={ value }
               />
               { events && <div className={ `${ style['Connected__afterSwiper__items'] } ` }>
-                { events.map(({ date, name, tags }) => <div
+                { events.map(({ id, startDate, endDate, title }) => <div
                   className={ `${ style['Connected__afterSwiper__item'] } ` }
+                  key={ id }
                 >
-                  <div className={ `${ style['Connected__afterSwiper__item__tags'] } ` }>
-                    { tags && tags.map((tag) => <span
-                      className={ `${ style['Connected__afterSwiper__item__tag'] } ` }
-                    >
-                      { tag }
-                    </span>) }
-                  </div>
                   <strong className={ `${ style['Connected__afterSwiper__item__name'] } ` }>
-                    { name }
+                    { title }
                   </strong>
                   <span className={ `${ style['Connected__afterSwiper__item__date'] } ` }>
-                    { date.toLocaleDateString() }
+                    {
+                      new Date(startDate).toLocaleDateString()
+                      + ' au '
+                      + new Date(endDate).toLocaleDateString()
+                    }
                   </span>
                 </div>) }
               </div> }
+              <Link
+                className={ `${ style['Connected__afterSwiper__seeAll'] } ` }
+                to="/agenda"
+              >
+                Voir tout
+              </Link>
             </div>
           </div>
         }
