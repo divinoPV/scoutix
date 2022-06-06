@@ -8,9 +8,9 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Contract\Entity\AuthorizationEventCategoryact;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\AuthorizationEventCategorytory;
+use App\Repository\AuthorizationEventCategotory;
 
-#[ORM\Entity(repositoryClass: AuthorizationEventCategorytory::class)]
+#[ORM\Entity(repositoryClass: AuthorizationEventCategotory::class)]
 class AuthorizationEventCategory implements AuthorizationEventCategoryact
 {
     use Blameable, Defaultable, LifeCycleable, Timestampable;

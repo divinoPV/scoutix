@@ -6,7 +6,7 @@ use App\Ancestor\Controller\Jsoncestor;
 use App\Contract\Controller\Jsonact;
 use App\Entity\Activity;
 use App\Enum\SerializeFormatum;
-use App\Repository\Activitytory;
+use App\Repository\Activitory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,7 +65,7 @@ final class Activitoller extends Jsoncestor implements Jsonact
                 $this->entityManager
                     ->getRepository(Activity::class)
                     ->byFields(
-                        preg_filter('/^/', Activitytory::ALIAS.'.', $fields),
+                        preg_filter('/^/', Activitory::ALIAS.'.', $fields),
                         $id,
                     ),
                 SerializeFormatum::JSON,

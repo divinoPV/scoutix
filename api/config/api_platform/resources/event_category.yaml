@@ -1,0 +1,13 @@
+App\Entity\EventCategory:
+  attributes:
+    denormalization_context:
+      groups: [ 'write' ]
+    normalization_context:
+      groups: [ 'read' ]
+  collectionOperations:
+    available:
+      method: GET
+      path: /event_categories/available
+      controller: App\Controller\Global\EventCategoroller::available
+    get: ~
+    post: ~

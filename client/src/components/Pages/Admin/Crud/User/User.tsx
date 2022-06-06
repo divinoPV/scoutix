@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
+import { AxiosResponse } from 'axios';
 
 import Container from '../../../../Atoms/Container/Container';
 import Table from '../../../../Organisms/Global/Table/Table';
-import { add, get, update } from './apiRequest/apiRequest';
 import toast from '../../../../../utils/Toast/default';
+import {
+  add,
+  available,
+  update
+} from '../../../../../utils/Request/userequest';
+import { object } from 'yup';
 
 const User: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState<boolean>(true);
@@ -11,8 +17,8 @@ const User: React.FC = () => {
   const [users, setUsers] = React.useState<object[]>([]);
 
   useEffect(() => {
-    get()
-      .then(result => {
+    available()
+      .then((result: AxiosResponse) => {
         setUsers(result.data['hydra:member']);
         setIsFetching(false);
       })
@@ -50,26 +56,26 @@ const User: React.FC = () => {
         ],
         rows: users,
         editable: {
-          onRowUpdate: async (newData: any, oldData: any) => {
-            try {
-              await update(oldData.id, newData);
-            } catch (e) {
-              toast('La mise à jour de l\'utilisateur a échouée', 'error');
-            }
+          onRowUpdate: (user: object, oldUser: { id: number }): void => {
+            update(oldUser.id, user)
+              .catch(() => {
+                toast('La mise à jour de l\'utilisateur a échouée', 'error');
+              })
+            ;
           },
-          onRowDelete: async (oldData: any) => {
-            try {
-              await update(oldData.id, { ...oldData, deleted: true });
-            } catch (e) {
-              toast('La suppression de l\'utilisateur a échouée', 'error');
-            }
+          onRowDelete: (user: { id: number }): void => {
+            update(user.id, { ...user, deleted: true })
+              .catch(() => {
+                toast('La suppression de l\'utilisateur a échouée', 'error');
+              })
+            ;
           },
-          onRowAdd: async (newData: any) => {
-            try {
-              await add(newData);
-            } catch (e) {
-              toast('L\'ajout de l\'utilisateur a échoué', 'error');
-            }
+          onRowAdd: (user: object): void => {
+            add(user)
+              .catch(() => {
+                toast('L\'ajout de l\'utilisateur a échoué', 'error');
+              })
+            ;
           },
         },
         validators: {

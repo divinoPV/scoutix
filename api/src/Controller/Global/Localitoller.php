@@ -6,7 +6,7 @@ use App\Ancestor\Controller\Jsoncestor;
 use App\Contract\Controller\Jsonact;
 use App\Entity\Locality;
 use App\Enum\SerializeFormatum;
-use App\Repository\Localitytory;
+use App\Repository\Localitory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,7 +65,7 @@ final class Localitoller extends Jsoncestor implements Jsonact
                 $this->entityManager
                     ->getRepository(Locality::class)
                     ->byFields(
-                        preg_filter('/^/', Localitytory::ALIAS.'.', $fields),
+                        preg_filter('/^/', Localitory::ALIAS.'.', $fields),
                         $id,
                     ),
                 SerializeFormatum::JSON,

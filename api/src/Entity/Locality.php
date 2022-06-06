@@ -15,11 +15,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\Localitytory;
+use App\Repository\Localitory;
 use Ramsey\Uuid\Uuid;
 
 #[ApiResource]
-#[ORM\Entity(repositoryClass: Localitytory::class)]
+#[ORM\Entity(repositoryClass: Localitory::class)]
 class Locality implements Localityact
 {
     use Blameable, Idable, LifeCycleable, Timestampable, Titleable, Uuidable;

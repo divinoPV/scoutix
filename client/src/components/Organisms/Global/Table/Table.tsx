@@ -32,9 +32,9 @@ const Table: React.FC<{
     localization?: Localization;
     options?: Options<object>;
     editable?: {
-      onRowAdd?: (newData: any) => Promise<any>;
-      onRowUpdate?: (newData: any, oldData: any) => Promise<any>;
-      onRowDelete?: (oldData: any) => Promise<any>;
+      onRowAdd?: (object: any) => void;
+      onRowUpdate?: (object: any, oldObject: any) => void;
+      onRowDelete?: (object: any) => void;
     };
     validators?: any;
   }

@@ -12,10 +12,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\NewsCategorytory;
+use App\Repository\NewsCategotory;
 
 #[ApiResource]
-#[ORM\Entity(repositoryClass: NewsCategorytory::class)]
+#[ORM\Entity(repositoryClass: NewsCategotory::class)]
 class NewsCategory implements NewsCategoryact
 {
     use Blameable, Idable, LifeCycleable, Timestampable, Titleable;
