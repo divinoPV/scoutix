@@ -32,9 +32,9 @@ const Table: React.FC<{
     localization?: Localization;
     options?: Options<object>;
     editable?: {
-      onRowAdd?: (newData: any) => Promise<any>;
-      onRowUpdate?: (newData: any, oldData: any) => Promise<any>;
-      onRowDelete?: (oldData: any) => Promise<any>;
+      onRowAdd?: (object: any) => void;
+      onRowUpdate?: (object: any, oldObject: any) => void;
+      onRowDelete?: (object: any) => void;
     };
     validators?: any;
   }
@@ -49,15 +49,10 @@ const Table: React.FC<{
     editable = {},
     validators = {},
   } = table;
-  const editables = useRef({});
-  const [data, setData] = useState<any[]>(rows);
 
-  const addValidator = () => columns.reduce(
-    (acc: Array<object>, curr: { field: string }) => [
-      ...acc, curr.field in validators
-        ? { ...curr, validate: validators[curr.field] }
-        : curr
-    ], []);
+  const editables = useRef({});
+
+  const [data, setData] = useState<any[]>(rows);
 
   if (editable) {
     if (editable.onRowDelete) {
@@ -81,6 +76,7 @@ const Table: React.FC<{
         }
       });
     }
+
     if (editable.onRowUpdate) {
       Object.assign(editables.current, {
         onRowUpdate: async (newData: object, oldData: { id: number }) => {
@@ -102,6 +98,7 @@ const Table: React.FC<{
         }
       });
     }
+
     if (editable.onRowAdd) {
       Object.assign(editables.current, {
         onRowAdd: async (newData: object) => {
@@ -121,11 +118,18 @@ const Table: React.FC<{
   }
 
   return <MaterialTable
-    actions={actions}
-    columns={[...addValidator()]}
-    data={data}
-    editable={editables.current}
-    localization={{
+    actions={ actions }
+    columns={ [...(() => columns.reduce((
+      acc: Array<object>,
+      curr: { field: string }
+    ) => [
+      ...acc, curr.field in validators
+        ? { ...curr, validate: validators[curr.field] }
+        : curr
+    ], []))()] }
+    data={ data }
+    editable={ editables.current }
+    localization={ {
       ...{
         body: {
           emptyDataSourceMessage: 'Pas d\'enregistrement à afficher',
@@ -169,13 +173,13 @@ const Table: React.FC<{
           previousAriaLabel: 'Page précédente',
         }
       }, ...localization
-    }}
-    options={{
+    } }
+    options={ {
       ...{
         actionsColumnIndex: -1
       }, ...options
-    }}
-    title={title}
+    } }
+    title={ title }
   />;
 };
 

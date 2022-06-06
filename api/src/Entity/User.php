@@ -26,10 +26,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[ApiResource(
-    denormalizationContext: ['groups' => ['write']],
-    normalizationContext: ['groups' => ['read']],
-)]
+#[ApiResource]
 #[ORM\Entity(repositoryClass: Usertory::class)]
 #[UniqueEntity(fields: ['email'], message: 'user.unique.email')]
 class User implements Useract

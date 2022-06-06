@@ -5,7 +5,8 @@ namespace App\Controller\Global;
 use App\Ancestor\Controller\Jsoncestor;
 use App\Contract\Controller\Jsonact;
 use App\Entity\Locality;
-use App\Repository\Localitytory;
+use App\Enum\SerializeFormatum;
+use App\Repository\Localitory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ final class Localitoller extends Jsoncestor implements Jsonact
             return new JsonResponse(
                 $this->serializer->serialize(
                     $this->translator->trans(self::KEY_ONLY_BAD_REQUEST.'.missing_fields'),
-                    self::SERIALIZE_FORMAT,
+                    SerializeFormatum::JSON,
                 ),
                 Response::HTTP_BAD_REQUEST,
                 self::HEADER,
@@ -51,7 +52,7 @@ final class Localitoller extends Jsoncestor implements Jsonact
                         $this->translator->trans(self::KEY_ONLY_BAD_REQUEST.'.invalid_field', [
                             '%field%' => $field,
                         ]),
-                        self::SERIALIZE_FORMAT,
+                        SerializeFormatum::JSON,
                     ),
                     Response::HTTP_BAD_REQUEST,
                     self::HEADER,
@@ -64,10 +65,10 @@ final class Localitoller extends Jsoncestor implements Jsonact
                 $this->entityManager
                     ->getRepository(Locality::class)
                     ->byFields(
-                        preg_filter('/^/', Localitytory::ALIAS.'.', $fields),
+                        preg_filter('/^/', Localitory::ALIAS.'.', $fields),
                         $id,
                     ),
-                self::SERIALIZE_FORMAT,
+                SerializeFormatum::JSON,
             ),
             Response::HTTP_ACCEPTED,
             self::HEADER,

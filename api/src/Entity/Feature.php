@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Idable;
 use App\Beable\Entity\LifeCycleable;
@@ -15,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\Featuretory;
 use Ramsey\Uuid\Uuid;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: Featuretory::class)]
 class Feature implements Featureact
 {

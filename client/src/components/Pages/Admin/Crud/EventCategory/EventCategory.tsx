@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import { AxiosResponse } from 'axios';
 
 import Container from '../../../../Atoms/Container/Container';
-import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
 import Table from '../../../../Organisms/Global/Table/Table';
+import toast from '../../../../../utils/Toast/default';
 import {
-  addCategory,
-  getCategories,
-  updateCategory
-} from './ApiRequest/ApiRequest';
+  add,
+  available,
+  update
+} from '../../../../../utils/Request/event_categorequest';
 
 interface EventCategory {
   [key: string]: string | number;
@@ -15,70 +16,73 @@ interface EventCategory {
 
 const EventCategory: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState<boolean>(true);
+
   const [categories, setCategories] = React.useState<any[]>([]);
 
-  const updateCateg = async (newData: object, oldData: { id: number }) => {
-    try {
-      await updateCategory(oldData.id, newData);
-    } catch (e) {
-      e;
-    }
-  };
-
-  const deleteCateg = async (oldData: { id: number }) => {
-    try {
-      await updateCategory(oldData.id, {...oldData, deleted: true});
-    } catch (e) {
-      e;
-    }
-  };
-
-  const addCateg = async (newData: object) => {
-    try {
-      await addCategory(newData);
-    } catch (e) {
-      e;
-    }
-  };
-
-  const getCategs = async () => {
-    try {
-      const {data} = await getCategories();
-      setCategories(data['hydra:member']);
-      setIsFetching(false);
-    } catch (e) {
-      e;
-    }
-  };
-
   useEffect(() => {
-    getCategs();
+    available()
+      .then((result: AxiosResponse) => {
+        setCategories(result.data['hydra:member']);
+        setIsFetching(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        toast('La récupération des événements catégories a échouée', 'error');
+      })
+    ;
   }, []);
-
-  const config = {
-    title: 'Mes catégories d\'évènements',
-    columns: [
-      {title: 'Titre', field: 'title'},
-      {title: 'Contenu', field: 'content'},
-    ],
-    rows: categories,
-    editable: {
-      onRowUpdate: updateCateg,
-      onRowDelete: deleteCateg,
-      onRowAdd: addCateg,
-    },
-    validators: {
-      title: (rowData: EventCategory) => !rowData.title ?
-        { isValid: false, helperText: 'Veuillez saisir un titre' } : true,
-      content: (rowData: EventCategory) => !rowData.content ?
-        { isValid: false, helperText: 'Veuillez saisir un contenu' } : true,
-    }
-  };
 
   return <>
     <Container>
-      <PageTitle>Événement - Catégorie</PageTitle>
-      {!isFetching ? <Table table={config}/> : 'loading...'}
+      { !isFetching ? <Table table={ {
+        title: 'Mes catégories d\'évènements',
+        columns: [
+          { title: 'Titre', field: 'title' },
+          { title: 'Contenu', field: 'content' },
+        ],
+        rows: categories,
+        editable: {
+          onRowUpdate: (
+            eventCategory: object,
+            oldEventCategory: { id: number }
+          ): void => {
+            update(oldEventCategory.id, eventCategory)
+              .catch(() => {
+                toast(
+                  'La mise à jour de l\'événement catégorie a échouée',
+                  'error'
+                );
+              })
+            ;
+          },
+          onRowDelete: (eventCategory: { id: number }): void => {
+            update(eventCategory.id, { ...eventCategory, deleted: true })
+              .catch(() => {
+                toast(
+                  'La suppression de l\'événement catégorie a échouée',
+                  'error'
+                );
+              })
+            ;
+          },
+          onRowAdd: (eventCategory: object): void => {
+            add(eventCategory)
+              .catch(() => {
+                toast(
+                  'L\'ajout de l\'événement catégorie a échoué',
+                  'error'
+                );
+              })
+            ;
+          },
+        },
+        validators: {
+          title: (rowData: EventCategory) => !rowData.title ?
+            { isValid: false, helperText: 'Veuillez saisir un titre' } : true,
+          content: (rowData: EventCategory) => !rowData.content ?
+            { isValid: false, helperText: 'Veuillez saisir un contenu' } : true,
+        }
+      } } /> : 'loading...' }
     </Container>
   </>;
 };

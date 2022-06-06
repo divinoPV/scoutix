@@ -14,11 +14,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\Activitytory;
+use App\Repository\Activitory;
 use Ramsey\Uuid\Uuid;
 
 #[ApiResource]
-#[ORM\Entity(repositoryClass: Activitytory::class)]
+#[ORM\Entity(repositoryClass: Activitory::class)]
 class Activity implements Activityact
 {
     use Blameable, Idable, LifeCycleable, Timestampable, Titleable, Uuidable;

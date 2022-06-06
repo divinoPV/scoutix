@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method NewsCategory[]    findAll()
  * @method NewsCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-final class NewsCategorytory extends ServiceEntityRepository
+final class NewsCategotory extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

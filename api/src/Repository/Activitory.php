@@ -2,23 +2,23 @@
 
 namespace App\Repository;
 
-use App\Entity\Locality;
+use App\Entity\Activity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Locality|null find($id, $lockMode = null, $lockVersion = null)
- * @method Locality|null findOneBy(array $criteria, array $orderBy = null)
- * @method Locality[]    findAll()
- * @method Locality[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Activity|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Activity|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Activity[]    findAll()
+ * @method Activity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-final class Localitytory extends ServiceEntityRepository
+final class Activitory extends ServiceEntityRepository
 {
-    public const ALIAS = 'l';
+    public const ALIAS = 'a';
 
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Locality::class);
+        parent::__construct($registry, Activity::class);
     }
 
     /** TODO: create Ancestor for that */
@@ -38,6 +38,6 @@ final class Localitytory extends ServiceEntityRepository
             : $qb
                 ->getQuery()
                 ->getResult()
-            ;
+        ;
     }
 }

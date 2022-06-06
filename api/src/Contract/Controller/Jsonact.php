@@ -2,9 +2,10 @@
 
 namespace App\Contract\Controller;
 
+use App\Enum\Http\ContentTypum;
+use App\Enum\Http\Headerum;
+
 interface Jsonact
 {
-    public const SERIALIZE_FORMAT = 'json';
-
-    public const HEADER = ['Content-Type' => "application/json"];
+    public const HEADER = [Headerum::CONTENT_TYPE => ContentTypum::JSON];
 }
