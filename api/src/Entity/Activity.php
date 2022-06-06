@@ -17,7 +17,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Activitory;
 use Ramsey\Uuid\Uuid;
 
-#[ApiResource]
+#[ApiResource(
+    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['read']],
+)]
 #[ORM\Entity(repositoryClass: Activitory::class)]
 class Activity implements Activityact
 {

@@ -25,8 +25,7 @@ const EventCategory: React.FC = () => {
         setCategories(result.data['hydra:member']);
         setIsFetching(false);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
         toast('La récupération des événements catégories a échouée', 'error');
       })
     ;

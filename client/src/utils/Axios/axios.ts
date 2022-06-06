@@ -16,4 +16,16 @@ baseAxios.interceptors.request.use((req) => {
   return req;
 });
 
+baseAxios.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+
+    return Promise.reject(err);
+  },
+);
+
 export default baseAxios;

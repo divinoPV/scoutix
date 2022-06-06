@@ -14,8 +14,21 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 final class Scopetory extends ServiceEntityRepository
 {
+    public const ALIAS = 's';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Scope::class);
+    }
+
+    public function findAvailable(): array
+    {
+        return $this->createQueryBuilder(self::ALIAS)
+            ->where(self::ALIAS.'.deleted = :deleted')
+            ->setParameter('deleted', false)
+            ->orderBy(self::ALIAS.'.createdAt')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 }

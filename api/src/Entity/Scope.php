@@ -8,25 +8,38 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Scopeact;
+use App\Controller\Global\Scopoller;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Scopetory;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
-    normalizationContext: ['groups' => ['read']],
+    collectionOperations: [
+        'post',
+        'available' => [
+            'method' => 'get',
+            'path' => '/scopes/available',
+            'controller' => Scopoller::class,
+        ]
+    ],
+    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['read'], 'enable_max_depth' => true],
 )]
 #[ORM\Entity(repositoryClass: Scopetory::class)]
 class Scope implements Scopeact
 {
     use Idable, Uuidable, LifeCycleable, Timestampable, Blameable;
 
+    #[Groups(["read", "write"])]
     #[ORM\ManyToOne(targetEntity: Activity::class, inversedBy: 'scopes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Activity $activity;
 
+    #[Groups(["read", "write"])]
     #[ORM\ManyToOne(targetEntity: Locality::class, inversedBy: 'scopes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Locality $locality;

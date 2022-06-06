@@ -6,8 +6,8 @@ App\Entity\User:
       groups: [ 'read' ]
   collectionOperations:
     available:
+      controller: App\Controller\Global\Useroller::available
       method: GET
       path: /users/available
-      controller: App\Controller\Global\Useroller::available
     get: ~
     post: ~

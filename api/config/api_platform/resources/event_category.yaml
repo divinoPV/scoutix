@@ -6,8 +6,8 @@ App\Entity\EventCategory:
       groups: [ 'read' ]
   collectionOperations:
     available:
+      controller: App\Controller\Global\EventCategoroller::available
       method: GET
       path: /event_categories/available
-      controller: App\Controller\Global\EventCategoroller::available
     get: ~
     post: ~
