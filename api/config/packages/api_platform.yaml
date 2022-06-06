@@ -1,8 +1,8 @@
 api_platform:
   defaults:
     pagination_enabled: false
-  mapping:
-    paths: [ '%kernel.project_dir%/src/Entity', '%kernel.project_dir%/config/api_platform/resources' ]
+  eager_loading:
+    force_eager: false
   formats:
     jsonld: [ 'application/ld+json' ]
     jsonhal: [ 'application/hal+json' ]
@@ -13,6 +13,11 @@ api_platform:
     csv: [ 'text/csv' ]
     html: [ 'text/html' ]
     myformat: [ 'application/vnd.myformat' ]
+  mapping:
+    paths: [
+      '%kernel.project_dir%/src/Entity',
+      '%kernel.project_dir%/config/api_platform/resources'
+    ]
   patch_formats:
     json: [ 'application/merge-patch+json' ]
   swagger:
@@ -21,5 +26,3 @@ api_platform:
         name: Authorization
         type: header
     versions: [ 3 ]
-  eager_loading:
-    force_eager: false

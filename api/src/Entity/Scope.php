@@ -8,7 +8,7 @@ use App\Beable\Entity\LifeCycleable;
 use App\Beable\Entity\Timestampable;
 use App\Beable\Entity\Uuidable;
 use App\Contract\Entity\Scopeact;
-use App\Controller\Global\ScopeController;
+use App\Controller\Global\Scopoller;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'available' => [
             'method' => 'get',
             'path' => '/scopes/available',
-            'controller' => ScopeController::class,
+            'controller' => Scopoller::class,
         ]
     ],
     denormalizationContext: ['groups' => ['write']],

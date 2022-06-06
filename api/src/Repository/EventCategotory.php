@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 final class EventCategotory extends ServiceEntityRepository
 {
+    public const ALIAS = 'ec';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, EventCategory::class);
@@ -21,25 +23,25 @@ final class EventCategotory extends ServiceEntityRepository
 
     public function findAvailable(): array
     {
-        return $this->createQueryBuilder('ec')
-            ->select('
-                ec.archived,
-                ec.archivedAt,
-                IDENTITY(ec.archivedBy),
-                ec.content,
-                ec.createdAt,
-                IDENTITY(ec.createdBy),
-                ec.deleted,
-                ec.deletedAt,
-                IDENTITY(ec.deletedBy),
-                ec.id,
-                ec.title,
-                ec.updatedAt,
-                IDENTITY(ec.updatedBy)
-            ')
-            ->andWhere('ec.deleted = :deleted')
+        return $this->createQueryBuilder(self::ALIAS)
+            ->select(
+                self::ALIAS.'.archived,'
+               .self::ALIAS.'.archivedAt,'
+               .'IDENTITY('.self::ALIAS.'.archivedBy),'
+               .self::ALIAS.'.content,'
+               .self::ALIAS.'.createdAt,'
+               .'IDENTITY('.self::ALIAS.'.createdBy),'
+               .self::ALIAS.'.deleted,'
+               .self::ALIAS.'.deletedAt,'
+               .'IDENTITY('.self::ALIAS.'.deletedBy),'
+               .self::ALIAS.'.id,'
+               .self::ALIAS.'.title,'
+               .self::ALIAS.'.updatedAt,'
+               .'IDENTITY('.self::ALIAS.'.updatedBy)'
+            )
+            ->where(self::ALIAS.'.deleted = :deleted')
             ->setParameter('deleted', false)
-            ->orderBy('ec.createdAt')
+            ->orderBy(self::ALIAS.'.createdAt')
             ->getQuery()
             ->getResult()
         ;
