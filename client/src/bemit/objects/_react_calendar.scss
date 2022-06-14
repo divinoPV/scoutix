@@ -18,12 +18,26 @@
   }
 
   &__tile {
+    border: 2px solid white !important;
+    border-radius: 5px;
+
+    &:enabled {
+      &:focus, &:hover {
+        background-color: $color-primary;
+        border: 2px solid white !important;
+        border-radius: 5px;
+        color: white;
+      }
+    }
+
     &--active {
       background-color: $color-secondary;
 
       &:enabled {
         &:focus, &:hover {
           background-color: $color-primary;
+          border: 2px solid white !important;
+          border-radius: 5px;
         }
       }
 
@@ -34,6 +48,8 @@
 
     &--now {
       background-color: $color-ternary;
+      border: 2px solid white !important;
+      border-radius: 5px;
 
       &:enabled {
         &:focus, &:hover {

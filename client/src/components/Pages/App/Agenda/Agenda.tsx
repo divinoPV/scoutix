@@ -57,7 +57,7 @@ const Agenda: React.FC = () => {
         <strong
           className={ `${ style['Agenda__afterSwiper__items__title'] } ` }
         >
-          Listes des événements
+          Liste des événements
         </strong>
         { events.map(({ id, startDate, endDate, title }) => <div
           className={ `${ style['Agenda__afterSwiper__item'] } ` }

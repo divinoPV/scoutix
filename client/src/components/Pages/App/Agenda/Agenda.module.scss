@@ -7,10 +7,12 @@
     &__calendar {
       height: fit-content;
       margin-top: 11px;
-      width: 100%;
+      width: 85%;
 
       &__event {
         background-color: $sunray;
+        border: 2px solid white !important;
+        border-radius: 5px;
         color: white;
       }
     }

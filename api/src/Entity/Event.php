@@ -21,7 +21,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Eventory;
 use Ramsey\Uuid\Uuid;
 
-#[ApiResource]
+#[ApiResource(order: ['startDate' => 'ASC'])]
 #[ORM\Entity(repositoryClass: Eventory::class)]
 class Event implements Eventact
 {
