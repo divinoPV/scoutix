@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Beable\Entity\Blameable;
 use App\Beable\Entity\Defaultable;
 use App\Beable\Entity\LifeCycleable;
@@ -10,6 +11,7 @@ use App\Contract\Entity\AuthorizationEventCategoryact;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AuthorizationEventCategotory;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: AuthorizationEventCategotory::class)]
 class AuthorizationEventCategory implements AuthorizationEventCategoryact
 {

@@ -1,19 +1,24 @@
 import baseAxios from '../../../../../../utils/Axios/axios';
 
-export const getActivities = () => baseAxios.get('/activities');
-export const getFeatures = () => baseAxios.get('/features');
-export const getAuthorizationsRole = () => baseAxios.get('/authorization_activity_features');
+export const getAuthorizationsRole = () => baseAxios.get('/authorizations/roles');
+
 export const addAuthorizationRole = (newAuth: object) => (
-  baseAxios.post('/authorization_activity_features', newAuth, {
-    headers: { 'Content-Type': 'application/ld+json' }
+  baseAxios.post('/authorizations/roles/add', { authorizations: newAuth }, {
+    headers: { 'Content-Type': 'application/json' }
   })
 );
-export const updateAuthorizationRole = (id: string, updateAuth: object) => (
-  baseAxios.patch(`/${id}`, updateAuth, {
+
+export const updateAuthorizationRole = (updateAuth: object) => (
+  baseAxios.patch('authorizations/roles', updateAuth, {
     headers: { 'Content-Type': 'application/merge-patch+json' }
   })
 );
 
-export const deleteAuthorizationRole = (id: string) => baseAxios.delete(`/${id}`);
+export const deleteAuthorizationRole = (featureId: number, activityId: number) => (
+  baseAxios.get(`/authorizations/roles/${featureId}/${activityId}`, {
+    headers: { 'Content-Type': 'application/ld+json' }
+  })
+);
+
 
 

@@ -1,5 +1,4 @@
 export type activity =  {
-  '@id': string;
   id: number,
   uuid: string,
   name: string,
@@ -9,7 +8,6 @@ export type activity =  {
 }
 
 export type feature = {
-  '@id': string;
   id: number,
   uuid: string,
   name: string,
@@ -19,11 +17,16 @@ export type feature = {
 }
 
 export type authorization = {
-  '@id': string;
   id: number,
   uuid: string,
   archived: string,
   deleted: string,
   activity: string,
   feature: string
+}
+
+export interface authorizationRoles {
+  authorizations: Array<authorization>;
+  features: Array<feature>;
+  activities: Array<activity>;
 }

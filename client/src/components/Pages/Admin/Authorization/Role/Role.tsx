@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import style from './Role.module.scss';
 
 import type {
-  authorization,
   activity,
   feature
 } from '../../../../../utils/@types/types';
@@ -11,35 +10,21 @@ import type {
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
 import SwitchTable from '../../../../Organisms/Global/SwitchTable/SwitchTable';
-import useNotif from '../../../../Trumps/Helper/Hook/Notif';
+import useNotif from '../../../../Trumps/Hook/Notif';
 import {
-  getActivities,
-  getFeatures,
   getAuthorizationsRole,
   addAuthorizationRole,
-  updateAuthorizationRole
+  deleteAuthorizationRole,
 } from './ApiRequest/ApiRequest';
 
 const Role: React.FC = () => {
   const [isFetching, setIsFetching] = useState<boolean>(true);
-
-  const [activities, setActivities] = useState(null);
-
-  const [features, setFeatures] = useState(null);
-
-  const [authorizations, setAuthorizations] = useState<Array<authorization>>([]);
+  const [authorizationsRole, setAuthorizationsRole] = useState({});
 
   const init = async () => {
     try {
-      const { data: dataActivities } = await getActivities();
-      const { data: dataFeatures } = await getFeatures();
-      const { data: dataAuthorizations } = await getAuthorizationsRole();
-
-      setAuthorizations(dataAuthorizations['hydra:member']);
-      setActivities(dataActivities['hydra:member'].reduce((acc, curr) => 
-        [...acc, { ...curr, name: curr.title }], []));
-      setFeatures(dataFeatures['hydra:member'].reduce((acc, curr) => 
-        [...acc, { ...curr, name: curr.title }], []));
+      const { data } = await getAuthorizationsRole();
+      setAuthorizationsRole(JSON.parse(data));
       setIsFetching(false);
     } catch (e) {
 
@@ -47,34 +32,35 @@ const Role: React.FC = () => {
   };
 
   const constraint = (activity: activity, feature: feature) => (
-    !!authorizations.find(authorization =>
-      activity['@id'] === authorization.activity
-      && feature['@id'] === authorization.feature
+    !!authorizationsRole.authorizations.find(authorization =>
+      activity.id === authorization.activity.id
+      && feature.id === authorization.feature.id
       && !authorization.deleted
     )
   );
 
   const callback = async (activity: activity, feature: feature) => {
-    const authorization = authorizations.find(authorization =>
-      activity['@id'] === authorization.activity
-      && feature['@id'] === authorization.feature
-    )
-    if (authorization) {
-      await updateAuthorizationRole(
-        'authorization_activity_features/activity=1;feature=5',
-        { ...authorization, deleted: true }
-      );
-      useNotif({ message: 'Authorization modifié' });
-    } else {
-      await addAuthorizationRole(
-        {
-          activity: activity['@id'],
-          feature: feature['@id'],
-          archived: false,
-          deleted: false
-        }
-      );
-      useNotif({ message: 'Authorization modifié' });
+    const authorization = authorizationsRole.authorizations.find(authorization =>
+      activity.id === authorization.activity.id
+      && feature.id === authorization.feature.id
+    );
+    try {
+      if (authorization) {
+        await deleteAuthorizationRole(authorization.feature.id, authorization.activity.id);
+        useNotif({ message: 'Authorization modifié' });
+      } else {
+        await addAuthorizationRole(
+          {
+            activity: activity,
+            feature: feature,
+            archived: false,
+            deleted: false
+          }
+        );
+        useNotif({ message: 'Authorization modifié' });
+      }
+    } catch (e) {
+     console.log(e);
     }
   }
 
@@ -90,8 +76,8 @@ const Role: React.FC = () => {
           constraint={constraint}
           callback={callback}
           data={{
-            'body': activities,
-            'header': features,
+            'body': authorizationsRole.activities,
+            'header': authorizationsRole.features,
           }}
           horizontalHeaderLabel="Fonctionnalités"
           verticalHeaderLabel="Fonctions"

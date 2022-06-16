@@ -38,7 +38,7 @@ const SwitchTable: React.FC<{
         className={ `${ style['SwitchTable__cell'] }` }
         key={ item.id }
       >
-        <span>{ item.name }</span>
+        <span>{ item.title }</span>
       </div>) }
     </div>
     <div className={ `${ style['SwitchTable__body'] }` }>
@@ -47,7 +47,7 @@ const SwitchTable: React.FC<{
         key={ item.id }
       >
         <div className={ `${ style['SwitchTable__cell'] }` }>
-          <span>{ item.name }</span>
+          <span>{ item.title }</span>
         </div>
         { data.header.map((head) => <div
           className={ `${ style['SwitchTable__cell'] }` }
