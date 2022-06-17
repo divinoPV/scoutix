@@ -312,5 +312,3 @@ up-pp-d: bundles db cc
 # Generate JWT keys
 jwt-keys: perm
 	${DOCKER_EXEC_PHP_BC} lexik:jwt:generate-keypair --skip-if-exists
-
-

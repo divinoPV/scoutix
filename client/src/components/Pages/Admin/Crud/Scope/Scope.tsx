@@ -50,7 +50,7 @@ const Scope: React.FC = () => {
         2 < nbFetch.current && setIsFetching(false);
       })
       .catch(() => {
-        toast('La récupération des activités a échouée', 'error');
+        toast('La récupération des activités a échoué.', 'error');
       })
     ;
 
@@ -67,7 +67,7 @@ const Scope: React.FC = () => {
         2 < nbFetch.current && setIsFetching(false);
       })
       .catch(() => {
-        toast('La récupération des localités a échouée', 'error');
+        toast('La récupération des localités a échoué.', 'error');
       })
     ;
 
@@ -88,7 +88,7 @@ const Scope: React.FC = () => {
         2 < nbFetch.current && setIsFetching(false);
       })
       .catch(() => {
-        toast('La récupération des scopes a échouée', 'error');
+        toast('La récupération des scopes a échoué.', 'error');
       })
     ;
   }, []);
@@ -111,7 +111,7 @@ const Scope: React.FC = () => {
             update(oldScope.id, scope)
               .catch(() => {
                 toast(
-                  'La mise à jour du scope a échouée',
+                  'La mise à jour du scope a échoué.',
                   'error'
                 );
               })
@@ -121,7 +121,7 @@ const Scope: React.FC = () => {
             update(scope.id, { ...scope, deleted: true })
               .catch(() => {
                 toast(
-                  'La suppression du scope a échouée',
+                  'La suppression du scope a échoué.',
                   'error'
                 );
               })

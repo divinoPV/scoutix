@@ -27,12 +27,10 @@ const Connected: React.FC = () => {
         setEvents(result.data['hydra:member'].slice(0, 4));
       })
       .catch(() => {
-        toast('La récupération des événements a échouée', 'error');
+        toast('La récupération des événements a échoué.', 'error');
       })
     ;
   }, []);
-
-  console.log(events);
 
   return !user.logged
     ? <Navigate to="/connexion" />

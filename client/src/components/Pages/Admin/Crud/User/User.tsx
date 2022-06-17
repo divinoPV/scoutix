@@ -23,7 +23,7 @@ const User: React.FC = () => {
         setIsFetching(false);
       })
       .catch(() => {
-        toast('La récupération des utilisateurs a échouée', 'error');
+        toast('La récupération des utilisateurs a échoué.', 'error');
       });
   }, []);
 
@@ -59,14 +59,14 @@ const User: React.FC = () => {
           onRowUpdate: (user: object, oldUser: { id: number }): void => {
             update(oldUser.id, user)
               .catch(() => {
-                toast('La mise à jour de l\'utilisateur a échouée', 'error');
+                toast('La mise à jour de l\'utilisateur a échoué.', 'error');
               })
             ;
           },
           onRowDelete: (user: { id: number }): void => {
             update(user.id, { ...user, deleted: true })
               .catch(() => {
-                toast('La suppression de l\'utilisateur a échouée', 'error');
+                toast('La suppression de l\'utilisateur a échoué.', 'error');
               })
             ;
           },

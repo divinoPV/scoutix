@@ -490,5 +490,23 @@ enum.state.send: Envoyé
 ## Error - Response
 ### Error - Response - Activitoller
 error.response.activitoller.only.bad_request:
-  fields: Le paramètre 'fields' est obligatoire dans votre requête !
+  missing_fields: Le paramètre 'fields' est obligatoire dans votre requête !
   invalid_field: Le champ "%field%" n'existe pas pour la classe "Activity".
+
+### Error - Response - Featuroller
+error.response.featuroller.only.bad_request:
+  missing_fields: Le paramètre 'fields' est obligatoire dans votre requête !
+  invalid_field: Le champ "%field%" n'existe pas pour la classe "Feature".
+
+# Controller
+## Controller - Authorizationoller
+authorizationoller:
+  role:
+    response:
+      add:
+        error: L'ajout de l'autorisation a échoué.
+        success: L'ajout de l'autorisation a été effectuée avec succès.
+      anonymize:
+        empty: Autorisation introuvable, veuillez contacter un administrateur.
+        error: La suppression de l'autorisation a échoué.
+        success: La suppression de l'autorisation a été effectuée avec succès.

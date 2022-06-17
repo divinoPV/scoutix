@@ -4,19 +4,19 @@ namespace App\Controller\Global;
 
 use App\Ancestor\Controller\Jsoncestor;
 use App\Contract\Controller\Jsonact;
-use App\Entity\Locality;
+use App\Entity\Feature;
 use App\Enum\Http\Methodum;
 use App\Enum\SerializeFormatum;
-use App\Repository\Localitory;
+use App\Repository\Featuretory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/localities')]
-final class Localitoller extends Jsoncestor implements Jsonact
+#[Route('/features')]
+final class Featuroller extends Jsoncestor implements Jsonact
 {
-    public const KEY_TRANS = 'error.response.localitoller';
+    public const KEY_TRANS = 'error.response.featuroller';
     public const KEY_ONLY = self::KEY_TRANS.'.only';
     public const KEY_ONLY_BAD_REQUEST = self::KEY_ONLY.'.bad_request';
 
@@ -38,7 +38,7 @@ final class Localitoller extends Jsoncestor implements Jsonact
         }
 
         $fields = explode(',', $parameters['fields']);
-        $properties = (new \ReflectionClass(Locality::class))->getProperties();
+        $properties = (new \ReflectionClass(Feature::class))->getProperties();
 
         foreach ($fields as $field) {
             $valid = false;
@@ -64,9 +64,9 @@ final class Localitoller extends Jsoncestor implements Jsonact
         return new JsonResponse(
             $this->serializer->serialize(
                 $this->entityManager
-                    ->getRepository(Locality::class)
+                    ->getRepository(Feature::class)
                     ->byFields(
-                        preg_filter('/^/', Localitory::ALIAS.'.', $fields),
+                        preg_filter('/^/', Featuretory::ALIAS.'.', $fields),
                         $id,
                     ),
                 SerializeFormatum::JSON,

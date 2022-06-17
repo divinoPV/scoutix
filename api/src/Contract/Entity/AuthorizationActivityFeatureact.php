@@ -2,13 +2,10 @@
 
 namespace App\Contract\Entity;
 
-use App\Contract\Beable\Blameablact;
-use App\Contract\Beable\LifeCycleablact;
-use App\Contract\Beable\Timestampablact;
 use App\Entity\Activity;
 use App\Entity\Feature;
 
-interface AuthorizationActivityFeatureact extends Blameablact, Entityact, LifeCycleablact, Timestampablact
+interface AuthorizationActivityFeatureact extends Entityact
 {
     public function getActivity(): ?Activity;
 

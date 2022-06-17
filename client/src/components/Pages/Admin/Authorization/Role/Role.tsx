@@ -1,66 +1,156 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { AxiosResponse } from 'axios';
 
 import style from './Role.module.scss';
+
+import type { activitype } from '../../../../../utils/Types/activitype';
+import type { featurype } from '../../../../../utils/Types/featurype';
 
 import Container from '../../../../Atoms/Container/Container';
 import PageTitle from '../../../../Atoms/Title/Page/PageTitle';
 import SwitchTable from '../../../../Organisms/Global/SwitchTable/SwitchTable';
+import toast from '../../../../../utils/Toast/default';
+import { role } from '../../../../../utils/Types/authorizationype';
+import {
+  authorizationRolype
+} from '../../../../../utils/Types/authorization_rolype';
+import {
+  add,
+  all as allRoles,
+  anonymize
+} from '../../../../../utils/Request/authorizationequest';
+import {
+  all as allActivities
+} from '../../../../../utils/Request/activitequest';
+import {
+  all as allFeatures
+} from '../../../../../utils/Request/featurequest';
 
 const Role: React.FC = () => {
+  const nbFetch = useRef<number>(0);
+
+  const [isFetching, setIsFetching] = React.useState<boolean>(true);
+
+  const [reload, setReload] = React.useState<boolean>(false);
+
+  const [authorizationsRole, setAuthorizationsRole] = useState(
+    {} as authorizationRolype[]
+  );
+
+  const [activities, setActivities] = useState({} as activitype[]);
+
+  const [features, setFeatures] = useState({} as featurype[]);
+
+  useEffect(() => {
+    allRoles(role)
+      .then((response: AxiosResponse) => {
+        setAuthorizationsRole(JSON.parse(response.data));
+
+        nbFetch.current += 1;
+        2 < nbFetch.current && setIsFetching(false);
+      })
+      .catch(() => {
+        toast('La récupération des authorizations a échoué.', 'error');
+      })
+    ;
+
+    allActivities()
+      .then((response: AxiosResponse) => {
+        setActivities(response.data['hydra:member']);
+
+        nbFetch.current += 1;
+        2 < nbFetch.current && setIsFetching(false);
+      })
+      .catch(() => {
+        toast('La récupération des activités a échoué.', 'error');
+      })
+    ;
+
+    allFeatures()
+      .then((response: AxiosResponse) => {
+        setFeatures(response.data['hydra:member']);
+
+        nbFetch.current += 1;
+        2 < nbFetch.current && setIsFetching(false);
+      })
+      .catch(() => {
+        toast('La récupération des fonctionnalités a échoué.', 'error');
+      })
+    ;
+
+    setReload(false);
+  }, [reload]);
+
   return <>
     <Container>
       <PageTitle>Autorisation - Role</PageTitle>
-      <SwitchTable
-        className={ `${ style['Role__switchTable'] }` }
-        data={ {
-          'body': [
-            { 'id': 1, 'name': 'Function 1' },
-            { 'id': 2, 'name': 'Function 2' },
-            { 'id': 3, 'name': 'Function 3' },
-            { 'id': 4, 'name': 'Function 4' },
-            { 'id': 5, 'name': 'Function 5' },
-            { 'id': 6, 'name': 'Function 6' },
-            { 'id': 7, 'name': 'Function 7' },
-            { 'id': 8, 'name': 'Function 8' },
-            { 'id': 9, 'name': 'Function 9' },
-            { 'id': 10, 'name': 'Function 10' },
-            { 'id': 11, 'name': 'Function 11' },
-            { 'id': 12, 'name': 'Function 12' },
-            { 'id': 13, 'name': 'Function 13' },
-            { 'id': 14, 'name': 'Function 14' },
-            { 'id': 15, 'name': 'Function 15' },
-            { 'id': 16, 'name': 'Function 16' },
-            { 'id': 17, 'name': 'Function 17' },
-            { 'id': 18, 'name': 'Function 18' },
-            { 'id': 19, 'name': 'Function 19' },
-            { 'id': 20, 'name': 'Function 20' },
-            { 'id': 21, 'name': 'Function 21' },
-            { 'id': 22, 'name': 'Function 22' },
-            { 'id': 23, 'name': 'Function 23' },
-            { 'id': 24, 'name': 'Function 24' },
-            { 'id': 25, 'name': 'Function 25' },
-            { 'id': 26, 'name': 'Function 26' },
-          ],
-          'header': [
-            { 'id': 1, 'name': 'Feature 1' },
-            { 'id': 2, 'name': 'Feature 2' },
-            { 'id': 3, 'name': 'Feature 3' },
-            { 'id': 4, 'name': 'Feature 4' },
-            { 'id': 5, 'name': 'Feature 5' },
-            { 'id': 6, 'name': 'Feature 6' },
-            { 'id': 7, 'name': 'Feature 7' },
-            { 'id': 8, 'name': 'Feature 8' },
-            { 'id': 9, 'name': 'Feature 9' },
-            { 'id': 10, 'name': 'Feature 10' },
-            { 'id': 11, 'name': 'Feature 11' },
-            { 'id': 12, 'name': 'Feature 12' },
-            { 'id': 13, 'name': 'Feature 13' },
-            { 'id': 14, 'name': 'Feature 14' },
-          ],
-        } }
-        horizontalHeaderLabel="Fonctionnalités"
-        verticalHeaderLabel="Fonctions"
-      />
+      { !isFetching
+        ? <SwitchTable
+          className={ `${ style['Role__switchTable'] }` }
+          constraint={ (activity: activitype, feature: featurype) => (
+            !!authorizationsRole.find(authorization =>
+              activity.id === authorization.activity.id
+              && feature.id === authorization.feature.id
+            )
+          ) }
+          callback={ async (activity: activitype, feature: featurype) => {
+            const authorization = authorizationsRole.find(authorization =>
+              activity.id === authorization.activity.id
+              && feature.id === authorization.feature.id
+            );
+
+            authorization
+              ? anonymize(
+                role,
+                authorization.activity.id,
+                authorization.feature.id,
+              )
+                .then(() => {
+                  toast(
+                    'La suppression de l\'autorisation ' +
+                    'a été effectuée avec succès.',
+                    'success'
+                  );
+                })
+                .catch(() => {
+                  toast(
+                    'La suppression de l\'autorisation a échoué.',
+                    'error'
+                  );
+                })
+              : add(
+                role,
+                {
+                  activity: activity,
+                  feature: feature,
+                }
+              )
+                .then(() => {
+                  toast(
+                    'L\'ajout de l\'autorisation ' +
+                    'a été effectuée avec succès.',
+                    'success'
+                  );
+                })
+                .catch(() => {
+                  toast(
+                    'L\'ajout de l\'autorisation a échoué.',
+                    'error'
+                  );
+                })
+            ;
+
+            setReload(true);
+          } }
+          data={ {
+            'body': activities,
+            'header': features,
+          } }
+          horizontalHeaderLabel="Fonctionnalités"
+          verticalHeaderLabel="Activités"
+        />
+        : 'loading...'
+      }
     </Container>
   </>;
 };
