@@ -19,7 +19,7 @@ final class AuthorizationActivityFeaturures extends Fixturabs implements Depende
                 ->setActivity($this->getReference(Activityures::REFERENCE.$i))
                 ->setFeature($this->randReference(Featurures::class))
             ;
-        }, self::REFERENCE, true);
+        }, self::REFERENCE);
     }
 
     public function getDependencies(): array
@@ -27,7 +27,6 @@ final class AuthorizationActivityFeaturures extends Fixturabs implements Depende
         return [
             Activityures::class,
             Featurures::class,
-            Userures::class,
         ];
     }
 }

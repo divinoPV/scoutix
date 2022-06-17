@@ -26,7 +26,7 @@ const EventCategory: React.FC = () => {
         setIsFetching(false);
       })
       .catch(() => {
-        toast('La récupération des événements catégories a échouée', 'error');
+        toast('La récupération des événements catégories a échoué.', 'error');
       })
     ;
   }, []);
@@ -48,7 +48,7 @@ const EventCategory: React.FC = () => {
             update(oldEventCategory.id, eventCategory)
               .catch(() => {
                 toast(
-                  'La mise à jour de l\'événement catégorie a échouée',
+                  'La mise à jour de l\'événement catégorie a échoué.',
                   'error'
                 );
               })
@@ -58,7 +58,7 @@ const EventCategory: React.FC = () => {
             update(eventCategory.id, { ...eventCategory, deleted: true })
               .catch(() => {
                 toast(
-                  'La suppression de l\'événement catégorie a échouée',
+                  'La suppression de l\'événement catégorie a échoué.',
                   'error'
                 );
               })

@@ -63,3 +63,21 @@ enum.state.send: Send
 error.response.activitoller.only.bad_request:
   missing_fields: The 'fields' parameter is mandatory in your query!
   invalid_field: The "%field%" field does not exist for the "Activity" class.
+
+### Error - Response - Featuroller
+error.response.featuroller.only.bad_request:
+  missing_fields: The 'fields' parameter is mandatory in your query!
+  invalid_field: The "%field%" field does not exist for the "Feature" class.
+
+# Controller
+## Controller - Authorizationoller
+authorizationoller:
+  role:
+    response:
+      add:
+        error: Adding the authorization failed.
+        success: The addition of the authorization has been successfully completed.
+      anonymize:
+        empty: Authorization not found, please contact an administrator.
+        error: The deletion of the authorization failed.
+        success: The deletion of the authorization has been successfully completed.

@@ -33,10 +33,6 @@ package "BusinessRules" <<Node>> #FFF {
         }
 
         entity AuthorizationActivityFeature {
-            <Trait>: Blameable
-            <Trait>: LifeCycleable
-            <Trait>: Timestampable
-
             -{field} activity: Activity - FPK
             -{field} feature: Feature - FPK
         }

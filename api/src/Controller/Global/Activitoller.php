@@ -5,6 +5,7 @@ namespace App\Controller\Global;
 use App\Ancestor\Controller\Jsoncestor;
 use App\Contract\Controller\Jsonact;
 use App\Entity\Activity;
+use App\Enum\Http\Methodum;
 use App\Enum\SerializeFormatum;
 use App\Repository\Activitory;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,7 +21,7 @@ final class Activitoller extends Jsoncestor implements Jsonact
     public const KEY_ONLY_BAD_REQUEST = self::KEY_ONLY.'.bad_request';
 
     /** TODO: externalise in Ancestor */
-    #[Route('/{id}/only', methods: ['GET'])]
+    #[Route('/{id}/only', methods: [Methodum::GET])]
     public function only(int $id, Request $request): JsonResponse
     {
         $parameters = $request->query->all();

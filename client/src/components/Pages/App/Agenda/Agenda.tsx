@@ -22,7 +22,7 @@ const Agenda: React.FC = () => {
         setEvents(result.data['hydra:member']);
       })
       .catch(() => {
-        toast('La récupération des événements a échouée', 'error');
+        toast('La récupération des événements a échoué.', 'error');
       })
     ;
   }, []);

@@ -12,8 +12,8 @@ const SwitchTable: React.FC<{
   };
   horizontalHeaderLabel: string;
   verticalHeaderLabel: string;
-  callback: (value: object, value2: object) => void;
-  constraint: (value: object, value2: object) => boolean;
+  callback: (value: any, value2: any) => void;
+  constraint: (value: any, value2: any) => boolean;
 }> = (
   {
     className = '',
@@ -34,7 +34,7 @@ const SwitchTable: React.FC<{
           <span>{ horizontalHeaderLabel }</span>
         </div>
       </div>
-      { data.header.map((item) => <div
+      { data.header.map((item: any) => <div
         className={ `${ style['SwitchTable__cell'] }` }
         key={ item.id }
       >
@@ -42,7 +42,7 @@ const SwitchTable: React.FC<{
       </div>) }
     </div>
     <div className={ `${ style['SwitchTable__body'] }` }>
-      { data.body.map((item) => <div
+      { data.body.map((item: any) => <div
         className={ `${ style['SwitchTable__rows'] }` }
         key={ item.id }
       >
@@ -53,13 +53,13 @@ const SwitchTable: React.FC<{
           className={ `${ style['SwitchTable__cell'] }` }
         >
           <SwitchBtn
-            onChange={() => callback(item, head)}
-            isOn={constraint(item, head)}
+            onChange={ () => callback(item, head) }
+            isOn={ constraint(item, head) }
           />
         </div>) }
       </div>) }
     </div>
   </div>;
-}
+};
 
 export default SwitchTable;

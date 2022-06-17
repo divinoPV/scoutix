@@ -45,10 +45,10 @@
                         rgba(0, 0, 0, 0) calc(50% - .8px),
                         $color-ternary-light 50%,
                         rgba(0, 0, 0, 0) calc(50% + .8px),
-                        rgba(0, 0, 0, 0) 100%);
-
+                        rgba(0, 0, 0, 0) 100%
+        );
         position: relative;
-        height: 55px;
+        height: auto;
 
         &__horizontal, &__vertical {
           position: absolute;
